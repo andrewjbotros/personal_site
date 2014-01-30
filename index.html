@@ -14,33 +14,39 @@
 </head>
 
 <body>
-    <script>
-    $(document).ready(function () {
-        $("#profile img").hover(function () {
-            $("#profile .contact").slideToggle();
-        });
-    });
-    </script>
 
-    <div class = "banner">
+    <div class="container">
+        <header class = "top-nav">
+            <div class="profile-image">
+                <a href="mailto:andrewjbotros@gmail.com?Subject=Hello!%20" target="_blank"><img src = "images/profile_picture.png"/></a>
+            </div>
+            <div class="profile-details">
+                <h1 style = "display:inline"><a href = "index.html" style = "font-size: 45px">andrew botros</a></h1>
+                <div class = "nav">
+                    <a href="http://www.linkedin.com/pub/andrew-botros/86/6a1/675" target="_blank">linkedIn</a> |
+                    <a href = "http://github.com/andrewjbotros" target="_blank">gitHub</a> |
+                    <a href = "blog.html" target="_blank" target="_top">blog</a>
+                </div>
+            </div>
+        </header>
 
-        <div class = "profile" style = "float: left; display: inline-block">
+        <div class="quotes">
+            <div class="quote-container">
+                <script language="JavaScript1.1" src="js/quotations.js"></script>
+            </div>
+        </div>
+    </div>
+
+<!--     <div class = "banner">
+
             <div id="profile">
                 <div style = "height: 180px">
                     <a href="mailto:andrewjbotros@gmail.com?Subject=Hello!%20" target="_blank"><img src = "images/profile_picture.png"/></a>
                 </div>
-
-                <div class="contact">
-                    <a href="mailto:andrewjbotros@gmail.com?Subject=Hello!%20" target="_top">
-                        <span>contact</span>
-                    </a>
-                </div>
             </div>
 
-        </div>
-
         <div class = "profiletext">
-            <h2><a href = "index.html" style = "font-size: 45px">andrew botros</a></h2>
+            <h2 style = "background-color: red;display:inline"><a href = "index.html" style = "font-size: 45px">andrew botros</a></h2>
             <div class = "links">
                 <a href="http://www.linkedin.com/pub/andrew-botros/86/6a1/675" target="_blank">linkedIn</a> |
                 <a href = "http://github.com/andrewjbotros" target="_blank">gitHub</a> |
@@ -54,7 +60,7 @@
         <div style = "clear: both; width: 30%; margin: 0 auto; border: 1px solid black; vertical-align: bottom">
             <script language="JavaScript1.1" src="js/quotations.js"></script>
         </div>
-    </div>
+    </div> -->
 
 </body>
 </html>
