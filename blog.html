@@ -13,6 +13,20 @@
 
 <body>
 
+    <script>
+    $(document).ready(function () {
+        $(".profile-image img").hover(function () {
+            $(this).attr("src" ,"images/profile_picture2.png");
+        }, function () {
+            $(this).attr("src" ,"images/profile_picture1.png");
+        });
+
+        $(".profile-image img").hover(function () {
+            $(".profile-image .text").slideToggle();
+        });
+    });
+    </script>
+
     <div class="container">
         <header class = "top-nav">
             <div class="profile-image">
@@ -34,9 +48,8 @@
         <div class = "blog">
             <p class = "date">January 30, 2014</p>
             <p class = "post">So this is more than a little embarassing. It's like a typical new years resolution, and I've proceeded in typical fashion. I had such high hopes for this blog and my ability to accurately describe how this whole process is going, all the things I'm learning, all the wonderful things I'm building. Well, I have to be honest. I feel like I'm getting my ass kicked. And this, my friends, isn't the funnest place to be.</p>
-            <p class = "post">Part of the trouble with a bootcamp of this nature is that there is little time for ideas to distill with the end user. Sometimes, it takes a long walk on cold night (and hell, it has been cold here), followed by a hot shower that sparks a revelation, in beautiful detail, the solution to a problem you've been staring at for the last 10 hours. I have found, and I hope other out there can holler back at me, that getting started in this whole "cool man, I'm a build a awesome web app" is no easy breeze. I want to see all the stock footage of Bill Gates sucking it up on seemingly simple problems. And then, through stop motion film, show how many damn hours he put into solving his problems. Did you hear that Will.I.Am is at MIT studying computer science because he's convinced you'll be a ninja with the skill set? Well, there's not a lot that me and Will.I.Am agree on. But, I certainly feel naked in this age to not know how to program even the simplest of apps. And so, the ideas keep piling up.</p>
-            <p class "post">So, in the spirit of what's said above, I want to share a somewhat embarassing revelation. I spent way too long on what appeared at first to be a very simple problem.
-            <p class ="post">I toiled for 6 hours (because, why not) on my ever so simple website. Centering content. Yes. That's right. Centering content. You know when you're building a simple website, and you ask your developer, "Hey, can you, you know, center the content?" - you'd expect - "Heh heh... uh yeah. Duh. *arrogant clackity typing noises* DONE!" Well, if I was your developer that would have taken me 6 hours. I'd like to say I learned a lot about html. And I did. And I'd like to tell you that I will proceed to review what I learned with you. Well, I'm not. I learned that you can't center content in a div tag. You know what else I learned? I don't know how to type /div/ tag with the typical <> brackets without breaking something. I need to learn that tomorrow.</p>
+            <p class = "post">Part of the trouble with a bootcamp of this nature is that there is little time for ideas to distill with the end user. Sometimes, it takes a long walk on cold night (and hell, it has been cold here), followed by a hot shower that sparks a revelation, in beautiful detail, the solution to a problem you've been staring at for the last 10 hours. I have found, and I hope other out there can holler back at me, that getting started in this whole "cool man, I'm a build a awesome web app" is no easy breeze. I want to see all the stock footage of Bill Gates sucking it up on seemingly simple problems. And then, through stop motion film, show how many damn hours he put into solving his problems. Did you hear that Will.I.Am is at MIT studying computer science because he's convinced you'll be a ninja with the skill set? Well, there's not a lot that me and Will.I.Am agree on. But, I certainly feel naked in this age to not know how to program even the simplest of apps. And so, the ideas keep piling up. Now, in the spirit of sharing not just sucesses, but 'failures' (lessons learned), I'll share something that presented a major challenge. </p>
+            <p class ="post">I toiled for 6 hours (because, why not) on my ever so simple website trying to center content. Yes. That's right. Centering content. You know when you're building a simple website, and you ask your developer, "Hey, can you, you know, center the content?" - you'd expect - "Heh heh... uh yeah. Duh. *arrogant clackity typing noises* DONE!" Well, if I was your developer that would have taken me 6 hours. I'd like to say I learned a lot about html. And I did. And I'd like to tell you that I will proceed to review what I learned with you. Well, I'm not. I learned that you can't center content in a div tag. You know what else I learned? I don't know how to type /div/ tag with the typical <> brackets without breaking something. I need to learn that tomorrow.</p>
 
             <p class = "date">January 13, 2014</p>
             <p class = "post">Officially day 1 in Bitmaker Labs. Very impressive space, very confident team. If you've been fortunate enough to work in the beaurocracy of a large corporation, then perhaps the first thing will strike you is how much got accomplished by this relatively small group of people. Amazingly, only 5 cohorts in (1 yearish), they will be moving to a new space twice its current size at the end of February.</p>
