@@ -49,10 +49,6 @@ html, body {
     text-align: center;
 }
 
-.command{
-    font-weight: bold;
-}
-
 .post, .list{
     font-family: courier new
 }
