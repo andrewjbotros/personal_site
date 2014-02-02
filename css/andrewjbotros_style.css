@@ -40,6 +40,13 @@ html, body {
     font-family: courier new
 }
 
+.shortcuts{
+    background-color: #F2F2F2;
+    width: 80%;
+    margin: 30px auto;
+    border: 2px solid #D6D6D6;
+
+}
 .list {
     padding: 20px 0;
     width: 10%;
