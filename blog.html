@@ -2,11 +2,14 @@
 
 <html>
 
+
 <head>
     <title>Andrew Botros</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
     <link rel="stylesheet" href="css/andrewjbotros_style.css" type="text/css"/>
+    <link href='http://fonts.googleapis.com/css?family=Poller+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Chela+One' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
     <script src="js/jquery.bxslider.min.js"></script>
 </head>
@@ -21,9 +24,9 @@
             $(this).attr("src" ,"images/profile_picture1.png");
         });
 
-        $(".profile-image img").hover(function () {
-            $(".profile-image .text").slideToggle();
-        });
+        // $(".profile-image img").hover(function () {
+        //     $(".profile-image .text").slideToggle();
+        // });
     });
     </script>
 
@@ -37,26 +40,49 @@
                 <div class = "nav">
                     <a href="http://www.linkedin.com/pub/andrew-botros/86/6a1/675" target="_blank">linkedIn</a> |
                     <a href = "http://github.com/andrewjbotros" target="_blank">gitHub</a> |
-                    <a href = "blog.html" target="_blank" target="_top">blog</a>
+                    <a href = "blog.html" target="_blank">blog</a>
                 </div>
             </div>
         </header>
 
-        <div class="subhead">
-        </div>
-
         <div class = "blog">
             <p class = "date">February 2, 2014</p>
-            <p class = "post">So, today's the Big Game Day (god forbid I use superbowel. God forbid I use god. I digress.) Against my better judgement, depending on how you look at it, I've decided to do the honourable thing and spend a lazy Sunday studying rails and generally getting caught up. One of the things I'm slowly trying to master is the ability to manipulate all necessary applications and functions directly from the keyboard. While it certainly takes a fair bit of up front effort, you'll find that over time, if you stay disciplined, you fingers will catch up with your brain and it will become second nature. So this post I wanted to review the handful of shortcuts that I regularly use, the ones I've introduced into my workflow, and the ones I need to remind myself of. So it will be a review for both me, and you, the reader. If there are any of you out there.</p>
-            <p class = "post">I'm currently using something called Sublime Text 2, a very common text editor used amongst developers. Dare I include myself in this group? Hells, why not. I mean, am using Sublime Text 2. Naturally, there are a handful of things one does in sublime that certainly make working with it a lot easier. To start,  </p>
+            <p class = "post">So, today's the Big Game Day (god forbid I use superbowel. God forbid I use god. I digress.) Against my better judgement, depending on how you look at it, I've decided to do the honourable thing and spend a lazy Sunday studying rails and generally getting caught up. One of the things I'm slowly trying to master is the ability to manipulate all necessary applications and functions directly from the keyboard. While it certainly takes a fair bit of up front effort, you'll find that over time, if you stay disciplined, you fingers will catch up with your brain and it will become second nature. Atleast, that's what I keep telling myself. So this post I wanted to review the handful of shortcuts that I'm trying to introduce into my workflow, and thus are the ones I need to remind myself of. I'm starting out ambitiously, as I hope to cover several applications (unix, sublime text, chrome, git, mac os). So this will mostly act as a resource for me, but I hope it may provide some shortcuts that you find helpful.</p>
+            <p class = "post">First off, I hadn't heard of the command line until about 6 weeks ago. I am a child of the GUI, and having been presented with the option to point click, it's no doubt the easiest way to proceed navigating through your computers directories. However, it's a much more productive use of MY time to learn these commands for use in the Command Line Interface (CLI). And you can use it to rename, move, delete files, navigate directories and list their contents etc... There are a handful of core commands that represent about 90% of the tasks I typically need to complete. As I'm using a Mac OS, I'll be covering only unix commands.</p>
+
+            <div class = "application">Unix</div>
             <div class = "shortcuts">
                 <ul class = "list">
-                    <li>blah</li>
-                    <li>blah</li>
-                    <li>blah</li>
-
+                    <li>subl .: open all files/directories in sublime</li>
+                    <li>rm: delete a file</li>
+                    <li>rmdir: remove a directory</li>
+                    <li>mv: move a file/directory</li>
+                    <li>pwd: present working directory</li>
+                    <li>ls: list contents of directory</li>
+                    <li>ls -a: list all contents of directory</li>
                 </ul>
             </div>
+
+            <div class = "application">Web Browser</div>
+            <div class = "shortcuts">
+                <ul class = "list">
+                    <li><span class = "command">cmd + R:</span> refresh page</li>
+                    <li><span class = "command">cmd + T:</span> new tab</li>
+                    <li><span class = "command">ctrl + tab:</span> cycle through open tabs</li>
+                </ul>
+            </div>
+
+            <div class = "application">Mac OS</div>
+            <div class = "shortcuts">
+                <ul class = "list">
+                    <li>cmd + spacebar: spotlight</li>
+                    <li>cmd + tab: cycle through open programs</li>
+                    <li>cmd + m: minimize window</li>
+                    <li></li>
+                </ul>
+            </div>
+
+            <p class = "post">I'm currently using something called Sublime Text 2, a very common text editor used amongst developers. Dare I include myself in this group? Hells, why not. I mean, am using Sublime Text 2. Naturally, there are a handful of things one does in sublime that certainly make working with it a lot easier. To start,  </p>
 
             <p class = "date">January 30, 2014</p>
             <p class = "post">So this is more than a little embarassing. It's like a typical new years resolution, and I've proceeded in typical fashion. I had such high hopes for this blog and my ability to accurately describe how this whole process is going, all the things I'm learning, all the wonderful things I'm building. Well, I have to be honest. I feel like I'm getting my ass kicked. And this, my friends, isn't the funnest place to be.</p>

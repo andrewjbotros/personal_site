@@ -22,6 +22,7 @@ html, body {
 
 .blog{
     text-align: justify;
+    padding-top: 10px;
 }
 
 .subhead{
@@ -32,8 +33,24 @@ html, body {
 }
 
 .date{
-    font-family: impactLabelReversed;
+    font-family: impactLabelReversed, 'Chela One', cursive;
     font-size: 25px;
+    padding-top: 25px;
+}
+
+.application{
+    padding: -10px 0px -20px 0px;
+    width: 80%;
+    margin: 0 auto;
+    font-family: courier new;
+    font-size: 20px;
+    font-weight: bold;
+    border: 2px solid black;
+    text-align: center;
+}
+
+.command{
+    font-weight: bold;
 }
 
 .post, .list{
@@ -43,13 +60,15 @@ html, body {
 .shortcuts{
     background-color: #F2F2F2;
     width: 80%;
-    margin: 30px auto;
+    margin: 0px auto 30px auto;
     border: 2px solid #D6D6D6;
+    border-top: none;
+    text-align: left;
 
 }
 .list {
     padding: 20px 0;
-    width: 10%;
+    width: 80%;
     margin: 0 auto;
 }
 .container{
