@@ -32,10 +32,19 @@ html, body {
     height: 40px;
 }
 
+.background-image{
+    width: 100%;
+    height: auto;
+}
+
 .date{
-    font-family: impactLabelReversed, 'Chela One', cursive;
+    width: 100%;
+    font-family: impactLabelReversed, courier new;
+    font-weight: bold;
     font-size: 25px;
     padding-top: 25px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid black;
 }
 
 .application{
@@ -152,6 +161,17 @@ img{
     display: none;
     text-align: center;
     background: #000
+}
+
+.tooltip {
+    display:none;
+    position:absolute;
+    border:1px solid #333;
+    background-color:#161616;
+    border-radius:5px;
+    padding:10px;
+    color:#fff;
+    font-size:12px Arial;
 }
 
 a, em {

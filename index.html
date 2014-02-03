@@ -20,17 +20,37 @@
         }, function () {
             $(this).attr("src" ,"images/profile_picture1.png");
         });
-
-        $(".profile-image img").hover(function () {
-            $(".profile-image .text").slideToggle();
-        });
     });
+    </script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+    // Tooltip only Text
+    $('.masterTooltip').hover(function(){
+    // Hover over code
+    var title = $(this).attr('title');
+    $(this).data('tipText', title).removeAttr('title');
+    $('<p class="tooltip"></p>')
+    .text(title)
+    .appendTo('body')
+    .fadeIn('slow');
+}, function() {
+    // Hover out code
+    $(this).attr('title', $(this).data('tipText'));
+    $('.tooltip').remove();
+}).mousemove(function(e) {
+    var mousex = e.pageX + 20; //Get X coordinates
+    var mousey = e.pageY + 10; //Get Y coordinates
+    $('.tooltip')
+    .css({ top: mousey, left: mousex })
+});
+});
     </script>
 
     <div class="container">
         <header class = "top-nav">
             <div class="profile-image">
-                <a href="mailto:andrewjbotros@gmail.com?Subject=Hello!%20" target="_blank"><img src = "images/profile_picture1.png"/></a>
+                <a href="mailto:andrewjbotros@gmail.com?Subject=Hello!%20" target="_blank"><img title="contact me" class="masterTooltip" src = "images/profile_picture1.png"/></a>
             </div>
             <div class="profile-details">
                 <h1><a href = "index.html">andrew botros</a></h1>
@@ -49,11 +69,11 @@
         </div>
     </div>
 
-    <div class = "project-container">
+<!--     <div class = "project-container">
         <div class="project"><div class = "label">Projects</div></div>
         <div class="project">Music</div>
         <div class="project">Resume</div>
-    </div>
+    </div> -->
 
 </body>
 </html>
