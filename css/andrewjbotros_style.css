@@ -62,6 +62,22 @@ html, body {
     text-align: left;
 
 }
+
+.project-container{
+    width: 70%;
+    margin: 40px auto 40px auto;
+    border: 2px solid black;
+    text-align: center;
+}
+
+.project {
+    display: inline-block;
+    border: 2px solid black;
+    width: 300px;
+    height: 300px;
+    margin: 5px;
+}
+
 .list {
     padding: 20px 0;
     width: 80%;
@@ -111,6 +127,9 @@ img, #profile, .profile {
 
 .quotes {
     padding: 1.5em 0;
+    border: 2px solid black;
+    border-left: none;
+    border-right: none;
 }
 
 .quote-container {
