@@ -64,19 +64,18 @@ html, body {
 }
 
 .project-container{
-    width: 70%;
-    margin: 40px auto 40px auto;
-    border: 2px solid black;
+    width: 80%;
+    margin: 50px auto 40px auto;
     text-align: center;
 }
 
 .project {
     background-color: #F2F2F2;
     display: inline-block;
-    border: 2px solid black;
-    width: 330px;
-    height: 300px;
-    margin: 20px 10px;
+    border: 1px solid #D6D6D6;;
+    width: 300px;
+    height: 250px;
+    margin: 20px 20px;
     top: 50%;
 }
 
@@ -105,13 +104,14 @@ html, body {
 
 .top-nav {
     overflow: auto;
-    padding: 20px 0;
+    padding-top: 12px;
     background-color: #A2BFBF;
-    height: 210px ;
+    height: 196px ;
 }
 
-img, #profile, .profile {
-    height: 160px;
+img{
+    margin-top: 10px;
+    height: 150px;
     text-align: center;
 }
 
@@ -127,7 +127,7 @@ img, #profile, .profile {
     margin-top: 37px;
     padding: 0 1em;
     text-align: center;
-    width: 364px;
+    width: 360px;
 }
 
 .profile-details > h1{
@@ -138,7 +138,7 @@ img, #profile, .profile {
 
 .quotes {
     padding: 1.5em 0;
-    border: 2px solid black;
+    border: 1.5px solid black;
     border-left: none;
     border-right: none;
 }
