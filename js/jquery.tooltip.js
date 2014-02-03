@@ -1,4 +1,3 @@
-<script type="text/javascript">
 $(document).ready(function() {
 // Tooltip only Text
 $('.masterTooltip').hover(function(){
@@ -20,4 +19,3 @@ $('.tooltip')
 .css({ top: mousey, left: mousex })
 });
 });
-</script>
