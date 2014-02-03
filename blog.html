@@ -38,6 +38,40 @@
         </header>
 
         <div class = "blog">
+            <p class = "date">February 3, 2014</p>
+            <p class = "post">Today's focus is getting caught up on the rails web framework for ruby. I definitely feel a little behind, as we're supposed to have completed 3 assignments to date: a blog, photogur (imgur clone), and rainforest (amazon clone). Hopefully, by the end of the day today, I'll get to share with you my progress on all three assignments. It's 1:42 pm right now, and I'm just getting started on the lynda.com rails video series. I'll be taking notes below for *our* mutual benefit. Let's ball.</p>
+
+            <div class = "application">Rails Framework</div>
+            <div class = "shortcuts">
+                <ul class = "list">
+                    <li><b>Definition: </b>A set of code libraries and data-structures that provide generic functionality which can be used, overriden or further specialized.</li>
+                    <li>A <b>Gem</b> is simply ruby code that's been packaged up for easy distribution using the package manager. Rails is itself a gem.</li>
+                    <li><b>gem update --system: </b>get latest version of ruby gems</li>
+                    <li><b>gem --help: </b>help doc for ruby gems</li>
+                </ul>
+            </div>
+
+            <div class = "application">MVC Web Architecture</div>
+            <div class = "shortcuts">
+                <ul class = "list">
+                    <li><b>Model:</b> Data objects we use</li>
+                    <li><b>View:</b> Presentation layer (html/css/javascript)</li>
+                    <li><b>Controller:</b> Processes user events (clicking links, submitting forms)</li>
+                    <li>Browser -> Controller -> Model -> Database</li>
+                    <li>Controller -> View -> Browser</li>
+                    <li><b>rubygems.org: </b>source of all ruby gems</li>
+                </ul>
+            </div>
+
+            <div class = "application">rbenv</div>
+            <div class = "shortcuts">
+                <ul class = "list">
+                    <li><b>rbenv rehash:</b> run this command anytime you install a gem/update ruby</li>
+                    <li><b>rbenv global, local, shell:</b> run this version of ruby in the global, local, shell environment.</li>
+                    <li><b>rbenv local:</b> run this command anytime you install a gem/update ruby</li>
+                </ul>
+            </div>
+
             <p class = "date">February 2, 2014</p>
             <p class = "post">So, today's the Big Game Day (god forbid I use superbowel. God forbid I use god. I digress.) Against my better judgement, depending on how you look at it, I've decided to do the honourable thing and spend a lazy Sunday studying rails and generally getting caught up. One of the things I'm slowly trying to master is the ability to manipulate all necessary applications and functions directly from the keyboard. While it certainly takes a fair bit of up front effort, you'll find that over time, if you stay disciplined, you fingers will catch up with your brain and it will become second nature. Atleast, that's what I keep telling myself. So this post I wanted to review the handful of shortcuts that I'm trying to introduce into my workflow, and thus are the ones I need to remind myself of. I'm starting out ambitiously, as I hope to cover several applications (unix, sublime text, chrome, git, mac os). So this will mostly act as a resource for me, but I hope it may provide some shortcuts that you find helpful.</p>
             <p class = "post">First off, I hadn't heard of the command line until about 6 weeks ago. I am a child of the GUI, and having been presented with the option to point click, it's no doubt the easiest way to proceed navigating through your computers directories. However, it's a much more productive ue of time to learn these commands for use in the Command Line Interface (CLI). To launch 'Terminal' in Mac OS, hold 'command + spacebar' to bring up Spotlight. Type in 'Terminal' and hit 'enter'. This is a CLI. You can use it to rename, move, delete files, navigate directories and list their contents etc... There are a handful of core commands that represent about 90% of the tasks I typically need to complete. Mac OS uses unix, and so I will only be covering these commands.</p>
@@ -47,6 +81,8 @@
                 <ul class = "list">
                     <li><b>cd:</b> change directory</li>
                     <li><b>cd ..:</b> back one directory</li>
+                    <li><b>cd ../..:</b> back two directories</li>
+                    <li><b>cd ~:</b> home directory</li>
                     <li><b>rm:</b> remove a file</li>
                     <li><b>mkdir:</b> make a directory</li>
                     <li><b>rmdir:</b> remove a directory</li>
@@ -56,6 +92,9 @@
                     <li><b>ls -l:</b> list content details in directory</li>
                     <li><b>ls -a:</b> list all contents in directory</li>
                     <li><b>touch:</b> create a new file</li>
+                    <li><b>cat:</b> display contents of a file</li>
+                    <li><b>cmd + K:</b> clear shell</li>
+                    <li><b>nano ~/.bash_profile:</b> launch bash_profile to <a href="http://www.maclife.com/article/columns/terminal_101_creating_aliases_commands" target="_blank"><u>create an alias</u></a></li>
                 </ul>
             </div>
 
@@ -80,7 +119,9 @@
                     <li><b>cmd + R:</b> refresh page</li>
                     <li><b>cmd + T:</b> new tab</li>
                     <li><b>cmd + L:</b> highlight address bar</li>
+                    <li><b>cmd + shift + J:</b> open downloads page</li>
                     <li><b>cmd + option + J:</b> launch 'dev tools'</li>
+                    <li><b>cmd + option + U:</b> view source code</li>
                     <li><b>ctrl + tab:</b> cycle through open tabs</li>
                     <li><b>option + tab:</b> cycle through "header"s tags</li>
                     <li><b>cmd + ~:</b> cycle through open windows</li>
@@ -103,7 +144,6 @@
             <div class = "application">Sublime Text 2</div>
             <div class = "shortcuts">
                 <ul class = "list">
-                    <li><b>nano ~/.bash_profile:</b> launch bash_profile to <a href="http://www.maclife.com/article/columns/terminal_101_creating_aliases_commands">create an alias</a></li>
                     <li><b>subl .:</b> launch sublime from terminal</li>
                     <li><b>cmd + shift + P:</b> cycle through open windows</li>
                     <li><b>cmd + ~:</b> cycle through open windows</li>
