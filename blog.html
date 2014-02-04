@@ -22,22 +22,126 @@
             });
         });
     </script>
+
     <div class="container">
         <header class = "top-nav">
             <div class="profile-image">
                 <a href="mailto:andrewjbotros@gmail.com?Subject=Hello!%20" target="_blank"><img title="contact me" class="masterTooltip" src = "images/profile_picture1.png"/></a>
             </div>
             <div class="profile-details">
-                <h1><a href = "index.html">andrew botros</a></h1>
-                <div class = "nav">
+                <h1><a href="index.html">andrew botros</a></h1>
+                <div class="nav">
                     <a href="http://www.linkedin.com/pub/andrew-botros/86/6a1/675" target="_blank">linkedIn</a> |
-                    <a href = "http://github.com/andrewjbotros" target="_blank">gitHub</a> |
+                    <a href="http://github.com/andrewjbotros" target="_blank">gitHub</a> |
                     <a href = "blog.html" target="_top">blog</a>
                 </div>
             </div>
         </header>
 
         <div class = "blog">
+            <p class = "date">February 4, 2014</p>
+            <p class = "post">Unfortunately I didn't make near as much headway as I was hoping. Today is the first day of the rest of my life. Inspired up. The time right now is 12:21pm. I'm on section 05_02. There are 19 directories in total. Let's roll.</p>
+
+            <div class = "application">table column</div>
+            <div class = "shortcuts">
+                <div class="multi-list">
+                    <ul class = "list">
+                        <li style="list-style-type: none"><b>Types</b></li>
+                        <li>binary</li>
+                        <li>boolean</li>
+                        <li>date</li>
+                        <li>datetime</li>
+                        <li>decimal</li>
+                        <li>float</li>
+                        <li>integer</li>
+                        <li>string</li>
+                        <li>text</li>
+                        <li>time</li>
+                    </ul>
+                </div>
+                <div class="multi-list">
+                    <ul class = "list">
+                        <li style="list-style-type: none"><b>Types</b></li>
+                        <li>binary</li>
+                        <li>boolean</li>
+                        <li>date</li>
+                        <li>datetime</li>
+                        <li>decimal</li>
+                        <li>float</li>
+                        <li>integer</li>
+                        <li>string</li>
+                        <li>text</li>
+                        <li>time</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class = "application">migrations</div>
+            <div class = "shortcuts">
+                <ul class = "list">
+                    <li>A set of database instructions, written in ruby, that allows your database to transform from one state to another.</li>
+                    <li>It keeps the database schema with application code.</li>
+                    <li>It's executable, repeatable, and allows sharing schema changes. It helps with versioning, and allows use to write ruby in place of SQL.</li>
+                </ul>
+            </div>
+
+            <div class = "application">rake application</div>
+            <div class = "shortcuts">
+                <ul class = "list">
+                    <li><b>rake -T:</b> return list of tasks available</li>
+                    <li><b>rake -T db:</b> return list of database tasks</li>
+                </ul>
+            </div>
+
+            <div class = "application">mysql commands</div>
+            <div class = "shortcuts">
+                <ul class = "list">
+                    <li>Show DATABASES;</b></li>
+                    <li>CREATE DATABASE db_name;</b></li>
+                    <li>USE db_name;</b></li>
+                    <li>DROP DATABASE db_name;</b></li>
+                </ul>
+            </div>
+
+            <div class = "application">Terms</div>
+            <div class = "shortcuts">
+                <ul class = "list">
+                    <li style="list-style-type: none"><b>CRUD</b></li>
+                    <li>Create</li>
+                    <li>Read</li>
+                    <li>Update</li>
+                    <li>Delete</li>
+                    </br><li style="list-style-type: none"><b>Database</b></li>
+                    <li>A set of tables</li>
+                    <li>One database = one application</li>
+                    <li>Example: simple_cms_development</li>
+                    <li>Access permissions are granted at database level</li>
+                    </br><li style="list-style-type: none"><b>Table</b></li>
+                    <li>Set of columns and rows</li>
+                    <li>1 table = 1 model</li>
+                    <li>Represents a single concept (a noun)</li>
+                    <li>Examples: products, customers, orders</li>
+                    </br><li style="list-style-type: none"><b>Column</b></li>
+                    <li>Set of data of a single simple type</li>
+                    <li>Examples: first_name, last_name etc...</li>
+                    </br><li style="list-style-type: none"><b>Row</b></li>
+                    <li>Single record of data</li>
+                    <li>Example: "Tony", "Bennett", "tony@email.com"</li>
+                    </br><li style="list-style-type: none"><b>Field</b></li>
+                    <li>Intersection of a column and a row</li>
+                    </br><li style="list-style-type: none"><b>Index</b></li>
+                    <li>Data structure that will increase the look-up speed</li>
+                    </br><li style="list-style-type: none"><b>Foreign Key</b></li>
+                    <li>Example: subject_id</li>
+                    <li>Relate rows in one table to another</li>
+                    <li>The foundation of relational databases</li>
+                    <li>Always put indexes on foreign keys</li>
+                    </br><li style="list-style-type: none"><b>Schema</b></li>
+                    <li>The structural definition of a database</li>
+                    <li>Importing a schema creates a complete database</li>
+                </ul>
+            </div>
+
             <p class = "date">February 3, 2014</p>
             <p class = "post">Today's focus is getting caught up on the rails web framework for ruby. I definitely feel a little behind, as we're supposed to have completed 3 assignments to date: a blog, photogur (imgur clone), and rainforest (amazon clone). Hopefully, by the end of the day today, I'll get to share with you my progress on all three assignments. It's 1:42 pm right now, and I'm just getting started on the lynda.com rails video series. I'll be taking notes below for *our* mutual benefit. Let's ball.</p>
 
@@ -48,6 +152,28 @@
                     <li>A <b>Gem</b> is simply ruby code that's been packaged up for easy distribution using the package manager. Rails is itself a gem.</li>
                     <li><b>gem update --system: </b>get latest version of ruby gems</li>
                     <li><b>gem --help: </b>help doc for ruby gems</li>
+                    <li><b><a href="http:bundler.io" target="_blank">bundler.io:</a></b> Documentation for bundler</li>
+                    <li><b>Bundler</b> is concerned with two files: Gemfile, and Gemfile.lock</li>
+                    <li><b>bundle install:</b> sort out all ruby gem dependencies (turn Gemfile into Gemfile.lock)</li>
+                    <li>Sometimes, you'll need to put 'bundle exec' in front of your rake db command</li>
+                    <li><b>rake db:migrate:</b></li>
+                    <li><b>bundle exec rake db:migrate:</b></li>
+                    <li><b>rails server (or rails s)</b></li>
+                    <li><b>rails server (or rails s)</b></li>
+                </ul>
+            </div>
+
+            <div class = "application">mysql</div>
+            <div class = "shortcuts">
+                <ul class = "list">
+                    <li><b>mysql --version: </b>Return current version of mysql</li>
+                    <li><b>mysql.server start: </b> Start up server.</li>
+                    <li><b>mysql.server status: </b> Return server status.</li>
+                    <li><b>mysql.server stop: </b> Stop server.</li>
+                    <li><b>mysql.server restart: </b> Restart server.</li>
+                    <li><b>mysql -u root:</b> Launch mysql.</li>
+                    <li><b>mysql -u root -p:</b> Launch mysql w/ password.</li>
+                    <li><b>exit:</b> Exit mysql.</li>
                 </ul>
             </div>
 
