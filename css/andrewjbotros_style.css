@@ -8,38 +8,42 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: cursive, courier new;
-    font-size: 14px;
+    font-size: 14.5px;
 }
 
+a, em {
+    text-decoration: none;
+    color: #364040;
+}
+
+a:hover, em:hover {
+    color: #6C7F7F;
+}
+
+button:focus {outline:0;}
+
 .button{
-    position: absolute;
-    vertical-align: middle;
     margin-top: 50px; width: 100%;
     margin: 0 auto;
-    height: 100px;
     text-align: center
 }
 
 #inspiration{
     background-color: red;
     color: white;
-    margin-top: 30px;
-    vertical-align: middle;
-    height: 100px;
-    width: 100px;
+    margin-top: 20px;
+    width: 150px;
     border-radius: 100px;
     border: 2px solid black;
-    box-shadow:
+    font-size: 15px;
 }
-
-button:focus {outline:0;}
 
 #inspiration:hover{
     cursor: pointer;
 }
 
 .multi-list{
-    width: 250px;
+    width: 85%;
     vertical-align: top;
     display: inline-block;
     padding: 0 10px 0 20px;
@@ -51,7 +55,7 @@ button:focus {outline:0;}
 }
 
 .date, .blog{
-    width: 60%;
+    width: 62%;
     margin: 0 auto;
 }
 
@@ -84,7 +88,7 @@ button:focus {outline:0;}
 
 .application{
     padding: -10px 0px -20px 0px;
-    width: 80%;
+    width: 83%;
     margin: 25px auto 0 auto;
     font-family: courier new;
     font-size: 16px;
@@ -99,7 +103,7 @@ button:focus {outline:0;}
 
 .shortcuts{
     background-color: #F2F2F2;
-    width: 80%;
+    width: 83%;
     margin: 0 auto 25px auto;
     border: 2px solid #D6D6D6;
     border-top: none;
@@ -133,8 +137,8 @@ button:focus {outline:0;}
 }
 
 .list {
-    padding: 20px 0;
-    width: 70%;
+    padding: 17px 0;
+    width: 85%;
     margin: 0 auto;
 }
 .container{
@@ -155,8 +159,8 @@ button:focus {outline:0;}
 }
 
 img{
-    margin-top: 10px;
-    height: 150px;
+    margin-top: 12.5px;
+    height: 145px;
     text-align: center;
 }
 
@@ -191,6 +195,7 @@ img{
 .quote-container {
     width: 400px;
     margin: 0 auto;
+    font-size: 15px;
 }
 
 .contact {
@@ -210,11 +215,3 @@ img{
     font-size:12px Arial;
 }
 
-a, em {
-    text-decoration: none;
-    color: #364040;
-}
-
-a:hover, em:hover {
-    color: #6C7F7F;
-}
