@@ -8,12 +8,41 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: cursive, courier new;
-    font-size: 16px;
+    font-size: 14px;
+}
+
+.button{
+    position: absolute;
+    vertical-align: middle;
+    margin-top: 50px; width: 100%;
+    margin: 0 auto;
+    height: 100px;
+    text-align: center
+}
+
+#inspiration{
+    background-color: red;
+    color: white;
+    margin-top: 30px;
+    vertical-align: middle;
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
+    border: 2px solid black;
+    box-shadow:
+}
+
+button:focus {outline:0;}
+
+#inspiration:hover{
+    cursor: pointer;
 }
 
 .multi-list{
+    width: 250px;
+    vertical-align: top;
     display: inline-block;
-    padding: 0 40px 0 80px;
+    padding: 0 10px 0 20px;
     margin: 0 auto;
 }
 
@@ -22,7 +51,7 @@ html, body {
 }
 
 .date, .blog{
-    width: 70%;
+    width: 60%;
     margin: 0 auto;
 }
 
@@ -32,7 +61,7 @@ html, body {
 }
 
 .subhead{
-    font-size: 30px;
+    font-size: 26px;
     font-weight: bold;
     font-family: impact, fantasy;
     height: 40px;
@@ -47,7 +76,7 @@ html, body {
     width: 100%;
     font-family: impactLabelReversed, courier new;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 22px;
     padding-top: 25px;
     margin-bottom: 15px;
     border-bottom: 1px solid black;
@@ -56,9 +85,9 @@ html, body {
 .application{
     padding: -10px 0px -20px 0px;
     width: 80%;
-    margin: 0 auto;
+    margin: 25px auto 0 auto;
     font-family: courier new;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     border: 2px solid black;
     text-align: center;
@@ -71,7 +100,7 @@ html, body {
 .shortcuts{
     background-color: #F2F2F2;
     width: 80%;
-    margin: 0px auto 30px auto;
+    margin: 0 auto 25px auto;
     border: 2px solid #D6D6D6;
     border-top: none;
     text-align: left;
@@ -79,7 +108,7 @@ html, body {
 }
 
 .project-container{
-    width: 80%;
+    width: 70%;
     margin: 50px auto 40px auto;
     text-align: center;
 }
@@ -105,7 +134,7 @@ html, body {
 
 .list {
     padding: 20px 0;
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
 }
 .container{
@@ -115,6 +144,7 @@ html, body {
 .nav {
     margin: -21px;
     white-space: nowrap;
+    font-size: 16px;
 }
 
 .top-nav {
