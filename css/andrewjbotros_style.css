@@ -50,11 +50,11 @@ button:focus {outline:0;}
     margin: 0 auto;
 }
 
-.date, .subhead{
+.subhead, .title{
     text-align: center;
 }
 
-.date, .blog{
+.blog, .title{
     width: 62%;
     margin: 0 auto;
 }
@@ -76,7 +76,7 @@ button:focus {outline:0;}
     height: auto;
 }
 
-.date{
+.title{
     width: 100%;
     font-family: impactLabelReversed, courier new;
     font-weight: bold;
@@ -98,7 +98,7 @@ button:focus {outline:0;}
 }
 
 .post, .list{
-    font-family: courier new
+    font-family: courier new;
 }
 
 .shortcuts{
@@ -108,7 +108,7 @@ button:focus {outline:0;}
     border: 2px solid #D6D6D6;
     border-top: none;
     text-align: left;
-
+    box-shadow: 7px 7px 5px #888888;
 }
 
 .project-container{
@@ -165,13 +165,13 @@ img{
 }
 
 .profile-image{
-    width: 45%;
+    width: 44%;
     float: left;
     text-align: right;
 }
 
 .profile-details{
-    width: 55%;
+    width: 56%;
     float: left;
     margin-top: 37px;
     padding: 0 1em;
@@ -186,16 +186,16 @@ img{
 }
 
 .quotes {
-    padding: 1.5em 0;
+    padding: 1.5em 1.5em;
     border: 1.5px solid black;
-    border-left: none;
-    border-right: none;
+    width: 38em;
+    margin: 7em auto 0 auto;
+    box-shadow: 10px 10px 5px #888888;
 }
 
 .quote-container {
-    width: 400px;
     margin: 0 auto;
-    font-size: 15px;
+    font-size: 22px;
 }
 
 .contact {
