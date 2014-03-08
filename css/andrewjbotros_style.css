@@ -22,6 +22,10 @@ a:hover, em:hover {
 
 button:focus {outline:0;}
 
+#space {
+    display: none;
+    height: 198px;
+}
 #toTop {
     width:64px;
     height:64px;
@@ -170,6 +174,15 @@ button:focus {outline:0;}
     font-size: 16px;
 }
 
+.nav-scroll{
+    width: 100%;
+    margin: 0 auto;
+    float: right;
+    top: 0px;
+    padding: 0;
+    font-size: 22px;
+}
+
 .top-nav {
     overflow: auto;
     padding-top: 12px;
@@ -178,10 +191,16 @@ button:focus {outline:0;}
     border-bottom:8px solid #f4f5f8;
 }
 
+.top-nav-scroll {
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    opacity:0.95;
+}
+
 img{
     margin-top: 12.5px;
     height: 145px;
-    text-align: center;
 }
 
 .profile-image{
@@ -197,6 +216,11 @@ img{
     padding: 0 1em;
     text-align: center;
     width: 360px;
+}
+
+.profile-details-scroll{
+    width: 100%;
+    margin: 0 auto;
 }
 
 .profile-details > h1{

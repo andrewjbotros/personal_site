@@ -30,7 +30,7 @@
                 <a href="mailto:andrewjbotros@gmail.com?Subject=Hello!%20" target="_blank"><img title="contact me" class="masterTooltip" src="images/profile_picture1.png"/></a>
             </div>
             <div class="profile-details">
-                <h1><a href="index.html">andrew botros</a></h1>
+                <h1 id="name"><a href="index.html">andrew botros</a></h1>
                 <div class="nav">
                     <a href="http://www.linkedin.com/pub/andrew-botros/86/6a1/675" target="_blank">linkedIn</a> |
                     <a href="http://github.com/andrewjbotros" target="_blank">gitHub</a> |
@@ -39,8 +39,7 @@
             </div>
         </header>
 
-        <div id="space" style="height: 198px">
-        </div>
+        <div id="space"></div>
         <div class="blog">
 
             <p class="title" style="margin-top: 20px">Shopify Application<span class="date">3/7/2014</span></p>
@@ -368,20 +367,23 @@
 
 <script type="text/javascript">
 
-$('#space').hide();
 $(document).scroll(function(){
     if($(window).scrollTop() > 126)
     {
-        $('.top-nav').css({"height":"70px"});
-        $('.top-nav').css({"position":"fixed"});
-        $('.top-nav').css({"width":"100%"});
-        $('.top-nav').css({"opacity":"0.95"});
+        $('.top-nav').addClass('top-nav-scroll');
         $('#space').show();
+        $('img').hide();
+        $('#name').hide();
+        $('.profile-details').addClass('profile-details-scroll');
+        $('.nav').addClass('nav-scroll');
     }
     else{
-        $('.top-nav').css({"height":"196px"});
-        $('.top-nav').css({"position":"relative"});
+        $('.top-nav').removeClass('top-nav-scroll');
         $('#space').hide();
+        $('#name').show();
+        $('img').show();
+        $('.profile-details').removeClass('profile-details-scroll');
+        $('.nav').removeClass('nav-scroll');
     }
 });
 </script>
