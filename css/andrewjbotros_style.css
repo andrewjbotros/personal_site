@@ -25,18 +25,14 @@ button:focus {outline:0;}
 #toTop {
     width:64px;
     height:64px;
-    background:#FAFAFA;
     text-align:center;padding:5px;
     position:fixed;
     top:30px;
     left:5%;
     cursor:pointer;
-    color:black;
-    text-decoration:none;
-    text-align: middle;
     border-radius: 50%;
-    background-image:url('https://addons.opera.com/media/extensions/75/24075/1.1-rev1/icons/icon_64x64.png');*/
-/*    background-image:url('https://sites.google.com/site/poleznoznat/r3.png');*/
+    background-image:url('https://addons.opera.com/media/extensions/75/24075/1.1-rev1/icons/icon_64x64.png');
+    display: none;
 }
 .button{
     margin-top: 50px; width: 100%;
