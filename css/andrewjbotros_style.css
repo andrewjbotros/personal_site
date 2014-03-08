@@ -28,7 +28,7 @@ button:focus {outline:0;}
     text-align:center;
     position:fixed;
     top:30px;
-    left:5%;
+    left:7%;
     cursor:pointer;
     border-radius: 50%;
     background-image:url('https://addons.opera.com/media/extensions/75/24075/1.1-rev1/icons/icon_64x64.png');
@@ -55,10 +55,10 @@ button:focus {outline:0;}
 }
 
 .date {
-    position: absolute;
-    right: 19%;
+    float: right;
     border-bottom: none;
     padding: 0 5px 0 5px;
+    z-index: 1;
 }
 
 .multi-list{
@@ -174,7 +174,8 @@ button:focus {outline:0;}
     overflow: auto;
     padding-top: 12px;
     background-color: #A2BFBF;
-    height: 196px ;
+    height: 196px;
+    border-bottom:8px solid #f4f5f8;
 }
 
 img{
