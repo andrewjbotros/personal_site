@@ -42,6 +42,13 @@ button:focus {outline:0;}
     cursor: pointer;
 }
 
+.date {
+    position: absolute;
+    right: 19%;
+    border-bottom: none;
+    padding: 0 5px 0 5px;
+}
+
 .multi-list{
     width: 85%;
     vertical-align: top;
@@ -81,9 +88,9 @@ button:focus {outline:0;}
     font-family: impactLabelReversed, courier new;
     font-weight: bold;
     font-size: 22px;
-    padding-top: 25px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid black;
+    border-bottom: 2px dotted black;
+    margin: 40px 0 20px 0;
+    text-align: left;
 }
 
 .application{
