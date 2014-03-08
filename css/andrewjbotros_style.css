@@ -22,6 +22,22 @@ a:hover, em:hover {
 
 button:focus {outline:0;}
 
+#toTop {
+    width:64px;
+    height:64px;
+    background:#FAFAFA;
+ /*   border:1px solid gray;*/
+    text-align:center;padding:5px;
+    position:fixed;top:30px;
+    left:5%;
+    cursor:pointer;
+    color:black;
+    text-decoration:none;
+    text-align: middle;
+    /*background-image:url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLGR0YDQwMGBwcHxAWKRwcHCwoJCAcHSgmICUxJR8VJDEhJTUsMy4uJB80OD8sNygtLiwBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAEAAQAMBIgACEQEDEQH/xAAbAAACAgMBAAAAAAAAAAAAAAAGBwMFAQIEAP/EADEQAAEDAgQDBgUFAQAAAAAAAAECAwQABQYRITESQVETFCIyYaFSYnGCkVOBscHwI//EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwB41DIkNx0cTqshyHWsSpCIzCnXNh7mqBkP3WUVE5JG55JFB1u3R51XCwnhHLLesCPOd1PF9xq0jRWoyMm068ydzU5OQ1NBSd2nN6pz+015u5PsK4X0lXod6ukKStIUhQIOxFRvx230cLqAR16UGI0lqSjibV9R0qehuU09a30uNqJQdldfQ1eQpSJbCXUfuOhoKDEksrloioOidwOZNXluiiJFQ2B4t1HqaFI6+9YoyXqOPP2o1FB6qLEN0DIMVlXjV5yOQqwu0xcOKpbTS3HTohKRnrQFJceS8oyQsOK1PHvQEeH7oG3BFeV4FeQnkaJ6WSFrWsJbBKjsBRvYJr8iP2UppxDzfNQy4hQWEuOmSwtpY0V7Gh6xSFRrkuI4cuLTL1onoOvSu64jbWnTPJVBwxXO6Yw4HDlmvL2FH4pf48jOQ7mzcGgQlzLUclCjGyXFu6W5qS2RmoZLHRVB30AY1c4b1l8opgUtMfOhN/yzHkT/AHQa4cdzvcMfMKZlKbC7oViCCMx5hTZoPUC4gc7xipplGp8Kf31oyuExqBDdkvqyQ2M/rQLg9t263964ujwtkqJ+Y7UBreLa1dYDkR/QK8qvhPWlvAuE/B13XHlNlTKj40cljqmmtVberNDvMYszG88vKsbpPoaCW2XSHdI4ehPJWk7jmn6itZdpt8x7tpURt1zbiUOVLyfg++WZ8v2h5byBsps5K/FRoxdieCOzktBWX6iRn+c6BisWS2R3kPMQmkOI1SoDap586Nb2FPy3ktNp3KqWisY4lmf84zKAT8CRn/NbxMK4gvrweuzy2m/idOZH0FBm9XqZiu4twLa2rsAfCnr6q6Uf2G1NWi3NxW9VbrX8Sq0sVihWSP2cRvxnzuK3V/ulWtB//9k=');*/
+    background-image:url('http://addons.opera.com/media/extensions/75/24075/1.1-rev1/icons/icon_64x64.png');
+/*    background-image:url('https://sites.google.com/site/poleznoznat/r3.png');*/
+}
 .button{
     margin-top: 50px; width: 100%;
     margin: 0 auto;
