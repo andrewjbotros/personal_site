@@ -41,6 +41,47 @@
 
         <div id="space"></div>
         <div class="blog">
+            <p class="title" style="margin-top: 20px">Probabilistic Pricing!<span class="date">3/26/2014</span></p>
+            <p class="post">I'm interested in building a dynamic pricing model that maximizes income from a rental property. This is motivated by my recent experience at Bitmaker Labs in Toronto. One characteristic of many attendees of the course is that they're from out of town (I'm from Ottawa). As it's 10 weeks long, the quest to find suitable, affordable housing for this amount of time is difficult. Consequently, Bitmaker Labs is exploring leasing property and subletting the rooms to incoming students. They are piloting the program with one condo, and rooms were assigned on a 'first come, first serve' basis. If Bitmaker Labs could better understand the profit potential using dynamic pricing, then they may be induced to lease additional properties. The benefit for students is available housing (woohoo!). Potentially, there's a circular effect. More out of town students would attend the course if housing was available, and Bitmaker Labs could generate additional income by administering the whole thing. That's what fat people in suits call, synergy.</p>
+            <p class="post">So how does this work? Let's say there are 4 rooms, and 20 students:
+                <ol>
+                    <li>smallest room (--)</li>
+                    <li>small room (-)</li>
+                    <li>large room (+)</li>
+                    <li>largest room (++)</li>
+                </ol>
+            </p>
+            <p class="title" style="margin-top: 20px">Eureka!<span class="date">3/25/2014</span></p>
+            <p class="post">Well, you know what they say. "If at first you don't succeed,: Try, <span style="text-decoration:line-through">try</span>, <span style="text-decoration:line-through">try</span> again." I figure in some contexts trying 3 times after you've failed borders on unacceptable. I'm testing the boundaries to see if this is one of those times. I essentially re-applied to the same position a day after being turned down. You'd be right in guessing that my experience, education, or fit didn't change over night. Only my resolve. Ideally, I'd be a talented enough programmer to code a beautiful <a href = "steps.html" target="_blank"><b>data visualization</b></a> to prove my chops for this position. Instead, excel pervades most of actuarial science, and as such, I remain unconvinced that my <a href = "tax_calculator.xlsm" target="_blank"><b>tax calculator</b></a> would elicit much "ooooing and aaaaaing". So after years of writing songs about nothing to no one, I figured the thing I could best pull together in a weekend was a rap song. Because, if you couldn't tell from my bitstrip avatar, I'm a sucker (MC).</p>
+            <p class="post">Part of the reason I didn't move on was because I made poor eye contact. So I thought it would be funny to hire someone to stare at at a video camera for 2m07s while this song played in the background. You can actually hire people to do this for you on the "cheap". I turned to Fiverr.com, which is an hilarious marketplace of services from voice-overs to promo videos. After giving the following instruction "Just, you know, stare into the camera for 2 minutes." - this is what I got.</p>
+
+            <div class="movie-container">
+                <iframe class="movie" width="660" height="365" src="//www.youtube.com/embed/KvTioSnYsy4" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <p class="post">Suspend your disbelief - the strategy worked. I was given the opportunity to visit Shopify's offices in Ottawa, and speak to someone who leads a group of Data Analysts. Their offices are inspiring, they're up on the latest tech (ipad name label generator!?), and they hire people who literally write books on <b><a href="https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers" target="_blank">Bayesian Statistics</a></b>. So, I'm keeping my fingers crossed that I can join their ranks, and have the opportunity to work alongside people who are so passionate about what they do. In the mean time, I'll be turning my attention towards python from ruby, as it looks like there are tremendous advantages for data analysts. As I'll be writing the CFA Level II exam in June, this blog will likely touch on topics that combine my endevours in python and finance, so stay tuned.</p>
+
+            <p class="title" style="margin-top: 20px">Migrations in Rails<span class="date">3/12/2014</span></p>
+            <p class="post">Model, view, controller generation and database modifications for creating an Expense class.</p>
+
+            <div class="application">Rails Commands (Command Line)</div>
+            <div class="shortcuts">
+                <ul class="list">
+                    <li><b>rails g model Expense</b> always singular</li>
+                    <li><b>go to db/migrate/[create_expenses]</b> add fields to table</li>
+                    <li><b>rake db:migrate</b> creates the table (available in schema)</li>
+                    <li><b>rails g controller Expenses</b> always plural</li>
+                    <li><b>touch app/views/Expenses.html.erb</b> create view(s) for expenses</li>
+                    <li><b>rails g migration Add[Item]To[Expenses]</b> check db/migrate</li>
+                    <li><b>modify migration file</b> add fields</li>
+                    <li><b>rake db:migrate</b> modify Expense table</li><br>
+                    <li style = "list-style-type: none"><b><u>Sqlite3</u></b><a href="http://www.tutorialspoint.com/sqlite"></a></li>
+                    <li>launch sqlite3 shell from command line in folder db/development.sqlite3</li>
+                    <li><b>.databases</b> show you all the databases (typically called main)</li>
+                    <li><b>.tables</b> show you all the tables</li>
+                    <li><b>DROP TABLE main.expenses</b> delete the table</li>
+                </ul>
+            </div>
 
             <p class="title" style="margin-top: 20px">Shopify Application<span class="date">3/7/2014</span></p>
 
@@ -260,6 +301,7 @@
                     <li><b>cd ..:</b> back one directory</li>
                     <li><b>cd ../..:</b> back two directories</li>
                     <li><b>cd ~:</b> home directory</li>
+                    <li><b>cp -r currentFolder newFolder:</b> make a copy of folder in same directory</li>
                     <li><b>rm:</b> remove a file</li>
                     <li><b>mkdir:</b> make a directory</li>
                     <li><b>rmdir:</b> remove a directory</li>
@@ -285,6 +327,8 @@
                     <li><b>git add --a:</b> add files to be pushed to repository</li>
                     <li><b>git commit -m "message":</b> commit files to repository</li>
                     <li><b>git push -u origin master:</b> push files to repository</li>
+                    <li><b>git fetch --all | git reset --hard origin/master</b> hard pull from master</li>
+                    <li><b>git push origin --delete branchName</b> delete branch locally/remotely</li>
                 </ul>
             </div>
 

@@ -11,6 +11,11 @@ html, body {
     font-size: 14.5px;
 }
 
+ul, li {
+    font-family: courier new;
+    font-size: 14.5px;
+}
+
 a, em {
     text-decoration: none;
     color: #364040;
@@ -22,6 +27,23 @@ a:hover, em:hover {
 
 button:focus {outline:0;}
 
+.cover-photo {
+     height: 755px;
+     background: url('http://gadgetsdairy.com/wp-content/uploads/2013/05/Windows-8-Wallpapers-5.jpg') no-repeat center center fixed;
+     background-size: cover;
+}
+
+.movie-container {
+    margin: 30px auto;
+    text-align: center;
+}
+
+.movie {
+    width: 500px;
+    height: 345px;
+    background-color: black;
+    box-shadow: 7px 7px 5px #888888;
+}
 #space {
     display: none;
     height: 198px;
@@ -243,6 +265,7 @@ img{
     width: 38em;
     margin: 7em auto 0 auto;
     box-shadow: 10px 10px 5px #888888;
+    background-color: white;
 }
 
 .quote-container {

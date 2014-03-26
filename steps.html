@@ -1,0 +1,162 @@
+<html>
+
+<style>
+
+.bigNumber{
+	font-size: 22px;
+	font-family: courier;
+}
+.container{
+	height: 175px;
+}
+.nav{
+	width: 70%;
+	top: 0px;
+	padding-bottom: 10px;
+	background-color: white;
+	opacity: 0.93;
+	z-index:999999;
+	background-color: white;
+	opacity: 0.98;
+	text-align: center;
+	vertical-align: middle;
+	position: fixed;
+}
+
+body{
+	width: 70%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.result{
+	width: 95%;
+	border-bottom: 1px solid red;
+	height: 50px;
+	margin: 0 auto 10px auto;
+}
+
+.result:hover{
+	border-bottom: 4px solid red;
+}
+
+.bigNumber:hover{
+	font-weight: bold;
+	color: #373333;
+}
+
+.list{
+	padding-bottom: 20px;
+}
+
+.question{
+	border: 1px solid black;
+}
+
+</style>
+
+<title>Steps.</title>
+<head>
+	<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
+	<div class = "nav">
+		<h1 class="title">Steps.</h1>
+		<div class="result"></div>
+	</div>
+</head>
+
+<body>
+
+<div class = 'container'>
+
+<script>
+
+//These two functions are used to format numbers. They are for presentation only and do not affect the results. These formulas came from stackOverflow, and I can't claim them as my own. -ajb
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function longnumberstring(n){
+    var str, str2= '', data= n.toExponential().replace('.','').split(/e/i);
+    str= data[0], mag= Number(data[1]);
+    if(mag>=0 && str.length> mag){
+        mag+=1;
+        return str.substring(0, mag)+'.'+str.substring(mag);
+    }
+    if(mag<0){
+        while(++mag) str2+= '0';
+        return '0.'+str2+str;
+    }
+    mag= (mag-str.length)+1;
+    while(mag> str2.length){
+        str2+= '0';
+    }
+    return str+str2;
+}
+</script>
+
+<script>
+
+//We want to create function that produces the result X Choose Y. This will serve as the basis for computing the total 1&2 step combinations in a 250 step sequence.
+//Recall that X choose Y (written as X C Y) is X! / (Y)! (X-Y)!
+
+//We have to structure the combinatorial function in a particular way, because we are unable to compute Y! for sufficiently large Y (> 171).
+//We will break this problem into two parts. We'll create a function for (Y)! and X!/(X-Y)! for all X >= Y, then combine them to complete the combinatorial function.
+
+//Y!
+function factorial(y){
+	var result = 1;
+	if (y == 0)
+		{return 1}
+	else {
+		for (count = 1; count <= y; count++) {
+			result = result * count;
+		}
+		return result;
+	}
+}
+
+//X!/(X-Y)! for all X >= Y.
+function combination(x,y){
+	var result = 1;
+	for (count = 0; count < y; count++) {
+		result = result * (x - count);
+	}
+	return result;
+}
+
+function combinatorial(x,y){
+	return combination(x,y)/factorial(y);
+}
+
+//You need to sum 250 C 0, 249 C 1, 248 C 2, .... , 125 C 125
+function printResult(i, j){
+	var list = document.createElement("div");
+	list.className = 'list' + i;
+	list.innerHTML = "<strong>" + i + " choose " + j + ": </strong>" + numberWithCommas(longnumberstring(Math.round(combinatorial(i,j))).replace(".", "")) + "<br />";
+    document.body.appendChild(list);
+    // document.body.insertBefore(list, document.body.firstChild);
+}
+
+var steps = 250;
+var i = steps;
+var total = 0;
+var j = 0;
+
+function totalCombos(){
+	setTimeout(function () {
+		printResult(i,j);
+		total += combinatorial(i,j);
+		document.getElementsByClassName('result')[0].innerHTML = "<span style='font-size: 20px'>The total number of 1 & 2 step combinations in a 250 step sequence is </span><br /><span class='bigNumber'>" + numberWithCommas(longnumberstring(total)) + "</span>";
+		i--;
+		j++;
+		if (i >= steps/2) {
+			totalCombos();
+		}
+	},50);
+}
+
+totalCombos();
+</script>
+</div>
+</body>
+</html>
