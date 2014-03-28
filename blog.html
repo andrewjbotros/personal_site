@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
     <link rel="stylesheet" href="css/andrewjbotros_style.css" type="text/css"/>
+    <link rel="stylesheet" href="css/excel.css" type="text/css"/>
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
     <script src="js/jquery.tooltip.js"></script>
     <script src='js/scroll-to-top.js'></script>
@@ -41,16 +42,192 @@
 
         <div id="space"></div>
         <div class="blog">
-            <p class="title" style="margin-top: 20px">Probabilistic Pricing!<span class="date">3/26/2014</span></p>
-            <p class="post">I'm interested in building a dynamic pricing model that maximizes income from a rental property. This is motivated by my recent experience at Bitmaker Labs in Toronto. One characteristic of many attendees of the course is that they're from out of town (I'm from Ottawa). As it's 10 weeks long, the quest to find suitable, affordable housing for this amount of time is difficult. Consequently, Bitmaker Labs is exploring leasing property and subletting the rooms to incoming students. They are piloting the program with one condo, and rooms are assigned on a 'first come, first serve' basis. If Bitmaker Labs could better understand the profit potential, then they may be induced to lease additional properties. The benefit for students is available housing (woohoo!). Potentially, there's a circular effect. More out of town students would attend the course if housing were available, and Bitmaker Labs stands to generate additional income by administering the whole thing. That's what fat people in suits call, synergy.</p>
-            <p class="post">So how does this work? Currently prototyping in excel. Be back soon...
-<!--                 <ol>
-                    <li>smallest room (--)</li>
-                    <li>small room (-)</li>
-                    <li>large room (+)</li>
-                    <li>largest room (++)</li>
-                </ol> -->
-            </p>
+            <p class="title" style="margin-top: 20px">Pricing a Sublet (Part 1)<span class="date">3/26/2014</span></p>
+            <p class="post"><b>The big picture. </b>I'm interested in building a pricing model that seeks to maximize income from a rental property. This is motivated by my recent experience at <b><a href="http://bitmakerlabs.com/" target="_blank">Bitmaker Labs</a></b> in Toronto. One characteristic of many attendees of the course is that they're from out of town (I'm from Ottawa). As it's 10 weeks long, the quest to find suitable, affordable housing for this amount of time is difficult. Consequently, Bitmaker Labs is exploring leasing property and subletting the rooms to incoming students. They are piloting the program with one condo, and 4 rooms are assigned on a 'first come, first serve' basis. If income potential was better understoond, additional properties may be leased. The benefit for students is available housing (woohoo!). Better yet, the relationship may be circular. More out of town students would attend the course if housing were available, and Bitmaker Labs stands to generate additional income by administering the whole thing. That's what fat people in suits call, synergy.</p>
+            <p class="post"><b>A real example.</b> 20 individuals need housing. Only 4 rooms (A,B,C,D) are available. Each room is slightly different, and are thus offered at different prices. Every individual is allowed to bid on any number of the rooms with a binary indicator (yes/no, not ranked 1,2,3,4). Therefore, it is legitimate to have Jon request A and B, and Jen to request C and B, and Tina request B, C, and D. Notice that each individuals preferences are different. As such, the overall probability of getting a room also differs for each individual. As the scope of this model goes beyond one post, I want to focus this entry on exploring probabilities. Specifically, we will look at how to compute the probability of an individual being assigned a room. We will arrive at approximate estimates through the use of monte carlo simulation in python. We will discuss why this methodology is preferred over computing closed form solutions with binomial trees. Our discussion will end on observations the author (me!) finds interesting. For example, a peculiar result is that the order the rooms are drawn affects an individual's overall probability of getting a room. In other words, you can influence your own potential outcome of the draw simply by requesting a particular draw order. The total number of unique draws are (# of rooms)!.</p>
+            <p class="post">For the purposes of illustration, I have generated a dataset comprised of 17 students bidding on 4 rooms.</p>
+            <div class="post">
+                <table style="width: 60%; margin: 0 auto" border=0 cellpadding=0 cellspacing=0 width=350 style='border-collapse:
+                 collapse;table-layout:fixed;width:350pt'>
+                 <col width=65 style='width:65pt'>
+                 <col width=25 style='mso-width-source:userset;mso-width-alt:1066;width:25pt'>
+                 <col width=65 span=4 style='width:65pt'>
+                 <tr height=16 style='height:16.0pt'>
+                  <td height=16 width=65 style='height:16.0pt;width:65pt'></td>
+                  <td width=25 style='width:25pt'></td>
+                  <td width=65 style='width:65pt'></td>
+                  <td width=65 style='width:65pt'></td>
+                  <td width=65 style='width:65pt'></td>
+                  <td width=65 style='width:65pt'></td>
+                 </tr>
+                 <tr height=18 style='height:18.0pt'>
+                  <td height=18 class=xl66 style='height:18.0pt'></td>
+                  <td class=xl66></td>
+                  <td colspan=4 class=xl175 style='border-right:1.5pt solid black'>Demand</td>
+                 </tr>
+                 <tr height=17 style='height:17.0pt'>
+                  <td height=17 class=xl160 style='height:17.0pt'>Student</td>
+                  <td class=xl161 style='border-left:none'>ID</td>
+                  <td class=xl162 style='border-top:none;border-left:none'>A</td>
+                  <td class=xl161 style='border-top:none;border-left:none'>B</td>
+                  <td class=xl161 style='border-top:none;border-left:none'>C</td>
+                  <td class=xl163 style='border-top:none;border-left:none'>D</td>
+                 </tr>
+                 <tr height=17 style='height:17.0pt'>
+                  <td height=17 class=xl164 style='height:17.0pt'>Bob</td>
+                  <td class=xl157 align=right style='border-left:none'>1</td>
+                  <td class=xl158 style='border-left:none'>&nbsp;</td>
+                  <td class=xl159 style='border-left:none'>&nbsp;</td>
+                  <td class=xl159 style='border-left:none'>x</td>
+                  <td class=xl165 style='border-left:none'>x</td>
+                 </tr>
+                 <tr height=16 style='height:16.0pt'>
+                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>James</td>
+                  <td class=xl154 align=right style='border-top:none;border-left:none'>2</td>
+                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>&nbsp;</td>
+                  <td class=xl167 style='border-top:none;border-left:none'>&nbsp;</td>
+                 </tr>
+                 <tr height=16 style='height:16.0pt'>
+                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Jessie</td>
+                  <td class=xl154 align=right style='border-top:none;border-left:none'>3</td>
+                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl167 style='border-top:none;border-left:none'>&nbsp;</td>
+                 </tr>
+                 <tr height=16 style='height:16.0pt'>
+                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Jim</td>
+                  <td class=xl154 align=right style='border-top:none;border-left:none'>4</td>
+                  <td class=xl155 style='border-top:none;border-left:none'>&nbsp;</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl167 style='border-top:none;border-left:none'>&nbsp;</td>
+                 </tr>
+                 <tr height=16 style='height:16.0pt'>
+                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Joe</td>
+                  <td class=xl154 align=right style='border-top:none;border-left:none'>5</td>
+                  <td class=xl155 style='border-top:none;border-left:none'>&nbsp;</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl167 style='border-top:none;border-left:none'>x</td>
+                 </tr>
+                 <tr height=16 style='height:16.0pt'>
+                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Jon</td>
+                  <td class=xl154 align=right style='border-top:none;border-left:none'>6</td>
+                  <td class=xl155 style='border-top:none;border-left:none'>&nbsp;</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>&nbsp;</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl167 style='border-top:none;border-left:none'>x</td>
+                 </tr>
+                 <tr height=16 style='height:16.0pt'>
+                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Jon</td>
+                  <td class=xl154 align=right style='border-top:none;border-left:none'>7</td>
+                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>&nbsp;</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl167 style='border-top:none;border-left:none'>x</td>
+                 </tr>
+                 <tr height=16 style='height:16.0pt'>
+                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Mary</td>
+                  <td class=xl154 align=right style='border-top:none;border-left:none'>8</td>
+                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>&nbsp;</td>
+                  <td class=xl167 style='border-top:none;border-left:none'>&nbsp;</td>
+                 </tr>
+                 <tr height=16 style='height:16.0pt'>
+                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Paul</td>
+                  <td class=xl154 align=right style='border-top:none;border-left:none'>9</td>
+                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl167 style='border-top:none;border-left:none'>&nbsp;</td>
+                 </tr>
+                 <tr height=16 style='height:16.0pt'>
+                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Peter</td>
+                  <td class=xl154 align=right style='border-top:none;border-left:none'>10</td>
+                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl167 style='border-top:none;border-left:none'>x</td>
+                 </tr>
+                 <tr height=16 style='height:16.0pt'>
+                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Sally</td>
+                  <td class=xl154 align=right style='border-top:none;border-left:none'>11</td>
+                  <td class=xl155 style='border-top:none;border-left:none'>&nbsp;</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl167 style='border-top:none;border-left:none'>x</td>
+                 </tr>
+                 <tr height=16 style='height:16.0pt'>
+                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Stuart</td>
+                  <td class=xl154 align=right style='border-top:none;border-left:none'>12</td>
+                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>&nbsp;</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>&nbsp;</td>
+                  <td class=xl167 style='border-top:none;border-left:none'>&nbsp;</td>
+                 </tr>
+                 <tr height=16 style='height:16.0pt'>
+                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Tara</td>
+                  <td class=xl154 align=right style='border-top:none;border-left:none'>13</td>
+                  <td class=xl155 style='border-top:none;border-left:none'>&nbsp;</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl167 style='border-top:none;border-left:none'>x</td>
+                 </tr>
+                 <tr height=16 style='height:16.0pt'>
+                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Tegan</td>
+                  <td class=xl154 align=right style='border-top:none;border-left:none'>14</td>
+                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl167 style='border-top:none;border-left:none'>&nbsp;</td>
+                 </tr>
+                 <tr height=16 style='height:16.0pt'>
+                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Tim</td>
+                  <td class=xl154 align=right style='border-top:none;border-left:none'>15</td>
+                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>&nbsp;</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>&nbsp;</td>
+                  <td class=xl167 style='border-top:none;border-left:none'>&nbsp;</td>
+                 </tr>
+                 <tr height=16 style='height:16.0pt'>
+                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Todd</td>
+                  <td class=xl154 align=right style='border-top:none;border-left:none'>16</td>
+                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl156 style='border-top:none;border-left:none'>&nbsp;</td>
+                  <td class=xl167 style='border-top:none;border-left:none'>&nbsp;</td>
+                 </tr>
+                 <tr height=16 style='height:16.0pt'>
+                  <td height=16 class=xl168 style='height:16.0pt;border-top:none'>Tom</td>
+                  <td class=xl169 align=right style='border-top:none;border-left:none'>17</td>
+                  <td class=xl170 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl171 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl171 style='border-top:none;border-left:none'>x</td>
+                  <td class=xl172 style='border-top:none;border-left:none'>x</td>
+                 </tr>
+                 <tr height=16 style='height:16.0pt'>
+                  <td height=16 class=xl89 style='height:16.0pt'>Total:</td>
+                  <td></td>
+                  <td class=xl69 align=right>11</td>
+                  <td align=right>12</td>
+                  <td align=right>12</td>
+                  <td align=right>8</td>
+                 </tr>
+                 <tr height=15 style='height:15.0pt'>
+                  <td height=15 class=xl89 style='height:15.0pt'>Total (%):</td>
+                  <td class=xl69></td>
+                  <td class=xl102>65%</td>
+                  <td class=xl102>71%</td>
+                  <td class=xl102>71%</td>
+                  <td class=xl102>47%</td>
+                 </tr>
+                </table>
+            </div>
+            <div class="note" style="border: 2px solid black; margin: 10px; padding: 20px 50px; background-color: #FFFCFA"><b>Note: </b>A (non-randomly) generated input with the following condition: if an individual bids on more than one room, the bids must be adjacent (i.e you can bid on A&B, not A&D, unless A&B&C&D). This will likely not hold in practice.</div>
             <p class="title" style="margin-top: 20px">Eureka!<span class="date">3/25/2014</span></p>
             <p class="post">Well, you know what they say. "If at first you don't succeed,: Try, <span style="text-decoration:line-through">try</span>, <span style="text-decoration:line-through">try</span> again." I figure in some contexts trying 3 times after you've failed borders on unacceptable. I'm testing the boundaries to see if this is one of those times. I essentially re-applied to the same position a day after being turned down. You'd be right in guessing that my experience, education, or fit didn't change over night. Only my resolve. Ideally, I'd be a talented enough programmer to code a beautiful <a href = "steps.html" target="_blank"><b>data visualization</b></a> to prove my chops for this position. Instead, excel pervades most of actuarial science, and as such, I remain unconvinced that my <a href = "tax_calculator.xlsm" target="_blank"><b>tax calculator</b></a> would elicit much "ooooing and aaaaaing". So after years of writing songs about nothing to no one, I figured the thing I could best pull together in a weekend was a rap song. Because, if you couldn't tell from my bitstrip avatar, I'm a sucker (MC).</p>
             <p class="post">Part of the reason I didn't move on was because I made poor eye contact. So I thought it would be funny to hire someone to stare at at a video camera for 2m07s while this song played in the background. You can actually hire people to do this for you on the "cheap". I turned to Fiverr.com, which is an hilarious marketplace of services from voice-overs to promo videos. After giving the following instruction "Just, you know, stare into the camera for 2 minutes." - this is what I got.</p>

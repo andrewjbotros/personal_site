@@ -150,8 +150,13 @@ button:focus {outline:0;}
     text-align: center;
 }
 
-.post, .list{
+.post, .note, .list{
     font-family: courier new;
+}
+
+.note:hover {
+    background-color: blue;
+    font-family: helvetica;
 }
 
 .shortcuts{
@@ -288,5 +293,3 @@ img{
     padding:10px;
     color:#fff;
     font-size:12px Arial;
-}
-
