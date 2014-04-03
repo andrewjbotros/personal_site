@@ -155,8 +155,8 @@ button:focus {outline:0;}
 }
 
 .note:hover {
-    background-color: blue;
-    font-family: helvetica;
+    background-color: #FFFCFA!important;
+    box-shadow: 7px 7px 5px #888888!important;
 }
 
 .shortcuts{

@@ -3,558 +3,1007 @@
 <html>
 
 <head>
-    <title>Andrew Botros</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
-    <link rel="stylesheet" href="css/andrewjbotros_style.css" type="text/css"/>
-    <link rel="stylesheet" href="css/excel.css" type="text/css"/>
-    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
-    <script src="js/jquery.tooltip.js"></script>
-    <script src='js/scroll-to-top.js'></script>
+  <title>Andrew Botros</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
+  <link rel="stylesheet" href="css/andrewjbotros_style.css" type="text/css"/>
+  <link rel="stylesheet" href="css/excel.css" type="text/css"/>
+  <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+  <script src="js/jquery.tooltip.js"></script>
+  <script src='js/scroll-to-top.js'></script>
 </head>
 
 <body>
 
-    <script>
-        $(document).ready(function () {
-            $(".profile-image img").hover(function () {
-                $(this).attr("src" ,"images/profile_picture2.png");
-            }, function () {
-                $(this).attr("src" ,"images/profile_picture1.png");
-            });
-        });
-    </script>
+  <script>
+  $(document).ready(function () {
+    $(".profile-image img").hover(function () {
+      $(this).attr("src" ,"images/profile_picture2.png");
+    }, function () {
+      $(this).attr("src" ,"images/profile_picture1.png");
+    });
+  });
+  </script>
 
-    <div class="container">
-        <header class="top-nav">
-            <div class="profile-image">
-                <a href="mailto:andrewjbotros@gmail.com?Subject=Hello!%20" target="_blank"><img title="contact me" class="masterTooltip" src="images/profile_picture1.png"/></a>
-            </div>
-            <div class="profile-details">
-                <h1 id="name"><a href="index.html">andrew botros</a></h1>
-                <div class="nav">
-                    <a href="http://www.linkedin.com/pub/andrew-botros/86/6a1/675" target="_blank">linkedIn</a> |
-                    <a href="http://github.com/andrewjbotros" target="_blank">gitHub</a> |
-                    <a href="blog.html" target="_top">blog</a>
-                </div>
-            </div>
-        </header>
+  <div class="container">
+    <header class="top-nav">
+      <div class="profile-image">
+        <a href="mailto:andrewjbotros@gmail.com?Subject=Hello!%20" target="_blank"><img title="contact me" class="masterTooltip" src="images/profile_picture1.png"/></a>
+      </div>
+      <div class="profile-details">
+        <h1 id="name"><a href="index.html">andrew botros</a></h1>
+        <div class="nav">
+          <a href="http://www.linkedin.com/pub/andrew-botros/86/6a1/675" target="_blank">linkedIn</a> |
+          <a href="http://github.com/andrewjbotros" target="_blank">gitHub</a> |
+          <a href="blog.html" target="_top">blog</a>
+        </div>
+      </div>
+    </header>
 
-        <div id="space"></div>
-        <div class="blog">
-            <p class="title" style="margin-top: 20px">Pricing a Sublet (Part 1)<span class="date">3/26/2014</span></p>
-            <p class="post"><b>The big picture. </b>I'm interested in building a pricing model that seeks to maximize income from a rental property. This is motivated by my recent experience at <b><a href="http://bitmakerlabs.com/" target="_blank">Bitmaker Labs</a></b> in Toronto. One characteristic of many attendees of the course is that they're from out of town (I'm from Ottawa). As it's 10 weeks long, the quest to find suitable, affordable housing for this amount of time is difficult. Consequently, Bitmaker Labs is exploring leasing property and subletting the rooms to incoming students. They are piloting the program with one condo, and 4 rooms are assigned on a 'first come, first serve' basis. If income potential was better understoond, additional properties may be leased. The benefit for students is available housing (woohoo!). Better yet, the relationship may be circular. More out of town students would attend the course if housing were available, and Bitmaker Labs stands to generate additional income by administering the whole thing. That's what fat people in suits call, synergy.</p>
-            <p class="post"><b>A real example.</b> 20 individuals need housing. Only 4 rooms (A,B,C,D) are available. Each room is slightly different, and are thus offered at different prices. Every individual is allowed to bid on any number of the rooms with a binary indicator (yes/no, not ranked 1,2,3,4). Therefore, it is legitimate to have Jon request A and B, and Jen to request C and B, and Tina request B, C, and D. Notice that each individuals preferences are different. As such, the overall probability of getting a room also differs for each individual. As the scope of this model goes beyond one post, I want to focus this entry on exploring probabilities. Specifically, we will look at how to compute the probability of an individual being assigned a room. We will arrive at approximate estimates through the use of monte carlo simulation in python. We will discuss why this methodology is preferred over computing closed form solutions with binomial trees. Our discussion will end on observations the author (me!) finds interesting. For example, a peculiar result is that the order the rooms are drawn affects an individual's overall probability of getting a room. In other words, you can influence your own potential outcome of the draw simply by requesting a particular draw order. The total number of unique draws are (# of rooms)!.</p>
-            <p class="post">For the purposes of illustration, I have generated a dataset comprised of 17 students bidding on 4 rooms.</p>
-            <div class="post">
-                <table style="width: 60%; margin: 0 auto" border=0 cellpadding=0 cellspacing=0 width=350 style='border-collapse:
-                 collapse;table-layout:fixed;width:350pt'>
-                 <col width=65 style='width:65pt'>
-                 <col width=25 style='mso-width-source:userset;mso-width-alt:1066;width:25pt'>
-                 <col width=65 span=4 style='width:65pt'>
-                 <tr height=16 style='height:16.0pt'>
-                  <td height=16 width=65 style='height:16.0pt;width:65pt'></td>
-                  <td width=25 style='width:25pt'></td>
-                  <td width=65 style='width:65pt'></td>
-                  <td width=65 style='width:65pt'></td>
-                  <td width=65 style='width:65pt'></td>
-                  <td width=65 style='width:65pt'></td>
-                 </tr>
-                 <tr height=18 style='height:18.0pt'>
-                  <td height=18 class=xl66 style='height:18.0pt'></td>
-                  <td class=xl66></td>
-                  <td colspan=4 class=xl175 style='border-right:1.5pt solid black'>Demand</td>
-                 </tr>
-                 <tr height=17 style='height:17.0pt'>
-                  <td height=17 class=xl160 style='height:17.0pt'>Student</td>
-                  <td class=xl161 style='border-left:none'>ID</td>
-                  <td class=xl162 style='border-top:none;border-left:none'>A</td>
-                  <td class=xl161 style='border-top:none;border-left:none'>B</td>
-                  <td class=xl161 style='border-top:none;border-left:none'>C</td>
-                  <td class=xl163 style='border-top:none;border-left:none'>D</td>
-                 </tr>
-                 <tr height=17 style='height:17.0pt'>
-                  <td height=17 class=xl164 style='height:17.0pt'>Bob</td>
-                  <td class=xl157 align=right style='border-left:none'>1</td>
-                  <td class=xl158 style='border-left:none'>&nbsp;</td>
-                  <td class=xl159 style='border-left:none'>&nbsp;</td>
-                  <td class=xl159 style='border-left:none'>x</td>
-                  <td class=xl165 style='border-left:none'>x</td>
-                 </tr>
-                 <tr height=16 style='height:16.0pt'>
-                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>James</td>
-                  <td class=xl154 align=right style='border-top:none;border-left:none'>2</td>
-                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>&nbsp;</td>
-                  <td class=xl167 style='border-top:none;border-left:none'>&nbsp;</td>
-                 </tr>
-                 <tr height=16 style='height:16.0pt'>
-                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Jessie</td>
-                  <td class=xl154 align=right style='border-top:none;border-left:none'>3</td>
-                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl167 style='border-top:none;border-left:none'>&nbsp;</td>
-                 </tr>
-                 <tr height=16 style='height:16.0pt'>
-                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Jim</td>
-                  <td class=xl154 align=right style='border-top:none;border-left:none'>4</td>
-                  <td class=xl155 style='border-top:none;border-left:none'>&nbsp;</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl167 style='border-top:none;border-left:none'>&nbsp;</td>
-                 </tr>
-                 <tr height=16 style='height:16.0pt'>
-                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Joe</td>
-                  <td class=xl154 align=right style='border-top:none;border-left:none'>5</td>
-                  <td class=xl155 style='border-top:none;border-left:none'>&nbsp;</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl167 style='border-top:none;border-left:none'>x</td>
-                 </tr>
-                 <tr height=16 style='height:16.0pt'>
-                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Jon</td>
-                  <td class=xl154 align=right style='border-top:none;border-left:none'>6</td>
-                  <td class=xl155 style='border-top:none;border-left:none'>&nbsp;</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>&nbsp;</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl167 style='border-top:none;border-left:none'>x</td>
-                 </tr>
-                 <tr height=16 style='height:16.0pt'>
-                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Jon</td>
-                  <td class=xl154 align=right style='border-top:none;border-left:none'>7</td>
-                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>&nbsp;</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl167 style='border-top:none;border-left:none'>x</td>
-                 </tr>
-                 <tr height=16 style='height:16.0pt'>
-                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Mary</td>
-                  <td class=xl154 align=right style='border-top:none;border-left:none'>8</td>
-                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>&nbsp;</td>
-                  <td class=xl167 style='border-top:none;border-left:none'>&nbsp;</td>
-                 </tr>
-                 <tr height=16 style='height:16.0pt'>
-                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Paul</td>
-                  <td class=xl154 align=right style='border-top:none;border-left:none'>9</td>
-                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl167 style='border-top:none;border-left:none'>&nbsp;</td>
-                 </tr>
-                 <tr height=16 style='height:16.0pt'>
-                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Peter</td>
-                  <td class=xl154 align=right style='border-top:none;border-left:none'>10</td>
-                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl167 style='border-top:none;border-left:none'>x</td>
-                 </tr>
-                 <tr height=16 style='height:16.0pt'>
-                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Sally</td>
-                  <td class=xl154 align=right style='border-top:none;border-left:none'>11</td>
-                  <td class=xl155 style='border-top:none;border-left:none'>&nbsp;</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl167 style='border-top:none;border-left:none'>x</td>
-                 </tr>
-                 <tr height=16 style='height:16.0pt'>
-                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Stuart</td>
-                  <td class=xl154 align=right style='border-top:none;border-left:none'>12</td>
-                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>&nbsp;</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>&nbsp;</td>
-                  <td class=xl167 style='border-top:none;border-left:none'>&nbsp;</td>
-                 </tr>
-                 <tr height=16 style='height:16.0pt'>
-                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Tara</td>
-                  <td class=xl154 align=right style='border-top:none;border-left:none'>13</td>
-                  <td class=xl155 style='border-top:none;border-left:none'>&nbsp;</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl167 style='border-top:none;border-left:none'>x</td>
-                 </tr>
-                 <tr height=16 style='height:16.0pt'>
-                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Tegan</td>
-                  <td class=xl154 align=right style='border-top:none;border-left:none'>14</td>
-                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl167 style='border-top:none;border-left:none'>&nbsp;</td>
-                 </tr>
-                 <tr height=16 style='height:16.0pt'>
-                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Tim</td>
-                  <td class=xl154 align=right style='border-top:none;border-left:none'>15</td>
-                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>&nbsp;</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>&nbsp;</td>
-                  <td class=xl167 style='border-top:none;border-left:none'>&nbsp;</td>
-                 </tr>
-                 <tr height=16 style='height:16.0pt'>
-                  <td height=16 class=xl166 style='height:16.0pt;border-top:none'>Todd</td>
-                  <td class=xl154 align=right style='border-top:none;border-left:none'>16</td>
-                  <td class=xl155 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl156 style='border-top:none;border-left:none'>&nbsp;</td>
-                  <td class=xl167 style='border-top:none;border-left:none'>&nbsp;</td>
-                 </tr>
-                 <tr height=16 style='height:16.0pt'>
-                  <td height=16 class=xl168 style='height:16.0pt;border-top:none'>Tom</td>
-                  <td class=xl169 align=right style='border-top:none;border-left:none'>17</td>
-                  <td class=xl170 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl171 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl171 style='border-top:none;border-left:none'>x</td>
-                  <td class=xl172 style='border-top:none;border-left:none'>x</td>
-                 </tr>
-                 <tr height=16 style='height:16.0pt'>
-                  <td height=16 class=xl89 style='height:16.0pt'>Total:</td>
-                  <td></td>
-                  <td class=xl69 align=right>11</td>
-                  <td align=right>12</td>
-                  <td align=right>12</td>
-                  <td align=right>8</td>
-                 </tr>
-                 <tr height=15 style='height:15.0pt'>
-                  <td height=15 class=xl89 style='height:15.0pt'>Total (%):</td>
-                  <td class=xl69></td>
-                  <td class=xl102>65%</td>
-                  <td class=xl102>71%</td>
-                  <td class=xl102>71%</td>
-                  <td class=xl102>47%</td>
-                 </tr>
-                </table>
-            </div>
-            <div class="note" style="border: 2px solid black; margin: 10px; padding: 20px 50px; background-color: #FFFCFA"><b>Note: </b>A (non-randomly) generated input with the following condition: if an individual bids on more than one room, the bids must be adjacent (i.e you can bid on A&B, not A&D, unless A&B&C&D). This will likely not hold in practice.</div>
-            <p class="title" style="margin-top: 20px">Eureka!<span class="date">3/25/2014</span></p>
-            <p class="post">Well, you know what they say. "If at first you don't succeed,: Try, <span style="text-decoration:line-through">try</span>, <span style="text-decoration:line-through">try</span> again." I figure in some contexts trying 3 times after you've failed borders on unacceptable. I'm testing the boundaries to see if this is one of those times. I essentially re-applied to the same position a day after being turned down. You'd be right in guessing that my experience, education, or fit didn't change over night. Only my resolve. Ideally, I'd be a talented enough programmer to code a beautiful <a href = "steps.html" target="_blank"><b>data visualization</b></a> to prove my chops for this position. Instead, excel pervades most of actuarial science, and as such, I remain unconvinced that my <a href = "tax_calculator.xlsm" target="_blank"><b>tax calculator</b></a> would elicit much "ooooing and aaaaaing". So after years of writing songs about nothing to no one, I figured the thing I could best pull together in a weekend was a rap song. Because, if you couldn't tell from my bitstrip avatar, I'm a sucker (MC).</p>
-            <p class="post">Part of the reason I didn't move on was because I made poor eye contact. So I thought it would be funny to hire someone to stare at at a video camera for 2m07s while this song played in the background. You can actually hire people to do this for you on the "cheap". I turned to Fiverr.com, which is an hilarious marketplace of services from voice-overs to promo videos. After giving the following instruction "Just, you know, stare into the camera for 2 minutes." - this is what I got.</p>
+    <div id="space"></div>
+    <div class="blog">
+      <p class="title" style="margin-top: 20px">Apple TV Audio Fix</p>
+      <p class="post">Awesome. A command line (unix) solution to rebooting your audio if your Apple TV isn't playing sound. Open terminal and run 'sudo killall coreaudiod'. You will be prompted to type in your computer's password. Airplay will disconnect from Apple TV. Reconnect Apple TV. Voila. Before, I had to reboot my Mac in order to restore the audio connection. No longer. Thanks, unix script!</p>
+      <p class="title" style="margin-top: 20px">Expecation in a Sublet Lottery(Part 1)<span class="date">3/26/2014</span></p>
+      <p class="post"><b>The big picture. </b>I'm interested in building a model that generates probabilities of drawing a room in a sublet lottery in python. This is motivated by my experience at <b><a href="http://bitmakerlabs.com/" target="_blank">Bitmaker Labs</a></b> in Toronto. Bitmaker Labs leases property to sublet to students from out of town. However, demand >> supply.Therefore, understanding the likelihood of drawing a room from Bitmaker Labs will influence the decision to look for property elsewhere. The program is currently piloting the program with one condo, and 4 rooms are available. assigned on a 'first come, first serve' basis. If income potential was better understoond, additional properties may be leased. The benefit for students is available housing (woohoo!). Better yet, the relationship may be circular. More out of town students would attend the course if housing were available, and Bitmaker Labs stands to generate additional income by administering the whole thing. That's what fat people in suits call, synergy.</p>
+      <p class="post"><b>A real example.</b> 17 students need housing. Only 4 rooms (A,B,C,D) are available. Each room is slightly different, and are thus offered at different prices. Every individual is allowed to bid on any number of the rooms with a binary indicator (yes/no). Therefore, it is legitimate to have Jon request A and B, and Jen to request C and B, and Tina request B, C, and D. Notice that each individuals preferences are different. As such, the overall probability of getting a room also differs for each individual. As the scope of this model goes beyond one post, I want to focus this entry on exploring probabilities. Specifically, we will look at how to compute the probability of an individual being assigned a room. We will arrive at approximate estimates through the use of monte carlo simulation. We will discuss why this methodology is preferred over computing closed form solutions with binomial trees. Our discussion will end on observations I found interesting. For example, a peculiar result is that the order the rooms are drawn affects an individual's overall probability of getting a room. In other words, you can influence your own potential outcome of the draw simply by requesting a particular draw order. The total number of unique draws are (# of rooms)! - the factorial, not the emphasis.</p>
+      <p class="post">For the purposes of illustration, I have generated a dataset comprised of 17 students bidding on 4 rooms. This table is below:</p>
 
-            <div class="movie-container">
-                <iframe class="movie" width="660" height="365" src="//www.youtube.com/embed/KvTioSnYsy4" frameborder="0" allowfullscreen></iframe>
-            </div>
+      <div class="post">
 
-            <p class="post">Suspend your disbelief - the strategy worked. I was given the opportunity to visit Shopify's offices in Ottawa, and speak to someone who leads a group of Data Analysts. Their offices are inspiring, they're up on the latest tech (ipad name label generator!?), and they hire people who literally write books on <b><a href="https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers" target="_blank">Bayesian Statistics</a></b>. So, I'm keeping my fingers crossed that I can join their ranks, and have the opportunity to work alongside people who are so passionate about what they do. In the mean time, I'll be turning my attention towards python from ruby, as it looks like there are tremendous advantages for data analysts. As I'll be writing the CFA Level II exam in June, this blog will likely touch on topics that combine my endevours in python and finance, so stay tuned.</p>
+        <table style="text-align: center; width: 150%; margin: 0 auto; margin-left: 7em" border=0 cellpadding=0 cellspacing=0 width=679 style='border-collapse:
+        collapse;table-layout:fixed;width:679pt'>
+        <col width=65 style='width:65pt'>
+        <col width=29 style='mso-width-source:userset;mso-width-alt:1237;width:29pt'>
+        <col width=65 span=9 style='width:65pt'>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 width=65 style='height:16.0pt;width:65pt'></td>
+          <td width=29 style='width:29pt'></td>
+          <td width=65 style='width:65pt'></td>
+          <td width=65 style='width:65pt'></td>
+          <td width=65 style='width:65pt'></td>
+          <td width=65 style='width:65pt'></td>
+          <td width=65 style='width:65pt'></td>
+          <td width=65 style='width:65pt'></td>
+          <td width=65 style='width:65pt'></td>
+          <td width=65 style='width:65pt'></td>
+          <td width=65 style='width:65pt'></td>
+        </tr>
+        <tr height=18 style='height:18.0pt'>
+          <td height=18 class=xl66 style='height:18.0pt'></td>
+          <td class=xl66></td>
+          <td colspan=4 class=xl170 style='border-right:1.5pt solid black'>Demand</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=17 style='height:17.0pt'>
+          <td height=17 class=xl155 style='height:17.0pt'>Student</td>
+          <td class=xl156 style='border-left:none'>ID</td>
+          <td class=xl157 style='border-top:none;border-left:none'>A</td>
+          <td class=xl156 style='border-top:none;border-left:none'>B</td>
+          <td class=xl156 style='border-top:none;border-left:none'>C</td>
+          <td class=xl158 style='border-top:none;border-left:none'>D</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=17 style='height:17.0pt'>
+          <td height=17 class=xl159 style='height:17.0pt'>Bob</td>
+          <td class=xl152 align=right style='border-left:none'>1</td>
+          <td class=xl153 style='border-left:none'>0</td>
+          <td class=xl154 style='border-left:none'>0</td>
+          <td class=xl154 style='border-left:none'>x</td>
+          <td class=xl160 style='border-left:none'>x</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>James</td>
+          <td class=xl149 align=right style='border-top:none;border-left:none'>2</td>
+          <td class=xl150 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>0</td>
+          <td class=xl162 style='border-top:none;border-left:none'>0</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Jessie</td>
+          <td class=xl149 align=right style='border-top:none;border-left:none'>3</td>
+          <td class=xl150 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl162 style='border-top:none;border-left:none'>0</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Jim</td>
+          <td class=xl149 align=right style='border-top:none;border-left:none'>4</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl162 style='border-top:none;border-left:none'>0</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Joe</td>
+          <td class=xl149 align=right style='border-top:none;border-left:none'>5</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl162 style='border-top:none;border-left:none'>x</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Jon</td>
+          <td class=xl149 align=right style='border-top:none;border-left:none'>6</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl151 style='border-top:none;border-left:none'>0</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl162 style='border-top:none;border-left:none'>x</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Jon</td>
+          <td class=xl149 align=right style='border-top:none;border-left:none'>7</td>
+          <td class=xl150 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>0</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl162 style='border-top:none;border-left:none'>x</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Mary</td>
+          <td class=xl149 align=right style='border-top:none;border-left:none'>8</td>
+          <td class=xl150 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>0</td>
+          <td class=xl162 style='border-top:none;border-left:none'>0</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Paul</td>
+          <td class=xl149 align=right style='border-top:none;border-left:none'>9</td>
+          <td class=xl150 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl162 style='border-top:none;border-left:none'>0</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Peter</td>
+          <td class=xl149 align=right style='border-top:none;border-left:none'>10</td>
+          <td class=xl150 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl162 style='border-top:none;border-left:none'>x</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Sally</td>
+          <td class=xl149 align=right style='border-top:none;border-left:none'>11</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl162 style='border-top:none;border-left:none'>x</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Stuart</td>
+          <td class=xl149 align=right style='border-top:none;border-left:none'>12</td>
+          <td class=xl150 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>0</td>
+          <td class=xl151 style='border-top:none;border-left:none'>0</td>
+          <td class=xl162 style='border-top:none;border-left:none'>0</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Tara</td>
+          <td class=xl149 align=right style='border-top:none;border-left:none'>13</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl162 style='border-top:none;border-left:none'>x</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Tegan</td>
+          <td class=xl149 align=right style='border-top:none;border-left:none'>14</td>
+          <td class=xl150 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl162 style='border-top:none;border-left:none'>0</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Tim</td>
+          <td class=xl149 align=right style='border-top:none;border-left:none'>15</td>
+          <td class=xl150 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>0</td>
+          <td class=xl151 style='border-top:none;border-left:none'>0</td>
+          <td class=xl162 style='border-top:none;border-left:none'>0</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Todd</td>
+          <td class=xl149 align=right style='border-top:none;border-left:none'>16</td>
+          <td class=xl150 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>x</td>
+          <td class=xl151 style='border-top:none;border-left:none'>0</td>
+          <td class=xl162 style='border-top:none;border-left:none'>0</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl163 style='height:16.0pt;border-top:none'>Tom</td>
+          <td class=xl164 align=right style='border-top:none;border-left:none'>17</td>
+          <td class=xl165 style='border-top:none;border-left:none'>x</td>
+          <td class=xl166 style='border-top:none;border-left:none'>x</td>
+          <td class=xl166 style='border-top:none;border-left:none'>x</td>
+          <td class=xl167 style='border-top:none;border-left:none'>x</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl89 style='height:16.0pt'>Total:</td>
+          <td align=right>0</td>
+          <td class=xl69 align=right>11</td>
+          <td align=right>12</td>
+          <td align=right>12</td>
+          <td align=right>8</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+        <tr height=15 style='height:15.0pt'>
+          <td height=15 class=xl89 style='height:15.0pt'>Total(%)</td>
+          <td class=xl69 align=right>0</td>
+          <td class=xl98>65%</td>
+          <td class=xl98>71%</td>
+          <td class=xl98>71%</td>
+          <td class=xl98>47%</td>
+          <td colspan=5 style='mso-ignore:colspan'></td>
+        </tr>
+      </table>
+      </div>
 
-            <p class="title" style="margin-top: 20px">Migrations in Rails<span class="date">3/12/2014</span></p>
-            <p class="post">Model, view, controller generation and database modifications for creating an Expense class.</p>
+        <div class="note" style="border: 2px solid black; width: 95%; margin: 20px auto; padding: 20px 50px; background-color: #EFEFEF"><b>Note: </b>A (non-randomly) generated input with the following condition: if an individual bids on more than one room, the bids must be adjacent (i.e you can bid on A&B, not A&D, unless A&B&C&D). This will likely not hold in practice, but it produces some interesting results, and guides our post mortem discussion and analysis.</div>
 
-            <div class="application">Rails Commands (Command Line)</div>
-            <div class="shortcuts">
-                <ul class="list">
-                    <li><b>rails g model Expense</b> always singular</li>
-                    <li><b>go to db/migrate/[create_expenses]</b> add fields to table</li>
-                    <li><b>rake db:migrate</b> creates the table (available in schema)</li>
-                    <li><b>rails g controller Expenses</b> always plural</li>
-                    <li><b>touch app/views/Expenses.html.erb</b> create view(s) for expenses</li>
-                    <li><b>rails g migration Add[Item]To[Expenses]</b> check db/migrate</li>
-                    <li><b>modify migration file</b> add fields</li>
-                    <li><b>rake db:migrate</b> modify Expense table</li><br>
-                    <li style = "list-style-type: none"><b><u>Sqlite3</u></b><a href="http://www.tutorialspoint.com/sqlite"></a></li>
-                    <li>launch sqlite3 shell from command line in folder db/development.sqlite3</li>
-                    <li><b>.databases</b> show you all the databases (typically called main)</li>
-                    <li><b>.tables</b> show you all the tables</li>
-                    <li><b>DROP TABLE main.expenses</b> delete the table</li>
-                </ul>
-            </div>
+        <table border=0 cellpadding=0 cellspacing=0 width=679 style='border-collapse:
+        collapse;table-layout:fixed;width:679pt'>
+        <tr height=15 style='height:15.0pt'>
+          <td height=15 colspan=11 style='height:15.0pt;mso-ignore:colspan'></td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 colspan=11 style='height:16.0pt;mso-ignore:colspan'></td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td colspan=11 height=16 class=xl173 style='border-right:1.0pt solid black;
+          height:16.0pt'>Counts</td>
+        </tr>
+        <tr height=17 style='height:17.0pt'>
+          <td height=17 class=xl176 style='height:17.0pt'>A&amp;B</td>
+          <td class=xl177 style='border-left:none'>A&amp;C</td>
+          <td class=xl177 style='border-left:none'>A&amp;D</td>
+          <td class=xl177 style='border-left:none'>B&amp;C</td>
+          <td class=xl177 style='border-left:none'>B&amp;D</td>
+          <td class=xl177 style='border-left:none'>C&amp;D</td>
+          <td class=xl178 width=65 style='border-left:none;width:65pt'>A&amp;B&amp;C</td>
+          <td class=xl178 width=65 style='border-left:none;width:65pt'>A&amp;B&amp;D</td>
+          <td class=xl178 width=65 style='border-left:none;width:65pt'>A&amp;C&amp;D</td>
+          <td class=xl178 width=65 style='border-left:none;width:65pt'>B&amp;C&amp;D</td>
+          <td class=xl179 width=65 style='border-left:none;width:65pt'>A&amp;B&amp;C&amp;D</td>
+        </tr>
+        <tr height=17 style='height:17.0pt'>
+          <td height=17 class=xl180 style='height:17.0pt;border-top:none'>0</td>
+          <td class=xl181 style='border-top:none;border-left:none'>0</td>
+          <td class=xl181 style='border-top:none;border-left:none'>0</td>
+          <td class=xl181 style='border-top:none;border-left:none'>0</td>
+          <td class=xl181 style='border-top:none;border-left:none'>0</td>
+          <td class=xl181 style='border-top:none;border-left:none'>1</td>
+          <td class=xl181 style='border-top:none;border-left:none'>0</td>
+          <td class=xl181 style='border-top:none;border-left:none'>0</td>
+          <td class=xl181 style='border-top:none;border-left:none'>0</td>
+          <td class=xl181 style='border-top:none;border-left:none'>0</td>
+          <td class=xl182 style='border-top:none;border-left:none'>0</td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl184 style='border-top:none;border-left:none'>0</td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl184 style='border-top:none;border-left:none'>0</td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl184 style='border-top:none;border-left:none'>0</td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl184 style='border-top:none;border-left:none'>0</td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl184 style='border-top:none;border-left:none'>0</td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl184 style='border-top:none;border-left:none'>0</td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl184 style='border-top:none;border-left:none'>0</td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl184 style='border-top:none;border-left:none'>0</td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl184 style='border-top:none;border-left:none'>1</td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl184 style='border-top:none;border-left:none'>0</td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl184 style='border-top:none;border-left:none'>0</td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl184 style='border-top:none;border-left:none'>0</td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl184 style='border-top:none;border-left:none'>0</td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl184 style='border-top:none;border-left:none'>0</td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>1</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl150 style='border-top:none;border-left:none'>0</td>
+          <td class=xl184 style='border-top:none;border-left:none'>0</td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl185 style='height:16.0pt;border-top:none'>1</td>
+          <td class=xl165 style='border-top:none;border-left:none'>1</td>
+          <td class=xl165 style='border-top:none;border-left:none'>1</td>
+          <td class=xl165 style='border-top:none;border-left:none'>1</td>
+          <td class=xl165 style='border-top:none;border-left:none'>1</td>
+          <td class=xl165 style='border-top:none;border-left:none'>1</td>
+          <td class=xl165 style='border-top:none;border-left:none'>1</td>
+          <td class=xl165 style='border-top:none;border-left:none'>1</td>
+          <td class=xl165 style='border-top:none;border-left:none'>1</td>
+          <td class=xl165 style='border-top:none;border-left:none'>1</td>
+          <td class=xl186 style='border-top:none;border-left:none'>1</td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 class=xl69 align=right style='height:16.0pt'>8</td>
+          <td class=xl69 align=right>6</td>
+          <td class=xl69 align=right>3</td>
+          <td class=xl69 align=right>9</td>
+          <td class=xl69 align=right>5</td>
+          <td class=xl69 align=right>8</td>
+          <td class=xl69 align=right>5</td>
+          <td class=xl69 align=right>2</td>
+          <td class=xl69 align=right>3</td>
+          <td class=xl69 align=right>5</td>
+          <td class=xl69 align=right>2</td>
+        </tr>
+        <tr height=15 style='height:15.0pt'>
+          <td height=15 class=xl98 style='height:15.0pt'>47%</td>
+          <td class=xl98>35%</td>
+          <td class=xl98>18%</td>
+          <td class=xl98>53%</td>
+          <td class=xl98>29%</td>
+          <td class=xl98>47%</td>
+          <td class=xl98>29%</td>
+          <td class=xl98>12%</td>
+          <td class=xl98>18%</td>
+          <td class=xl98>29%</td>
+          <td class=xl98>12%</td>
+        </tr>
+        <tr height=16 style='height:16.0pt'>
+          <td height=16 colspan=11 style='height:16.0pt;mso-ignore:colspan'></td>
+        </tr>
+        <tr height=17 style='height:17.0pt'>
+          <td height=17 colspan=2 style='height:17.0pt;mso-ignore:colspan'></td>
+          <td colspan=7 class=xl187 style='border-right:1.5pt solid black'>Conditional
+            Probability</td>
+            <td colspan=2 style='mso-ignore:colspan'></td>
+          </tr>
+          <tr height=16 style='height:16.0pt'>
+            <td height=16 colspan=2 style='height:16.0pt;mso-ignore:colspan'></td>
+            <td class=xl139>&nbsp;</td>
+            <td class=xl68></td>
+            <td class=xl68></td>
+            <td class=xl68></td>
+            <td class=xl68></td>
+            <td class=xl68></td>
+            <td class=xl197>&nbsp;</td>
+            <td colspan=2 style='mso-ignore:colspan'></td>
+          </tr>
+          <tr height=15 style='height:15.0pt'>
+            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
+            <td class=xl191>&nbsp;</td>
+            <td colspan=5 class=xl108>Each entry in the table corresponds to</td>
+            <td class=xl192>&nbsp;</td>
+            <td colspan=2 style='mso-ignore:colspan'></td>
+          </tr>
+          <tr height=15 style='height:15.0pt'>
+            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
+            <td class=xl191>&nbsp;</td>
+            <td colspan=5 class=xl107>P(Row Label | Column Label)</td>
+            <td class=xl192>&nbsp;</td>
+            <td colspan=2 style='mso-ignore:colspan'></td>
+          </tr>
+          <tr height=15 style='height:15.0pt'>
+            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
+            <td class=xl191>&nbsp;</td>
+            <td class=xl72></td>
+            <td class=xl72></td>
+            <td class=xl72></td>
+            <td class=xl72></td>
+            <td class=xl72></td>
+            <td class=xl192>&nbsp;</td>
+            <td colspan=2 style='mso-ignore:colspan'></td>
+          </tr>
+          <tr height=16 style='height:16.0pt'>
+            <td height=16 colspan=2 style='height:16.0pt;mso-ignore:colspan'></td>
+            <td class=xl191>&nbsp;</td>
+            <td class=xl69></td>
+            <td class=xl198>A</td>
+            <td class=xl198>B</td>
+            <td class=xl198>C</td>
+            <td class=xl198>D</td>
+            <td class=xl192>&nbsp;</td>
+            <td colspan=2 style='mso-ignore:colspan'></td>
+          </tr>
+          <tr height=15 style='height:15.0pt'>
+            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
+            <td class=xl191>&nbsp;</td>
+            <td class=xl92>A</td>
+            <td class=xl199>1.00</td>
+            <td class=xl200>0.67</td>
+            <td class=xl200>0.50</td>
+            <td class=xl200>0.38</td>
+            <td class=xl192>&nbsp;</td>
+            <td colspan=2 style='mso-ignore:colspan'></td>
+          </tr>
+          <tr height=15 style='height:15.0pt'>
+            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
+            <td class=xl191>&nbsp;</td>
+            <td class=xl92>B</td>
+            <td class=xl201>0.73</td>
+            <td class=xl97>1.00</td>
+            <td class=xl93>0.75</td>
+            <td class=xl93>0.63</td>
+            <td class=xl192>&nbsp;</td>
+            <td colspan=2 style='mso-ignore:colspan'></td>
+          </tr>
+          <tr height=15 style='height:15.0pt'>
+            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
+            <td class=xl191>&nbsp;</td>
+            <td class=xl92>C</td>
+            <td class=xl201>0.55</td>
+            <td class=xl93>0.75</td>
+            <td class=xl97>1.00</td>
+            <td class=xl93>1.00</td>
+            <td class=xl192>&nbsp;</td>
+            <td colspan=2 style='mso-ignore:colspan'></td>
+          </tr>
+          <tr height=15 style='height:15.0pt'>
+            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
+            <td class=xl191>&nbsp;</td>
+            <td class=xl92>D</td>
+            <td class=xl201>0.27</td>
+            <td class=xl93>0.42</td>
+            <td class=xl93>0.67</td>
+            <td class=xl97>1.00</td>
+            <td class=xl192>&nbsp;</td>
+            <td colspan=2 style='mso-ignore:colspan'></td>
+          </tr>
+          <tr height=15 style='height:15.0pt'>
+            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
+            <td class=xl191>&nbsp;</td>
+            <td class=xl72></td>
+            <td class=xl72></td>
+            <td class=xl72></td>
+            <td class=xl72></td>
+            <td class=xl72></td>
+            <td class=xl192>&nbsp;</td>
+            <td colspan=2 style='mso-ignore:colspan'></td>
+          </tr>
+          <tr height=15 style='height:15.0pt'>
+            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
+            <td class=xl191>&nbsp;</td>
+            <td class=xl72></td>
+            <td class=xl72></td>
+            <td class=xl72></td>
+            <td class=xl72></td>
+            <td class=xl72></td>
+            <td class=xl192>&nbsp;</td>
+            <td colspan=2 style='mso-ignore:colspan'></td>
+          </tr>
+          <tr height=15 style='height:15.0pt'>
+            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
+            <td class=xl193>&nbsp;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class=xl194>&nbsp;</td>
+            <td colspan=2 style='mso-ignore:colspan'></td>
+          </tr>
+          <tr height=16 style='height:16.0pt'>
+            <td height=16 colspan=2 style='height:16.0pt;mso-ignore:colspan'></td>
+            <td class=xl195>&nbsp;</td>
+            <td class=xl142>&nbsp;</td>
+            <td class=xl142>&nbsp;</td>
+            <td class=xl142>&nbsp;</td>
+            <td class=xl142>&nbsp;</td>
+            <td class=xl142>&nbsp;</td>
+            <td class=xl196>&nbsp;</td>
+            <td colspan=2 style='mso-ignore:colspan'></td>
+          </tr>
+        </table>
 
-            <p class="title" style="margin-top: 20px">Shopify Application<span class="date">3/7/2014</span></p>
+      <p class="title" style="margin-top: 20px">Eureka!<span class="date">3/25/2014</span></p>
+      <p class="post">Well, you know what they say. "If at first you don't succeed,: Try, <span style="text-decoration:line-through">try</span>, <span style="text-decoration:line-through">try</span> again." I figure in some contexts trying 3 times after you've failed borders on unacceptable. I'm testing the boundaries to see if this is one of those times. I essentially re-applied to the same position a day after being turned down. You'd be right in guessing that my experience, education, or fit didn't change over night. Only my resolve. Ideally, I'd be a talented enough programmer to code a beautiful <a href = "steps.html" target="_blank"><b>data visualization</b></a> to prove my chops for this position. Instead, excel pervades most of actuarial science, and as such, I remain unconvinced that my <a href = "tax_calculator.xlsm" target="_blank"><b>tax calculator</b></a> would elicit much "ooooing and aaaaaing". So after years of writing songs about nothing to no one, I figured the thing I could best pull together in a weekend was a rap song. Because, if you couldn't tell from my bitstrip avatar, I'm a sucker (MC).</p>
+      <p class="post">Part of the reason I didn't move on was because I made poor eye contact. So I thought it would be funny to hire someone to stare at at a video camera for 2m07s while this song played in the background. You can actually hire people to do this for you on the "cheap". I turned to Fiverr.com, which is an hilarious marketplace of services from voice-overs to promo videos. After giving the following instruction "Just, you know, stare into the camera for 2 minutes." - this is what I got.</p>
 
-            <p class="post">Well, it looks like it wasn't meant to be (this time around). I applied to <strong><a href="http://www.shopify.com/careers?posting=data-data-data" target="_blank">Shopify's Data Team</a></strong>, but won't be moving on after a second round interview. Obviously, I'm a little disappointed, but, I take some solace in the idea that <em>"...not getting what you want is sometimes a wonderful stroke of luck."</em> The wonderful blog of KarenX is also a great read for those <strong><a href="http://www.karenx.com/blog/how-to-get-a-job-after-youve-been-rejected/" target="_blank">overcoming rejection</a></strong> in the aftermath of a giving an application everything you could. Below is the link to a song I included with my resume. I haven't given up on a career at this amazing company. Who knows, I may end up with an entire album worth of material in my continued attempt to gain access to a <strong><a href="http://www.shopify.ca/careers" target="_blank">beer tap at work.</a></strong></p>
-            <div style="width: 100%; margin: 0 auto">
-            <iframe class="soundcloud" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/134717870&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_artwork=true"></iframe>
-            </div>
+      <div class="movie-container">
+        <iframe class="movie" width="660" height="365" src="//www.youtube.com/embed/KvTioSnYsy4" frameborder="0" allowfullscreen></iframe>
+      </div>
 
-            <p class="title">Ramblings on Financial "Advice"<span class="date">3/3/2014</span></p>
+      <p class="post">Suspend your disbelief - the strategy worked. I was given the opportunity to visit Shopify's offices in Ottawa, and speak to someone who leads a group of Data Analysts. Their offices are inspiring, they're up on the latest tech (ipad name label generator!?), and they hire people who literally write books on <b><a href="https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers" target="_blank">Bayesian Statistics</a></b>. So, I'm keeping my fingers crossed that I can join their ranks, and have the opportunity to work alongside people who are so passionate about what they do. In the mean time, I'll be turning my attention towards python from ruby, as it looks like there are tremendous advantages for data analysts. As I'll be writing the CFA Level II exam in June, this blog will likely touch on topics that combine my endevours in python and finance, so stay tuned.</p>
 
-            <p class="post">I'm in the middle of wrapping up my studies at Bitmaker Labs, and deciding how best to put all the information we've been presented on modern web development to use after this whole thing wraps up. I've long been interested in financial markets by way of my work (Manulife), and I suppose, how the 'average' person makes sense of the plethora of personal financial <a href="http://www.cbc.ca/news/business/hidden-camera-investigation-uncovers-atrocious-investment-advice-1.2553560" target="_blank"><b><em>advice</em></b></a>. According to CBC, almost a third of Canadians rely on professional financial advisors to guide their decisions with respect to managing debt, a mortgage, education and retirement savings. And it turns out those many of them are not that good. While there has been some headway leveraging modern technologies (web apps, mobile apps) to better inform consumers of financial products, it's my humble opinion that we still have a long way to go. So that's my starting point.</p>
-            <p class="post">There's a database of financial professionals registered in Canada held online at <em><strong><a href="https://www.securities-administrators.ca/" target="_blank">Canadian Securities Administrators (CSA)</a></strong></em>. It holds records, both active and historical, of 290,000 registered investment professionals, as well as their location, employer, phone, title, tenure, credentials and disciplinary action. According to their website, they are "Securities regulators from each of the 10 provinces and 3 territories in Canada have teamed up to form the Canadian Securities Administrators (CSA). The CSA protects Canadian investors from unfair, improper, or fraudulent practices and fosters fair and efficient capital markets." The database is hard to interact with, and looks ripe for some scraping and reconstitution.</p>
-            <p class="post">A major naivite of mine entering this course was the notion that "learning to program" is the same as "programming". It's not. Put another way, there is an enormous amount of programming, software, or techniques that you are required to learn in the process of completing a project. So while Bitmaker Labs focuses largely on the Ruby language, I've come accross many a situation that demands an alternative method. Case in point, iMacros web scripting abilities are far better suited to traversing and saving this CSA database in .txt files than a ruby gem or methodology. Am I familiar with iMacros syntax, potential, and particularities? No. But I've been able to piece together just enough functionality to perform the function I need. It's good enough for me, and it should be good enough for you too.</p>
-            <p class="post">Dictated by the current structure, the iMacro script will need to traverse 290,000 pages to scrape all available details on active/historical financial advisors. It's unfortunate, but the CSA offers no way to search for active users only. Alas. Once I've left this script running for about 28 hours (8 seconds per record, you do the math), I should have all the info I need. Then RUBY can do its thing. That is, I'll be using Ruby to parse the .txt files (but not to create them).</p>
-            <p class="post">One of the characteristics of the .txt files being created is that each contains only one user record, and this record tends to start at line 370 (spot checking confirmation). The status (active, historical) is available on line 380 (again, spot checked). Since we are only interested in constructing a database on active financial advisors, ostensibly we can divide our text records into two groups: active and historical. Once complete, we can create a mega text document with only active users, containing all that wondeful information that we can then investigate. How many active advisors are there? How many in Pickering? How many have been disciplined? How many are male? How many are credentialed (CFA, CA, CFP)? How many work for RBC? Dundee Wealth? Exciting stuff.</p>
-            <p class="post">Because you can write javascript in your iMacro, you can create loops where otherwise the instructions would be explicit. In my case, I need to paginate through 2,900 pages (100 records/page). This is well suited to a loop, and I am currently investigating ways to best write this. I suppose I'll keep you up to date on my progress. Don't hold your breath. You might pass out.</p>
+      <p class="title" style="margin-top: 20px">Migrations in Rails<span class="date">3/12/2014</span></p>
+      <p class="post">Model, view, controller generation and database modifications for creating an Expense class.</p>
 
-            <p class="title">My Sequal<span class="date">2/5/2014</span></p>
-            <p class="post">Bogged down in SQL. So I've decided to cover <b><a href="http://www.mysqltutorial.org" target="_blank">this</a></b> tutorial, hoping to gain some basic knowledge about the language and its applications. Below are my notes. </p>
+      <div class="application">Rails Commands (Command Line)</div>
+      <div class="shortcuts">
+        <ul class="list">
+          <li><b>rails g model Expense</b> always singular</li>
+          <li><b>go to db/migrate/[create_expenses]</b> add fields to table</li>
+          <li><b>rake db:migrate</b> creates the table (available in schema)</li>
+          <li><b>rails g controller Expenses</b> always plural</li>
+          <li><b>touch app/views/Expenses.html.erb</b> create view(s) for expenses</li>
+          <li><b>rails g migration Add[Item]To[Expenses]</b> check db/migrate</li>
+          <li><b>modify migration file</b> add fields</li>
+          <li><b>rake db:migrate</b> modify Expense table</li><br>
+          <li style = "list-style-type: none"><b><u>Sqlite3</u></b><a href="http://www.tutorialspoint.com/sqlite"></a></li>
+          <li>launch sqlite3 shell from command line in folder db/development.sqlite3</li>
+          <li><b>.databases</b> show you all the databases (typically called main)</li>
+          <li><b>.tables</b> show you all the tables</li>
+          <li><b>DROP TABLE main.expenses</b> delete the table</li>
+        </ul>
+      </div>
 
-            <div class="application">SQL commands</div>
-            <div class="shortcuts">
-                <ul class="list">
-                    <li><b>SHOW DATABASES;</b></li>
-                    <li><b>CREATE DATABASE databasename;</b></li>
-                    <li><b>USE DATABASE databasename;</b></li>
-                </ul>
-            </div>
+      <p class="title" style="margin-top: 20px">Shopify Application<span class="date">3/7/2014</span></p>
 
-            <p class="post">Whaaaat? That's ALL the notes? Yup. That's all.</p>
+      <p class="post">Well, it looks like it wasn't meant to be (this time around). I applied to <strong><a href="http://www.shopify.com/careers?posting=data-data-data" target="_blank">Shopify's Data Team</a></strong>, but won't be moving on after a second round interview. Obviously, I'm a little disappointed, but, I take some solace in the idea that <em>"...not getting what you want is sometimes a wonderful stroke of luck."</em> The wonderful blog of KarenX is also a great read for those <strong><a href="http://www.karenx.com/blog/how-to-get-a-job-after-youve-been-rejected/" target="_blank">overcoming rejection</a></strong> in the aftermath of a giving an application everything you could. Below is the link to a song I included with my resume. I haven't given up on a career at this amazing company. Who knows, I may end up with an entire album worth of material in my continued attempt to gain access to a <strong><a href="http://www.shopify.ca/careers" target="_blank">beer tap at work.</a></strong></p>
+      <div style="width: 100%; margin: 0 auto">
+        <iframe class="soundcloud" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/134717870&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_artwork=true"></iframe>
+      </div>
 
-            <p class="title">Database Interactions in Rails<span class="date">2/4/2014</span></p>
-            <p class="post">Unfortunately I didn't make near as much headway as I was hoping yesterday. Today is the first day of the rest of my life. Is that the inspiration I needed? Yes. The time right now is 12:21pm. I'm on section 05_02. There are 19 directories in total. Let's roll.</p>
-            <div class="application">table column</div>
-            <div class="shortcuts">
-                <div class="multi-list">
-                    <ul class="list">
-                        <li style="list-style-type: none"><b>Types</b></li>
-                        <li>binary</li>
-                        <li>boolean</li>
-                        <li>date</li>
-                        <li>datetime</li>
-                        <li>decimal</li>
-                        <li>float</li>
-                        <li>integer</li>
-                        <li>string</li>
-                        <li>text</li>
-                        <li>time</li>
-                    </ul>
-                </div>
-                <div class="multi-list">
-                    <ul class="list">
-                        <li style="list-style-type: none"><b>Option</b></li>
-                        <li>:limit => size</li>
-                        <li>:default => value</li>
-                        <li>:null => true/false</li>
-                        <li>precision => number</li>
-                        <li>scale => number</li>
-                    </ul>
-                </div>
-                <div class="multi-list">
-                    <ul class="list">
-                        <li style="list-style-type: none"><b>Methods</b></li>
-                        <li>add_column(table, column, type, options)</li>
-                        <li>remove_column(table, column)</li>
-                        <li>rename_column(table, column, new_name)</li>
-                        <li>change_column(table, column, type, options)</li>
-                        <li>execute("any SQL string")</li>
-                    </ul>
-                </div>
-            </div>
+      <p class="title">Ramblings on Financial "Advice"<span class="date">3/3/2014</span></p>
 
-            <div class="application">migrations</div>
-            <div class="shortcuts">
-                <ul class="list">
-                    <li>A set of database instructions, written in ruby, that allows your database to transform from one state to another.</li>
-                    <li>It keeps the database schema with application code.</li>
-                    <li>It's executable, repeatable, and allows sharing schema changes. It helps with versioning, and allows use to write ruby in place of SQL.</li>
-                </ul>
-            </div>
+      <p class="post">I'm in the middle of wrapping up my studies at Bitmaker Labs, and deciding how best to put all the information we've been presented on modern web development to use after this whole thing wraps up. I've long been interested in financial markets by way of my work (Manulife), and I suppose, how the 'average' person makes sense of the plethora of personal financial <a href="http://www.cbc.ca/news/business/hidden-camera-investigation-uncovers-atrocious-investment-advice-1.2553560" target="_blank"><b><em>advice</em></b></a>. According to CBC, almost a third of Canadians rely on professional financial advisors to guide their decisions with respect to managing debt, a mortgage, education and retirement savings. And it turns out those many of them are not that good. While there has been some headway leveraging modern technologies (web apps, mobile apps) to better inform consumers of financial products, it's my humble opinion that we still have a long way to go. So that's my starting point.</p>
+      <p class="post">There's a database of financial professionals registered in Canada held online at <em><strong><a href="https://www.securities-administrators.ca/" target="_blank">Canadian Securities Administrators (CSA)</a></strong></em>. It holds records, both active and historical, of 290,000 registered investment professionals, as well as their location, employer, phone, title, tenure, credentials and disciplinary action. According to their website, they are "Securities regulators from each of the 10 provinces and 3 territories in Canada have teamed up to form the Canadian Securities Administrators (CSA). The CSA protects Canadian investors from unfair, improper, or fraudulent practices and fosters fair and efficient capital markets." The database is hard to interact with, and looks ripe for some scraping and reconstitution.</p>
+      <p class="post">A major naivite of mine entering this course was the notion that "learning to program" is the same as "programming". It's not. Put another way, there is an enormous amount of programming, software, or techniques that you are required to learn in the process of completing a project. So while Bitmaker Labs focuses largely on the Ruby language, I've come accross many a situation that demands an alternative method. Case in point, iMacros web scripting abilities are far better suited to traversing and saving this CSA database in .txt files than a ruby gem or methodology. Am I familiar with iMacros syntax, potential, and particularities? No. But I've been able to piece together just enough functionality to perform the function I need. It's good enough for me, and it should be good enough for you too.</p>
+      <p class="post">Dictated by the current structure, the iMacro script will need to traverse 290,000 pages to scrape all available details on active/historical financial advisors. It's unfortunate, but the CSA offers no way to search for active users only. Alas. Once I've left this script running for about 28 hours (8 seconds per record, you do the math), I should have all the info I need. Then RUBY can do its thing. That is, I'll be using Ruby to parse the .txt files (but not to create them).</p>
+      <p class="post">One of the characteristics of the .txt files being created is that each contains only one user record, and this record tends to start at line 370 (spot checking confirmation). The status (active, historical) is available on line 380 (again, spot checked). Since we are only interested in constructing a database on active financial advisors, ostensibly we can divide our text records into two groups: active and historical. Once complete, we can create a mega text document with only active users, containing all that wondeful information that we can then investigate. How many active advisors are there? How many in Pickering? How many have been disciplined? How many are male? How many are credentialed (CFA, CA, CFP)? How many work for RBC? Dundee Wealth? Exciting stuff.</p>
+      <p class="post">Because you can write javascript in your iMacro, you can create loops where otherwise the instructions would be explicit. In my case, I need to paginate through 2,900 pages (100 records/page). This is well suited to a loop, and I am currently investigating ways to best write this. I suppose I'll keep you up to date on my progress. Don't hold your breath. You might pass out.</p>
 
-            <div class="application">rake application</div>
-            <div class="shortcuts">
-                <ul class="list">
-                    <li><b>rake -T:</b> return list of tasks available</li>
-                    <li><b>rake -T db:</b> return list of database tasks</li>
-                </ul>
-            </div>
+      <p class="title">My Sequal<span class="date">2/5/2014</span></p>
+      <p class="post">Bogged down in SQL. So I've decided to cover <b><a href="http://www.mysqltutorial.org" target="_blank">this</a></b> tutorial, hoping to gain some basic knowledge about the language and its applications. Below are my notes. </p>
 
-            <div class="application">mysql commands</div>
-            <div class="shortcuts">
-                <ul class="list">
-                    <li>Show DATABASES;</b></li>
-                    <li>CREATE DATABASE db_name;</b></li>
-                    <li>USE db_name;</b></li>
-                    <li>DROP DATABASE db_name;</b></li>
-                </ul>
-            </div>
+      <div class="application">SQL commands</div>
+      <div class="shortcuts">
+        <ul class="list">
+          <li><b>SHOW DATABASES;</b></li>
+          <li><b>CREATE DATABASE databasename;</b></li>
+          <li><b>USE DATABASE databasename;</b></li>
+        </ul>
+      </div>
 
-            <div class="application">Terms</div>
-            <div class="shortcuts">
-                <ul class="list">
-                    <li style="list-style-type: none"><b>CRUD</b></li>
-                    <li>Create</li>
-                    <li>Read</li>
-                    <li>Update</li>
-                    <li>Delete</li>
-                    </br><li style="list-style-type: none"><b>Database</b></li>
-                    <li>A set of tables</li>
-                    <li>One database=one application</li>
-                    <li>Example: simple_cms_development</li>
-                    <li>Access permissions are granted at database level</li>
-                    </br><li style="list-style-type: none"><b>Table</b></li>
-                    <li>Set of columns and rows</li>
-                    <li>1 table=1 model</li>
-                    <li>Represents a single concept (a noun)</li>
-                    <li>Examples: products, customers, orders</li>
-                    </br><li style="list-style-type: none"><b>Column</b></li>
-                    <li>Set of data of a single simple type</li>
-                    <li>Examples: first_name, last_name etc...</li>
-                    </br><li style="list-style-type: none"><b>Row</b></li>
-                    <li>Single record of data</li>
-                    <li>Example: "Tony", "Bennett", "tony@email.com"</li>
-                    </br><li style="list-style-type: none"><b>Field</b></li>
-                    <li>Intersection of a column and a row</li>
-                    </br><li style="list-style-type: none"><b>Index</b></li>
-                    <li>Data structure that will increase the look-up speed</li>
-                    </br><li style="list-style-type: none"><b>Foreign Key</b></li>
-                    <li>Example: subject_id</li>
-                    <li>Relate rows in one table to another</li>
-                    <li>The foundation of relational databases</li>
-                    <li>Always put indexes on foreign keys</li>
-                    </br><li style="list-style-type: none"><b>Schema</b></li>
-                    <li>The structural definition of a database</li>
-                    <li>Importing a schema creates a complete database</li>
-                </ul>
-            </div>
+      <p class="post">Whaaaat? That's ALL the notes? Yup. That's all.</p>
 
-            <p class="title">Ruby on Rails Intro<span class="date">2/3/2014</span></p>
-            <p class="post">Today's focus is getting caught up on the rails web framework for ruby. I definitely feel a little behind, as we're supposed to have completed 3 assignments to date: a blog, photogur (imgur clone), and rainforest (amazon clone). Hopefully, by the end of the day today, I'll get to share with you my progress on all three assignments. It's 1:42 pm right now, and I'm just getting started on the lynda.com rails video series. I'll be taking notes below for *our* mutual benefit. Let's ball.</p>
+      <p class="title">Database Interactions in Rails<span class="date">2/4/2014</span></p>
+      <p class="post">Unfortunately I didn't make near as much headway as I was hoping yesterday. Today is the first day of the rest of my life. Is that the inspiration I needed? Yes. The time right now is 12:21pm. I'm on section 05_02. There are 19 directories in total. Let's roll.</p>
+      <div class="application">table column</div>
+      <div class="shortcuts">
+        <div class="multi-list">
+          <ul class="list">
+            <li style="list-style-type: none"><b>Types</b></li>
+            <li>binary</li>
+            <li>boolean</li>
+            <li>date</li>
+            <li>datetime</li>
+            <li>decimal</li>
+            <li>float</li>
+            <li>integer</li>
+            <li>string</li>
+            <li>text</li>
+            <li>time</li>
+          </ul>
+        </div>
+        <div class="multi-list">
+          <ul class="list">
+            <li style="list-style-type: none"><b>Option</b></li>
+            <li>:limit => size</li>
+            <li>:default => value</li>
+            <li>:null => true/false</li>
+            <li>precision => number</li>
+            <li>scale => number</li>
+          </ul>
+        </div>
+        <div class="multi-list">
+          <ul class="list">
+            <li style="list-style-type: none"><b>Methods</b></li>
+            <li>add_column(table, column, type, options)</li>
+            <li>remove_column(table, column)</li>
+            <li>rename_column(table, column, new_name)</li>
+            <li>change_column(table, column, type, options)</li>
+            <li>execute("any SQL string")</li>
+          </ul>
+        </div>
+      </div>
 
-            <div class="application">Rails Framework</div>
-            <div class="shortcuts">
-                <ul class="list">
-                    <li><b>Definition: </b>A set of code libraries and data-structures that provide generic functionality which can be used, overriden or further specialized.</li>
-                    <li>A <b>Gem</b> is simply ruby code that's been packaged up for easy distribution using the package manager. Rails is itself a gem.</li>
-                    <li><b>gem update --system: </b>get latest version of ruby gems</li>
-                    <li><b>gem --help: </b>help doc for ruby gems</li>
-                    <li><b><a href="http:bundler.io" target="_blank">bundler.io:</a></b> Documentation for bundler</li>
-                    <li><b>Bundler</b> is concerned with two files: Gemfile, and Gemfile.lock</li>
-                    <li><b>bundle install:</b> sort out all ruby gem dependencies (turn Gemfile into Gemfile.lock)</li>
-                    <li>Sometimes, you'll need to put 'bundle exec' in front of your rake db command</li>
-                    <li><b>rake db:migrate:</b></li>
-                    <li><b>bundle exec rake db:migrate:</b></li>
-                    <li><b>rails server (or rails s)</b></li>
-                    <li><b>rails server (or rails s)</b></li>
-                </ul>
-            </div>
+      <div class="application">migrations</div>
+      <div class="shortcuts">
+        <ul class="list">
+          <li>A set of database instructions, written in ruby, that allows your database to transform from one state to another.</li>
+          <li>It keeps the database schema with application code.</li>
+          <li>It's executable, repeatable, and allows sharing schema changes. It helps with versioning, and allows use to write ruby in place of SQL.</li>
+        </ul>
+      </div>
 
-            <div class="application">mysql</div>
-            <div class="shortcuts">
-                <ul class="list">
-                    <li><b>mysql --version: </b>Return current version of mysql</li>
-                    <li><b>mysql.server start: </b> Start up server.</li>
-                    <li><b>mysql.server status: </b> Return server status.</li>
-                    <li><b>mysql.server stop: </b> Stop server.</li>
-                    <li><b>mysql.server restart: </b> Restart server.</li>
-                    <li><b>mysql -u root:</b> Launch mysql.</li>
-                    <li><b>mysql -u root -p:</b> Launch mysql w/ password.</li>
-                    <li><b>exit:</b> Exit mysql.</li>
-                </ul>
-            </div>
+      <div class="application">rake application</div>
+      <div class="shortcuts">
+        <ul class="list">
+          <li><b>rake -T:</b> return list of tasks available</li>
+          <li><b>rake -T db:</b> return list of database tasks</li>
+        </ul>
+      </div>
 
-            <div class="application">MVC Web Architecture</div>
-            <div class="shortcuts">
-                <ul class="list">
-                    <li><b>Model:</b> Data objects we use</li>
-                    <li><b>View:</b> Presentation layer (html/css/javascript)</li>
-                    <li><b>Controller:</b> Processes user events (clicking links, submitting forms)</li>
-                    <li>Browser -> Controller -> Model -> Database</li>
-                    <li>Controller -> View -> Browser</li>
-                    <li><b>rubygems.org: </b>source of all ruby gems</li>
-                </ul>
-            </div>
+      <div class="application">mysql commands</div>
+      <div class="shortcuts">
+        <ul class="list">
+          <li>Show DATABASES;</b></li>
+          <li>CREATE DATABASE db_name;</b></li>
+          <li>USE db_name;</b></li>
+          <li>DROP DATABASE db_name;</b></li>
+        </ul>
+      </div>
 
-            <div class="application">rbenv</div>
-            <div class="shortcuts">
-                <ul class="list">
-                    <li><b>rbenv rehash:</b> run this command anytime you install a gem/update ruby</li>
-                    <li><b>rbenv global, local, shell:</b> run this version of ruby in the global, local, shell environment.</li>
-                    <li><b>rbenv local:</b> run this command anytime you install a gem/update ruby</li>
-                </ul>
-            </div>
+      <div class="application">Terms</div>
+      <div class="shortcuts">
+        <ul class="list">
+          <li style="list-style-type: none"><b>CRUD</b></li>
+          <li>Create</li>
+          <li>Read</li>
+          <li>Update</li>
+          <li>Delete</li>
+        </br><li style="list-style-type: none"><b>Database</b></li>
+        <li>A set of tables</li>
+        <li>One database=one application</li>
+        <li>Example: simple_cms_development</li>
+        <li>Access permissions are granted at database level</li>
+      </br><li style="list-style-type: none"><b>Table</b></li>
+      <li>Set of columns and rows</li>
+      <li>1 table=1 model</li>
+      <li>Represents a single concept (a noun)</li>
+      <li>Examples: products, customers, orders</li>
+    </br><li style="list-style-type: none"><b>Column</b></li>
+    <li>Set of data of a single simple type</li>
+    <li>Examples: first_name, last_name etc...</li>
+  </br><li style="list-style-type: none"><b>Row</b></li>
+  <li>Single record of data</li>
+  <li>Example: "Tony", "Bennett", "tony@email.com"</li>
+</br><li style="list-style-type: none"><b>Field</b></li>
+<li>Intersection of a column and a row</li>
+</br><li style="list-style-type: none"><b>Index</b></li>
+<li>Data structure that will increase the look-up speed</li>
+</br><li style="list-style-type: none"><b>Foreign Key</b></li>
+<li>Example: subject_id</li>
+<li>Relate rows in one table to another</li>
+<li>The foundation of relational databases</li>
+<li>Always put indexes on foreign keys</li>
+</br><li style="list-style-type: none"><b>Schema</b></li>
+<li>The structural definition of a database</li>
+<li>Importing a schema creates a complete database</li>
+</ul>
+</div>
 
-            <p class="title">Lazy Sunday<span class="date">2/2/2014</span></p>
-            <p class="post">So, today's the Big Game Day (god forbid I use superbowel. God forbid I use god. I digress.) Against my better judgement, depending on how you look at it, I've decided to do the honourable thing and spend a lazy Sunday studying rails and generally getting caught up. One of the things I'm slowly trying to master is the ability to manipulate all necessary applications and functions directly from the keyboard. While it certainly takes a fair bit of up front effort, you'll find that over time, if you stay disciplined, you fingers will catch up with your brain and it will become second nature. Atleast, that's what I keep telling myself. So this post I wanted to review the handful of shortcuts that I'm trying to introduce into my workflow, and thus are the ones I need to remind myself of. I'm starting out ambitiously, as I hope to cover several applications (unix, sublime text, chrome, git, mac os). So this will mostly act as a resource for me, but I hope it may provide some shortcuts that you find helpful.</p>
-            <p class="post">First off, I hadn't heard of the command line until about 6 weeks ago. I am a child of the GUI, and having been presented with the option to point click, it's no doubt the easiest way to proceed navigating through your computers directories. However, it's a much more productive ue of time to learn these commands for use in the Command Line Interface (CLI). To launch 'Terminal' in Mac OS, hold 'command + spacebar' to bring up Spotlight. Type in 'Terminal' and hit 'enter'. This is a CLI. You can use it to rename, move, delete files, navigate directories and list their contents etc... There are a handful of core commands that represent about 90% of the tasks I typically need to complete. Mac OS uses unix, and so I will only be covering these commands.</p>
+<p class="title">Ruby on Rails Intro<span class="date">2/3/2014</span></p>
+<p class="post">Today's focus is getting caught up on the rails web framework for ruby. I definitely feel a little behind, as we're supposed to have completed 3 assignments to date: a blog, photogur (imgur clone), and rainforest (amazon clone). Hopefully, by the end of the day today, I'll get to share with you my progress on all three assignments. It's 1:42 pm right now, and I'm just getting started on the lynda.com rails video series. I'll be taking notes below for *our* mutual benefit. Let's ball.</p>
 
-            <div class="application">Unix</div>
-            <div class="shortcuts">
-                <ul class="list">
-                    <li><b>cd:</b> change directory</li>
-                    <li><b>cd ..:</b> back one directory</li>
-                    <li><b>cd ../..:</b> back two directories</li>
-                    <li><b>cd ~:</b> home directory</li>
-                    <li><b>cp -r currentFolder newFolder:</b> make a copy of folder in same directory</li>
-                    <li><b>rm:</b> remove a file</li>
-                    <li><b>mkdir:</b> make a directory</li>
-                    <li><b>rmdir:</b> remove a directory</li>
-                    <li><b>mv:</b> move a file/directory</li>
-                    <li><b>pwd:</b> present working directory</li>
-                    <li><b>ls:</b> list contents in directory</li>
-                    <li><b>ls -l:</b> list content details in directory</li>
-                    <li><b>ls -a:</b> list all contents in directory</li>
-                    <li><b>touch:</b> create a new file</li>
-                    <li><b>cat:</b> display contents of a file</li>
-                    <li><b>cmd + K:</b> clear shell</li>
-                    <li><b>nano ~/.bash_profile:</b> launch bash_profile to <a href="http://www.maclife.com/article/columns/terminal_101_creating_aliases_commands" target="_blank"><u>create an alias</u></a></li>
-                </ul>
-            </div>
+<div class="application">Rails Framework</div>
+<div class="shortcuts">
+  <ul class="list">
+    <li><b>Definition: </b>A set of code libraries and data-structures that provide generic functionality which can be used, overriden or further specialized.</li>
+    <li>A <b>Gem</b> is simply ruby code that's been packaged up for easy distribution using the package manager. Rails is itself a gem.</li>
+    <li><b>gem update --system: </b>get latest version of ruby gems</li>
+    <li><b>gem --help: </b>help doc for ruby gems</li>
+    <li><b><a href="http:bundler.io" target="_blank">bundler.io:</a></b> Documentation for bundler</li>
+    <li><b>Bundler</b> is concerned with two files: Gemfile, and Gemfile.lock</li>
+    <li><b>bundle install:</b> sort out all ruby gem dependencies (turn Gemfile into Gemfile.lock)</li>
+    <li>Sometimes, you'll need to put 'bundle exec' in front of your rake db command</li>
+    <li><b>rake db:migrate:</b></li>
+    <li><b>bundle exec rake db:migrate:</b></li>
+    <li><b>rails server (or rails s)</b></li>
+    <li><b>rails server (or rails s)</b></li>
+  </ul>
+</div>
 
-            <p class="post">Git + Github is awesome once you get the hand of it. A universally adored version control manager.</p>
+<div class="application">mysql</div>
+<div class="shortcuts">
+  <ul class="list">
+    <li><b>mysql --version: </b>Return current version of mysql</li>
+    <li><b>mysql.server start: </b> Start up server.</li>
+    <li><b>mysql.server status: </b> Return server status.</li>
+    <li><b>mysql.server stop: </b> Stop server.</li>
+    <li><b>mysql.server restart: </b> Restart server.</li>
+    <li><b>mysql -u root:</b> Launch mysql.</li>
+    <li><b>mysql -u root -p:</b> Launch mysql w/ password.</li>
+    <li><b>exit:</b> Exit mysql.</li>
+  </ul>
+</div>
 
-            <div class="application">Git</div>
-            <div class="shortcuts">
-                <ul class="list">
-                    <li><b>git status:</b> current status of working directory</li>
-                    <li><b>git log:</b> history of commits</li>
-                    <li><b>git add --a:</b> add files to be pushed to repository</li>
-                    <li><b>git commit -m "message":</b> commit files to repository</li>
-                    <li><b>git push -u origin master:</b> push files to repository</li>
-                    <li><b>git fetch --all | git reset --hard origin/master</b> hard pull from master</li>
-                    <li><b>git push origin --delete branchName</b> delete branch locally/remotely</li>
-                </ul>
-            </div>
+<div class="application">MVC Web Architecture</div>
+<div class="shortcuts">
+  <ul class="list">
+    <li><b>Model:</b> Data objects we use</li>
+    <li><b>View:</b> Presentation layer (html/css/javascript)</li>
+    <li><b>Controller:</b> Processes user events (clicking links, submitting forms)</li>
+    <li>Browser -> Controller -> Model -> Database</li>
+    <li>Controller -> View -> Browser</li>
+    <li><b>rubygems.org: </b>source of all ruby gems</li>
+  </ul>
+</div>
 
-            <p class="post">Chrome is certainly, from a developer's perspective, one of the nicer browsers to work in. There is a simple set of 'Dev Tools' that can be launched with the following command; 'cmd + optoin + J'. You can do most anything here, like inspect the source code, or edit the style, position, and content of a particular element. For reasons I may one day be able to explain, webpages take on different 'feels' in different browsers. Already, in my work, I'm noticing that fonts I imported for my homepage only work in Chrome and Safari, but not in Firefox. This adds a layer of complexity to developing webpages that respond as desired accross different browsers. So I take the following approach. I'll typically style my page so it works in Chrome, test it in Firefox and Safari, and if there are differences, I'll curse aloud. </p>
+<div class="application">rbenv</div>
+<div class="shortcuts">
+  <ul class="list">
+    <li><b>rbenv rehash:</b> run this command anytime you install a gem/update ruby</li>
+    <li><b>rbenv global, local, shell:</b> run this version of ruby in the global, local, shell environment.</li>
+    <li><b>rbenv local:</b> run this command anytime you install a gem/update ruby</li>
+  </ul>
+</div>
 
-            <div class="application">Chrome</div>
-            <div class="shortcuts">
-                <ul class="list">
-                    <li><b>cmd + R:</b> refresh page</li>
-                    <li><b>cmd + T:</b> new tab</li>
-                    <li><b>cmd + L:</b> highlight address bar</li>
-                    <li><b>cmd + shift + J:</b> open downloads page</li>
-                    <li><b>cmd + option + J:</b> launch 'dev tools'</li>
-                    <li><b>cmd + option + U:</b> view source code</li>
-                    <li><b>ctrl + tab:</b> cycle through open tabs</li>
-                    <li><b>option + tab:</b> cycle through "header"s tags</li>
-                    <li><b>cmd + ~:</b> cycle through open windows</li>
-                </ul>
-            </div>
+<p class="title">Lazy Sunday<span class="date">2/2/2014</span></p>
+<p class="post">So, today's the Big Game Day (god forbid I use superbowel. God forbid I use god. I digress.) Against my better judgement, depending on how you look at it, I've decided to do the honourable thing and spend a lazy Sunday studying rails and generally getting caught up. One of the things I'm slowly trying to master is the ability to manipulate all necessary applications and functions directly from the keyboard. While it certainly takes a fair bit of up front effort, you'll find that over time, if you stay disciplined, you fingers will catch up with your brain and it will become second nature. Atleast, that's what I keep telling myself. So this post I wanted to review the handful of shortcuts that I'm trying to introduce into my workflow, and thus are the ones I need to remind myself of. I'm starting out ambitiously, as I hope to cover several applications (unix, sublime text, chrome, git, mac os). So this will mostly act as a resource for me, but I hope it may provide some shortcuts that you find helpful.</p>
+<p class="post">First off, I hadn't heard of the command line until about 6 weeks ago. I am a child of the GUI, and having been presented with the option to point click, it's no doubt the easiest way to proceed navigating through your computers directories. However, it's a much more productive ue of time to learn these commands for use in the Command Line Interface (CLI). To launch 'Terminal' in Mac OS, hold 'command + spacebar' to bring up Spotlight. Type in 'Terminal' and hit 'enter'. This is a CLI. You can use it to rename, move, delete files, navigate directories and list their contents etc... There are a handful of core commands that represent about 90% of the tasks I typically need to complete. Mac OS uses unix, and so I will only be covering these commands.</p>
 
-            <p class="post">Similar to the way the CLI can make light work of navigating through your directories, keyboard shortcuts can take a tremendous amount of pain out of navigating accross and within applications. I've taken just a small sampling of a handful of shortcuts that I've found to be major timesavers. Yes, there are only 2. You will be thrilled to know them.</p>
+<div class="application">Unix</div>
+<div class="shortcuts">
+  <ul class="list">
+    <li><b>cd:</b> change directory</li>
+    <li><b>cd ..:</b> back one directory</li>
+    <li><b>cd ../..:</b> back two directories</li>
+    <li><b>cd ~:</b> home directory</li>
+    <li><b>cp -r currentFolder newFolder:</b> make a copy of folder in same directory</li>
+    <li><b>rm:</b> remove a file</li>
+    <li><b>mkdir:</b> make a directory</li>
+    <li><b>rmdir:</b> remove a directory</li>
+    <li><b>mv:</b> move a file/directory</li>
+    <li><b>pwd:</b> present working directory</li>
+    <li><b>ls:</b> list contents in directory</li>
+    <li><b>ls -l:</b> list content details in directory</li>
+    <li><b>ls -a:</b> list all contents in directory</li>
+    <li><b>touch:</b> create a new file</li>
+    <li><b>cat:</b> display contents of a file</li>
+    <li><b>cmd + K:</b> clear shell</li>
+    <li><b>nano ~/.bash_profile:</b> launch bash_profile to <a href="http://www.maclife.com/article/columns/terminal_101_creating_aliases_commands" target="_blank"><u>create an alias</u></a></li>
+  </ul>
+</div>
+
+<p class="post">Git + Github is awesome once you get the hand of it. A universally adored version control manager.</p>
+
+<div class="application">Git</div>
+<div class="shortcuts">
+  <ul class="list">
+    <li><b>git status:</b> current status of working directory</li>
+    <li><b>git log:</b> history of commits</li>
+    <li><b>git add --a:</b> add files to be pushed to repository</li>
+    <li><b>git commit -m "message":</b> commit files to repository</li>
+    <li><b>git push -u origin master:</b> push files to repository</li>
+    <li><b>git fetch --all | git reset --hard origin/master</b> hard pull from master</li>
+    <li><b>git push origin --delete branchName</b> delete branch locally/remotely</li>
+  </ul>
+</div>
+
+<p class="post">Chrome is certainly, from a developer's perspective, one of the nicer browsers to work in. There is a simple set of 'Dev Tools' that can be launched with the following command; 'cmd + optoin + J'. You can do most anything here, like inspect the source code, or edit the style, position, and content of a particular element. For reasons I may one day be able to explain, webpages take on different 'feels' in different browsers. Already, in my work, I'm noticing that fonts I imported for my homepage only work in Chrome and Safari, but not in Firefox. This adds a layer of complexity to developing webpages that respond as desired accross different browsers. So I take the following approach. I'll typically style my page so it works in Chrome, test it in Firefox and Safari, and if there are differences, I'll curse aloud. </p>
+
+<div class="application">Chrome</div>
+<div class="shortcuts">
+  <ul class="list">
+    <li><b>cmd + R:</b> refresh page</li>
+    <li><b>cmd + T:</b> new tab</li>
+    <li><b>cmd + L:</b> highlight address bar</li>
+    <li><b>cmd + shift + J:</b> open downloads page</li>
+    <li><b>cmd + option + J:</b> launch 'dev tools'</li>
+    <li><b>cmd + option + U:</b> view source code</li>
+    <li><b>ctrl + tab:</b> cycle through open tabs</li>
+    <li><b>option + tab:</b> cycle through "header"s tags</li>
+    <li><b>cmd + ~:</b> cycle through open windows</li>
+  </ul>
+</div>
+
+<p class="post">Similar to the way the CLI can make light work of navigating through your directories, keyboard shortcuts can take a tremendous amount of pain out of navigating accross and within applications. I've taken just a small sampling of a handful of shortcuts that I've found to be major timesavers. Yes, there are only 2. You will be thrilled to know them.</p>
 
 
-            <div class="application">Mac OS</div>
-            <div class="shortcuts">
-                <ul class="list">
-                    <li><b>cmd + spacebar:</b> spotlight allows you to search for, and openany file or program</li>
-                    <li><b>cmd + tab:</b> cycle through open programs</li>
-                </ul>
-            </div>
+<div class="application">Mac OS</div>
+<div class="shortcuts">
+  <ul class="list">
+    <li><b>cmd + spacebar:</b> spotlight allows you to search for, and openany file or program</li>
+    <li><b>cmd + tab:</b> cycle through open programs</li>
+  </ul>
+</div>
 
-            <p class="post">I'm currently using something called Sublime Text 2, a very common text editor used amongst developers. Dare I include myself in this group? Hells, why not. I mean, I am using Sublime Text 2. Naturally, there are a handful of things one does in sublime that certainly make working with it a lot easier. In short, it's nothing more than a word like editor (without fonts) that makes writing a ruby, javascript or python file enjoyable. There's lots of nifty autocomplete features, ways to navigate through windows and search for files that are seriously handy.</p>
+<p class="post">I'm currently using something called Sublime Text 2, a very common text editor used amongst developers. Dare I include myself in this group? Hells, why not. I mean, I am using Sublime Text 2. Naturally, there are a handful of things one does in sublime that certainly make working with it a lot easier. In short, it's nothing more than a word like editor (without fonts) that makes writing a ruby, javascript or python file enjoyable. There's lots of nifty autocomplete features, ways to navigate through windows and search for files that are seriously handy.</p>
 
-            <div class="application">Sublime Text 2</div>
-            <div class="shortcuts">
-                <ul class="list">
-                    <li><b>subl .:</b> launch sublime from terminal</li>
-                    <li><b>cmd + shift + P:</b> cycle through open windows</li>
-                    <li><b>cmd + ~:</b> cycle through open windows</li>
-                    <li><b>cmd + option + #:</b> view in # tabs</li>
-                    <li><b>cmd + shift + option + #:</b> view in # tabs horizontally</li>
+<div class="application">Sublime Text 2</div>
+<div class="shortcuts">
+  <ul class="list">
+    <li><b>subl .:</b> launch sublime from terminal</li>
+    <li><b>cmd + shift + P:</b> cycle through open windows</li>
+    <li><b>cmd + ~:</b> cycle through open windows</li>
+    <li><b>cmd + option + #:</b> view in # tabs</li>
+    <li><b>cmd + shift + option + #:</b> view in # tabs horizontally</li>
 
-                </ul>
-            </div>
+  </ul>
+</div>
 
-            <p class="title">C'est la Vie<span class="date">1/30/2014</span></p>
-            <p class="post">Part of the trouble with a bootcamp of this nature is that there is little time for ideas to distill with the end user. Sometimes, it takes a long walk on cold night (and hell, it has been cold here), followed by a hot shower that sparks a revelation, in beautiful detail, the solution to a problem you've been staring at for the last 10 hours. I have found, and I hope other out there can holler back at me, that getting started in this whole "cool man, I'm a build a awesome web app" is no easy breeze. I want to see all the stock footage of Bill Gates sucking it up on seemingly simple problems. And then, through stop motion film, show how many damn hours he put into solving his problems. Did you hear that Will.I.Am is at MIT studying computer science because he's convinced you'll be a ninja with the skill set? Well, there's not a lot that me and Will.I.Am agree on. But, I certainly feel naked in this age to not know how to program even the simplest of apps. And so, the ideas keep piling up. Now, in the spirit of sharing not just sucesses, but 'failures' (lessons learned), I'll share something that presented a major challenge. </p>
-            <p class ="post">I toiled for 6 hours (because, why not) on my ever so simple website trying to center content. Yes. That's right. Centering content. You know when you're building a simple website, and you ask your developer, "Hey, can you, you know, center the content?" - you'd expect - "Heh heh... uh yeah. Duh. *arrogant clackity typing noises* DONE!" Well, if I was your developer that would have taken me 6 hours. I'd like to say I learned a lot about html. And I did. And I'd like to tell you that I will proceed to review what I learned with you. Well, I'm not. I learned that you can't center content in a div tag. You know what else I learned? I don't know how to type /div/ tag with the typical <> brackets without breaking something. I need to learn that tomorrow.</p>
+<p class="title">C'est la Vie<span class="date">1/30/2014</span></p>
+<p class="post">Part of the trouble with a bootcamp of this nature is that there is little time for ideas to distill with the end user. Sometimes, it takes a long walk on cold night (and hell, it has been cold here), followed by a hot shower that sparks a revelation, in beautiful detail, the solution to a problem you've been staring at for the last 10 hours. I have found, and I hope other out there can holler back at me, that getting started in this whole "cool man, I'm a build a awesome web app" is no easy breeze. I want to see all the stock footage of Bill Gates sucking it up on seemingly simple problems. And then, through stop motion film, show how many damn hours he put into solving his problems. Did you hear that Will.I.Am is at MIT studying computer science because he's convinced you'll be a ninja with the skill set? Well, there's not a lot that me and Will.I.Am agree on. But, I certainly feel naked in this age to not know how to program even the simplest of apps. And so, the ideas keep piling up. Now, in the spirit of sharing not just sucesses, but 'failures' (lessons learned), I'll share something that presented a major challenge. </p>
+<p class ="post">I toiled for 6 hours (because, why not) on my ever so simple website trying to center content. Yes. That's right. Centering content. You know when you're building a simple website, and you ask your developer, "Hey, can you, you know, center the content?" - you'd expect - "Heh heh... uh yeah. Duh. *arrogant clackity typing noises* DONE!" Well, if I was your developer that would have taken me 6 hours. I'd like to say I learned a lot about html. And I did. And I'd like to tell you that I will proceed to review what I learned with you. Well, I'm not. I learned that you can't center content in a div tag. You know what else I learned? I don't know how to type /div/ tag with the typical <> brackets without breaking something. I need to learn that tomorrow.</p>
 
-            <p class="title">H to the Izzo<span class="date">1/25/2014</span></p>
-            <p class="post">You couldn't ask for a better weekend. My Christmas gift this year was to fly to Montreal to meet my girlfriend for the Jay-Z concert at the Bell Centre. I've had my head buried in the sand with this whole learning to code thing, so I can't say that I flew into Montreal with great anticipation. I've found that this approach often yields surprising experiences, because you hold no expectations. All I know is that Jay-Z is a monster, and he'll put on a rediculous show.</p>
-            <p class="post">Well, you damn right he did. The concert was phenomenal. You may wonder who opens for Jay-Z. Nobody. That's how badass he is. Getting to open for Jay-Z is not an honour. It's a sentence. No one is there to see you. And there is nothing that you could do that will make this crowd believe that it's remotely as entertaining as what Jay-Z has in store. So thank you, Jay-Z, for not punishing anyone with the dubious duty of opening for you.</p>
-            <p class="post">So here's the part that got me. I discovered a video of a child <b><a href="http://www.youtube.com/watch?v=BA5D-WEcNGA" target="_blank">prodigy</a></b> back in high school playing a drum solo. Turns out, 10 years later, Tony Royster Jr. (said prodigy) is backing up Jay-Z</b>. He also plays/owns/defeats the <b><a href="http://www.youtube.com/watch?v=kKLTmBJzVJw" target="_blank">electric drums</a></b>. It would be worth seeing Tony Royster Jr. alone for an hour. It certainly looks like he could put on a show. But this is Jay-Z, and it doesn't just stop at having one of the world's greatest drummers backing you up. You also have one of rap's most prolific producers, Timberland. His songs are inescapeable. SexyBack. Holy Grail. Mirrors. Work it. You know him. And he's awesome. He played the keys and was an all around homey g. Little did I know Jay and him had a <b><a href="http://www.youtube.com/watch?v=AjLGl5VxSRg" target="_blank">beef</a>. </b>Glad they patched that shizz up.</p>
-            <p class="post">When Jay-Z arrived, the crowd went nuts. It was an honour to get to stand in the same room as that guy for an hour, let alone see him rip it up as if this is his first time playing to a crowd this size. There's something magical about the way this guy performs and commands a room. I would most definitely brush the dirt off that man's shoulders.</p>
+<p class="title">H to the Izzo<span class="date">1/25/2014</span></p>
+<p class="post">You couldn't ask for a better weekend. My Christmas gift this year was to fly to Montreal to meet my girlfriend for the Jay-Z concert at the Bell Centre. I've had my head buried in the sand with this whole learning to code thing, so I can't say that I flew into Montreal with great anticipation. I've found that this approach often yields surprising experiences, because you hold no expectations. All I know is that Jay-Z is a monster, and he'll put on a rediculous show.</p>
+<p class="post">Well, you damn right he did. The concert was phenomenal. You may wonder who opens for Jay-Z. Nobody. That's how badass he is. Getting to open for Jay-Z is not an honour. It's a sentence. No one is there to see you. And there is nothing that you could do that will make this crowd believe that it's remotely as entertaining as what Jay-Z has in store. So thank you, Jay-Z, for not punishing anyone with the dubious duty of opening for you.</p>
+<p class="post">So here's the part that got me. I discovered a video of a child <b><a href="http://www.youtube.com/watch?v=BA5D-WEcNGA" target="_blank">prodigy</a></b> back in high school playing a drum solo. Turns out, 10 years later, Tony Royster Jr. (said prodigy) is backing up Jay-Z</b>. He also plays/owns/defeats the <b><a href="http://www.youtube.com/watch?v=kKLTmBJzVJw" target="_blank">electric drums</a></b>. It would be worth seeing Tony Royster Jr. alone for an hour. It certainly looks like he could put on a show. But this is Jay-Z, and it doesn't just stop at having one of the world's greatest drummers backing you up. You also have one of rap's most prolific producers, Timberland. His songs are inescapeable. SexyBack. Holy Grail. Mirrors. Work it. You know him. And he's awesome. He played the keys and was an all around homey g. Little did I know Jay and him had a <b><a href="http://www.youtube.com/watch?v=AjLGl5VxSRg" target="_blank">beef</a>. </b>Glad they patched that shizz up.</p>
+<p class="post">When Jay-Z arrived, the crowd went nuts. It was an honour to get to stand in the same room as that guy for an hour, let alone see him rip it up as if this is his first time playing to a crowd this size. There's something magical about the way this guy performs and commands a room. I would most definitely brush the dirt off that man's shoulders.</p>
 
             <!-- <p class="title">First Day<span class="date">1/13/2014</span></p>
             <p class="post">Officially day 1 in Bitmaker Labs. Very impressive space, very confident team. If you've been fortunate enough to work in the beaurocracy of a large corporation, then perhaps the first thing will strike you is how much got accomplished by this relatively small group of people. Amazingly, only 5 cohorts in (1 yearish), they will be moving to a new space twice its current size at the end of February.</p>
-            <p class="post">There's some evidence that suggests that when recessions hit, some of those individuals that find themselves left in the wilderness learn how to hunt. Really well. Put another way, there's the old joke "How do you get a beaurocrat to reach his full potential? Fire him." With that said, it certainly feels as though most people who have made it this far (quit their job to learn development) are testing whether or not they'll be able to forage for edibles. That's the first observation. The second is that people are not learning to code for the first time. Many of tried and "failed" before, and I certainly count myself in both groups.</p>
-            <p class="post">I often relay this example, but I was forced to take an "Intro to Computer Science", or intro to Java as a requisite to graduate, and I was terrible at it. So difficult in fact, that I proactively avoided having to learn it. The syntax was overwhelming. The classifications were confusing (objects, methods, classes). And the potential to create something that could provide some utility outside of adding to numbers, or saying "Hello" seemed out of hand. So, what prompted the change of heart?</p>
-            <p class="post">Software is eating the world. That's not my line of course, but, I certainly do believe it. Retail, Transportation, Finance, Medicine and Law will be fundamentally transformed by employees moonlighting as programmers. Atleast, I *think* so. Boom.</p> -->
+            <p class="post">There's some evidence that suggests that when recessions hit, some of those individuals that find themselves left in the wilderness learn how to hunt. Really well. Put another way, there's the old joke "How do you get an individual to reach his full potential? Fire her." With that said, it certainly feels as though most people who have made it this far (quit their job to learn development) are testing whether or not they'll be able to forage for edibles. That's the first observation. The second is that people are not learning to code for the first time. Many of tried and "failed" before, and I certainly count myself in both groups.</p>
+            <p class="post">I often relay this example, but I was forced to take an "Intro to Computer Science", or intro to Java as a requisite to graduate, and I was terrible at it. So difficult in fact, that I proactively avoided having to learn it. The syntax was overwhelming. The classifications were confusing and the potential to create something that could provide some utility outside of adding to numbers, or saying "Hello" seemed out of hand. So, what prompted the change of heart?</p>
+            <p class="post">YOu can do amazing things with software. One of my favourite authors, Nassim Taleb, </p> -->
 
             <p class="title">Look mah, progress!<span class="date">1/12/2014</span></p>
-            <p class="post">Alright, here we are. Day 2. Not super intereseted in writing, but I'm trying to stay disciplined. And similar to running, the hardest part is just getting started. So, I've started..... I just discovered a very convenient hack to exploit American Netflix (USA, USA, USA), and as a result, my life has turned upside down. Check out "Somm" if you have the American version, and "The Short Game". They're great.</p>
             <p class="post">I was able to find a parking spot for the next 3 days at my sissies. So, I've bought myself some time without having to pay a shizzload extra on parking during my short stay here. I remember how awesome the London underground was (admittedly, I didn't use it that often), and how hopeful I am for a duplicate experience on the TTC. So it's unfortunate the number of directions I'm finding with, "get of at adelaide, and then walk a shizz ton to your destination." Toronto. Do us proud. Build a bitchin' underground. I'll be your biggest fan.</p>
             <p class="post">I got a nosebleed this morning. Well, I blew my nose and blood came out. Naturally, I thought it was cancer. So I'll fret about having nose cancer until something else starts to ail me. I ate bad fish and thought I had bowel cancer. Anyway, I don't think I have cancer. But you'll need to ask me tomorrow. Stupid cancer.</p>
             <p class="post">I want to metion at this point how free it feels to write. I'm recalling these experiences in grade 5 where our teacher forced us to journal for 15 minutes at the end of the day. I think it's a worthy exercise. Writing often demands not a creative impulse, but a deadline. I'm most interested in witnessing whether some of my most closely held views will be challenged over this period. I'm sure I have some preconceived notions of what software can accomplish, and what it takes to prepare that software. I keep thinking, "I could do that". That, I guess, will be the real question.</p>
@@ -567,33 +1016,34 @@
             <p class="post">Toronto is a beautiful city. I'm at an incredible location in the heart of downtown. I'd describe where that is to you, were I to know where I am. You see, I get lost easily. It must be a condition. I can't just wonder around a new city because I get lost and panic (London, Chicago, Montreal). Often, my walking will consist of walking up and down a long street. I suppose, fitting then, that Yonge St. is in Toronto. But in order to walk it, I need to find it. And my fear, in this cold, is that on my way to Yonge St., my phone will die, and I won't be able to find my way back. And you'll find me, 6 months later, homeless. Not because of addiction, or bad luck, but merely because I got lost. My phone died, I got lost, I got desperate, and now I've been milling about Toronto, unable to find shelter. This is why I walk up and down long streets instead of taking risky turns. In short, if you're wondering where I am, I don't know. But I can triangulate. I am somwhere between a starbucks, the royal albert hall, and the ritz carleton. Please don't steal my things. I leave the door unlocked because I don't have a key.</p>
             <p class="post">There's a comedian, Ron White, playing at Royal Albert Hall on January 16th at 8 pm. It's basically a 2 minute walk from the lobby of this apartment. I have to keep reminding myself how short life is, and how nice it is sometimes, feeling like I'm in a somewhat foreign place, away from home, that these moments are times to enjoy those pleasures. I have no idea if anyone wants to see Ron White. But I know, atleast I think, barring checking ticket prices, that I sure as hell do. Perhaps hell is too strong. I sure as hell do, contingent on the price. Hey, look at that, they have tickets. Maybe I'll get one. I have a couple days to think about it. Right? Thursday? Money. Doing it.</p>
             <p class="post">So, I have a hunkering for winding down the very first blog post of my awesome ass blog. Perhaps there will be edits as professional types may be taking a gander at my etiquette. All I'm hoping is that I spelled etiquette right. Spelled? Spelt? Hollar at me.</br></br></br></br></br></p>
+          </div>
         </div>
-    </div>
+      </div>
 
 
-<script type="text/javascript">
+      <script type="text/javascript">
 
-$(document).scroll(function(){
-    if($(window).scrollTop() > 126)
-    {
-        $('.top-nav').addClass('top-nav-scroll');
-        $('#space').show();
-        $('img').hide();
-        $('#name').hide();
-        $('.profile-details').addClass('profile-details-scroll');
-        $('.nav').addClass('nav-scroll');
-    }
-    else{
-        $('.top-nav').removeClass('top-nav-scroll');
-        $('#space').hide();
-        $('#name').show();
-        $('img').show();
-        $('.profile-details').removeClass('profile-details-scroll');
-        $('.nav').removeClass('nav-scroll');
-    }
-});
-</script>
+      $(document).scroll(function(){
+        if($(window).scrollTop() > 126)
+        {
+          $('.top-nav').addClass('top-nav-scroll');
+          $('#space').show();
+          $('img').hide();
+          $('#name').hide();
+          $('.profile-details').addClass('profile-details-scroll');
+          $('.nav').addClass('nav-scroll');
+        }
+        else{
+          $('.top-nav').removeClass('top-nav-scroll');
+          $('#space').hide();
+          $('#name').show();
+          $('img').show();
+          $('.profile-details').removeClass('profile-details-scroll');
+          $('.nav').removeClass('nav-scroll');
+        }
+      });
+      </script>
 
-<div href="#" id="toTop"></div>
-</body>
-</html>
+      <div href="#" id="toTop"></div>
+    </body>
+    </html>
