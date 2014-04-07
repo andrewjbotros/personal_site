@@ -1,20 +1,19 @@
 <html>
 
 <style>
-.title{
-	text-align: center;
-	border-bottom: 2px solid black;
-	width: 80%;
-	margin: 0 auto;
-}
+	.title{
+		text-align: center;
+		border-bottom: 2px solid black;
+		width: 80%;
+		margin: 0 auto;
+	}
 
-.container{
-	border: 1px solid black;
-	height: 650px;
-	width: 80%;
-	margin: 0 auto;
-	margin-top: 20px;
-}
+	.container{
+		border: 1px solid black;
+		width: 80%;
+		margin: 0 auto;
+		margin-top: 20px;
+	}
 
 </style>
 <title>Get in the Game</title>
@@ -28,115 +27,142 @@
 
 <body>
 
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script src='js/underscore-min.js'></script>
+
 <div class="container">
 	<script>
 
-		var exams = {
-			"P": {"name": "Probability", "sittings": 6, "time": 3, "dates": ["January", "March", "May", "July", "September", "November"], "passrates": [.486, .423, .419, .426]},
-			"FM": {"name": "Financial Mathematics", "sittings": 6, "time": 3, "dates": ["February", "April", "June", "August", "October", "December"], "passrates": [.427, .416, .464, .458]},
-			"MFE": {"name": "Financial Economics", "sittings": 3, "time": 3, "dates": ["March", "July", "November"], "passrates": [.422, .495, .526]},
-			"MLC": {"name": "Life Contingencies", "sittings": 2, "time": 4, "dates": ["October", "April"], "passrates": [.406, .416]},
+// #####################################################################################################
+//		Script to get Object Name
+// #####################################################################################################
+		Object.prototype.getName = function() {
+		  var funcNameRegex = /function (.{1,})\(/;
+		  var results = (funcNameRegex).exec((this).constructor.toString());
+		  return (results && results.length > 1) ? results[1] : "";
 		};
 
-		// function exam(stuff) {
-	 //    this.stuff = name;
-	 //    this.sittings = actuarialExams.name.passrates;;
-		// };
+// #####################################################################################################
+//		SOA Preliminary Exam Data (www.soa.org)
+// #####################################################################################################
 
-		function draw(item, tag, break = false){
-			opentag = "<" + tag + ">"
-			closetag = "</" + tag + ">"
-			document.write(opentag + item + closetag)
+		var exams = {
+			"P"		: {	"name"			: "Probability",
+								"sittings"	: 6,
+								"hours"			: 3,
+								"dates"			: ["January", "March", "May", "July", "September", "November"],
+								"passrates"	: [.486, .423, .419, .426]},
+			"FM"	: {	"name"			: "Financial Mathematics",
+								"sittings"	: 6,
+								"hours"			: 3,
+								"dates"			: ["February", "April", "June", "August", "October", "December"],
+								"passrates"	: [.427, .416, .464, .458]},
+			"MFE"	: {	"name"			: "Financial Economics",
+								"sittings"	: 3, "hours": 3,
+								"dates"			: ["March", "July", "November"],
+								"passrates"	: [.422, .495, .526]},
+			"MLC"	: {	"name"			: "Life Contingencies",
+							  "sittings"	: 2,
+								"hours"			: 4,
+								"dates"			: ["April", "October"],
+								"passrates"	: [.406, .416]},
+			"C"		: {	"name"			: "Actuarial Models",
+								"sittings"	: 3,
+								"hours"			: 3.5,
+								"dates"			: ["February", "June", "October"],
+								"passrates"	: [.442, .398]},
+		};
+
+// #####################################################################################################
+//		Declare Variables
+// #####################################################################################################
+
+		examP = exams.P;
+		examFM = exams.FM;
+		examMFE = exams.MFE;
+		examMLC = exams.MLC;
+		examC = exams.C;
+
+// #####################################################################################################
+//		CREATE METHODS AND CLASSES
+// #####################################################################################################
+
+
+		function display_details(exam1, exam2, exam3, exam4, exam5){
+			exam_details(exam1);
+			exam_details(exam2);
+			exam_details(exam3);
+			exam_details(exam4);
+			exam_details(exam5);
 		}
 
-		draw(exams.P.name, "u");
-		draw(draw("Pass Rates: ", "em") + exams.P.passrates, "div");
+		function average(scores){
+			sum = 0;
+			for(var x = 0; x < scores.passrates.length; x ++){
+			  sum = sum + scores.passrates[x];  //or Sum += scores[x];
+			};
+			average = sum / scores.passrates.length;  //length of the array scores is in scores.length
+			return average;
+		}
 
-		// document.write(exams.P.name + ": " + exams.P.passrates + "<br>");
-		// // document.write(exams.P.passrate);
-		// document.write("<u>" + exams.P.sittings );   // "newURI"
-		// document.write(exams.MFE.name + ": ");
-		// document.write(exams.MLC.sittings + "<br>")
+		// obj.key3 = "value3";
 
-		// var examP = new exam("P");
-		// document.write(examP);
-
-// anti-pattern! keep reading...
-		// function getAppleInfo() {
-		//     return this.color + ' ' + this.type + ' apple';
+		// function exam(actuarial_exam){
+		// 	this.name = actuarial_exam["name"];
+		// 	this.sittings = actuarial_exam["sittings"];
+		// 	this.hours = actuarial_exam["hours"];
+		// 	this.dates = actuarial_exam["dates"];
+		// 	this.passrates = actuarial_exam["passrates"];
+		// 	this.passrate = average(actuarial_exam["passrates"]);
 		// }
 
-		// var examP = [.486, .423, .419, .426]
-		// var examFM = [.427, .416, .464, .458]
-		// var examMFE = [.422, .495, .526]
-		// var examMLC = [.406, .416]
-		// var examC = [.392, .426, .455]
-		// var FAP1 = [.75]
-		// var FAP2 = [.7]
-
-		function avg(array){
-			sum = 0
-			for (i = 0; i < numbers.length; j += 1) {
-	    	sum += array[j];
+		function draw(item, tag, newLine){
+			newLine = newLine || false;
+			tag = tag || "span";
+			if (newLine == false){
+				newLine = "";
 			}
-			return Math.round(sum/numbers.length*1000)/1000;
+			else{
+				newLine = "<br>";
+			}
+			opentag = "<" + tag + ">"
+			closetag = "</" + tag + ">"
+			document.writeln(opentag + item + newLine + closetag);
 		}
 
-		// var exams = {"P" : ["sittings": ]}
-
-		function avg(array){
-			sum = 0
-			for (i = 0; i < numbers.length; j += 1) {
-	    	sum += array[j];
-			}
-			return Math.round(sum/numbers.length*1000)/1000;
+		function exam_details(exam){
+			draw(exam.name, "u", "break");
+			draw("Time: ") + draw(exam.hours,"span") + draw(" hrs", "span", "break");
+			draw("Sittings: ") + draw(exam.sittings,"span", "break");
+			draw("Dates: ") + draw(exam.dates,"span", "break");
+			draw("Pass Rates: ") + draw(exam.passrates,"span", "break");
+			draw("Avg. Pass Rates: ") + draw(exam.passrates, "span", "break");
+			draw("Sitting", "button", "break");
+			draw("", "div", "break");
 		}
 
-		function avg_array(array){
-			results = []
-			average = ""
-			for (i = 0; i < array.length; i += 1) {
-				average = array[i];
-				document.write(average + "<br>");
-			}
-			return results;
-		}
+// #####################################################################################################
+//		MAP NEW VARIABLES
+// #####################################################################################################
 
-		function product(array){
-			results = []
-    	prod = 1
-			for (i = 0; i < array.length; i += 1) {
-	    	prod *= array[i];
-	    	results.push(prod)
-			}
-			return results;
-		}
+		document.write(_.sample([1, 2, 3, 4, 5, 6]) + "<br>");
+		examC.passrate = 200;
+		document.write(examC.passrate + "<br>");
+		examC.passrate = 300;
+		document.write(examC.passrate + "<br>");
+		examC.passrate = average(examC);
+		document.write("Average pass rate: " + Math.round(examC.passrate*1000)/1000 + "<br>");
+		// examMFE.passrate = average(examMFE);
+		// document.write(examMFE.passrate + "<br>");
+		// examFM.passrate = average(examFM.passrates);
+		// document.write(examFM.passrate);
 
-		var ASA = [examP, examFM, examMFE, examMLC, examC, FAP1, FAP2]
-		ASA = exams.accounting[0].firstName
-		document.write(ASA)
-		// draw(ASA, "div")
-		// draw(product(ASA)[ASA.length - 1], "div")
+// #####################################################################################################
+//		TESTING AREA
+// #####################################################################################################
+		display_details(examP, examC, examMLC);
 
- // var emams = { "accounting" : [   // accounting is an array in employees.
- //                                    { "firstName" : "John",  // First element
- //                                      "lastName"  : "Doe",
- //                                      "age"       : 23 },
 
- //                                    { "firstName" : "Mary",  // Second Element
- //                                      "lastName"  : "Smith",
- //                                      "age"       : 32 }
- //                                  ], // End "accounting" array.
- //                  "sales"       : [ // Sales is another array in employees.
- //                                    { "firstName" : "Sally", // First Element
- //                                      "lastName"  : "Green",
- //                                      "age"       : 27 },
-
- //                                    { "firstName" : "Jim",   // Second Element
- //                                      "lastName"  : "Galley",
- //                                      "age"       : 41 }
- //                                  ] // End "sales" Array.
- //                } // End Employees
 	</script>
 </div>
 </body>
