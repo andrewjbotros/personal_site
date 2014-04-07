@@ -193,11 +193,24 @@
 			document.write("</div>");
 		};
 
-		function randomNumber(){
-			var num = _.random(0, 1000)/1000;
-			return num;
-			// _.times(100, function(){ _.random(0,1000)/1000; });
+		function stats(exams){
+			var completedExams = cleanArray(_.map(exams, function(exam){ if(exam.completed == true){return exam.name};}));
+			var outstandingExams = cleanArray(_.map(exams, function(exam){ if(exam.completed == false){return exam.name};}));
+			var passrates = cleanArray(_.map(exams, function(exam){ if(exam.completed == false){return exam.passrate};}));
+			var timeRemaining = total(cleanArray(_.map(exams, function(exam){ if(exam.completed == false){return exam.hours};})));
+
+			document.write("<div class='stats'>");
+			draw("Attempts: ", "b");
+			draw("You have " + outstandingExams.length + " exams left to go, totaling " + timeRemaining + " hrs.", "span", "break");
+			document.write("</div>");
 		};
+
+		// function simulation(){
+		// 	var random = _.random(0, 1000)/1000;
+		// 	if ()
+		// 	return num;
+		// 	// _.times(100, function(){ _.random(0,1000)/1000; });
+		// };
 
 // #####################################################################################################
 //		Declare Variables
@@ -208,9 +221,9 @@
 		var examMFE = exams.MFE;
 		var examMLC = exams.MLC;
 		var examC = exams.C;
-		var examfap1 = exams.fap1;
-		var examfap2 = exams.fap2;
-		var preliminary = [examP, examFM, examMFE, examMLC, examC, examfap1, examfap2];
+		var fap1 = exams.fap1;
+		var fap2 = exams.fap2;
+		var preliminary = [examP, examFM, examMFE, examMLC, examC, fap1, fap2];
 		// var modules = [fap1, fap2];
 		// var fsaExams = []
 
@@ -228,7 +241,8 @@
 		user["exams"] = preliminary;
 		draw("Results", "h2")
 		results(user.exams);
-		document.write("<h2 style='padding-top:30px'>Preliminary Exams</h2>");
+		stats(user.exams);
+		document.write("<h2>Preliminary Exams</h2>");
 		document.write("<ul id='sortable' style='padding: 0;'>");
 		_.each(user.exams, exam_details);
 		document.write("</ul>");

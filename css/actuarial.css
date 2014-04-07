@@ -28,7 +28,7 @@ h2,h3{
 	clear: both;
 }
 
-.exam, .results{
+.exam, .results, .stats{
 	width: 90%;
 	border: 1px
 	solid black;
@@ -44,6 +44,16 @@ h2,h3{
 	width: 70%;
 	float: left;
 	margin-left: 5%;
+	height: 180px;
+}
+
+.stats{
+	width: 17.7%;
+	display: inline-block;
+	height: 180px;
+	clear: none;
+	margin-left: 2%;
+	margin-top: 15px;
 }
 
 .exam:hover, .results:hover {
