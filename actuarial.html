@@ -10,9 +10,13 @@
 
 	.container{
 		border: 1px solid black;
-		width: 80%;
+		width: 70%;
 		margin: 0 auto;
 		margin-top: 20px;
+	}
+
+	.exam:hover {
+		box-shadow: 4px 4px 2px #888888!important;
 	}
 
 </style>
@@ -114,14 +118,15 @@
 		}
 
 		function exam_details(exam){
+			document.write("<div class='exam' style='border: 1px solid black; padding: 10px; margin: 10px'>");
 			draw(exam.name, "u", "break");
 			draw("Time: ") + draw(exam.hours,"span") + draw(" hrs", "span", "break");
 			draw("Sittings: ") + draw(exam.sittings,"span", "break");
 			draw("Dates: ") + draw(exam.dates,"span", "break");
 			draw("Pass Rates: ") + draw(exam.passrates,"span", "break");
-			draw("Avg. Pass Rates: ") + draw(average(exam.passrates), "span", "break");
+			draw("Avg. Pass Rate: ") + draw(average(exam.passrates), "span", "break");
 			draw("Sitting", "button", "break");
-			draw("", "div", "break");
+			document.write("</div>");
 		}
 
 		function display_details(exam1, exam2, exam3, exam4, exam5){
@@ -132,10 +137,15 @@
 			exam_details(exam5);
 		}
 
+		function results(exam1, exam2, exam3, exam4, exam5){
+			exam_details(exam1);
+		}
+
 // #####################################################################################################
 //		Test the code
 // #####################################################################################################
 
+		results(examP);
 		display_details(examP, examFM, examMFE, examMLC, examC);
 
 	</script>
