@@ -1,37 +1,22 @@
 <html>
 
-<style>
-	.title{
-		text-align: center;
-		border-bottom: 2px solid black;
-		width: 80%;
-		margin: 0 auto;
-	}
+<!-- #####################################################################################################
+###    Actuarial Exams: The Game (April 7, 2014)                        																		###
+###    																	                       																		###
+###    A game to give some perspective to actuarial students on the path to becoming FSA's				###
+###    																	                       																		###
+##################################################################################################### -->
 
-	.container{
-		border: 1px solid black;
-		width: 70%;
-		margin: 0 auto;
-		margin-top: 20px;
-	}
-
-	.exam:hover {
-		box-shadow: 4px 4px 2px #888888!important;
-	}
-
-</style>
 <title>Get in the Game</title>
 <head>
 
-<!-- #####################################################################################################
- 		   Load Underscore.js and JQuery.js
-     ##################################################################################################### -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
 	<script src='js/underscore-min.js'></script>
+	<link rel="stylesheet" href="css/actuarial.css" type="text/css"/>
 
 	<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
 	<div class = "nav">
-		<h1 class="title">Actuarial Exam Success: The Game</h1>
+		<h1 class="title">Actuarial Exams: The Game</h1>
 		<div class="result"></div>
 	</div>
 </head>
@@ -42,7 +27,7 @@
 	<script>
 
 // #####################################################################################################
-//		Script to get Object Name
+//		This script is from the web, used to get the name of the Javascript Object. Great for debugging.
 // #####################################################################################################
 		Object.prototype.getName = function() {
 		  var funcNameRegex = /function (.{1,})\(/;
@@ -50,40 +35,95 @@
 		  return (results && results.length > 1) ? results[1] : "";
 		};
 
+		// $(function() {
+	 //    $( "#sortable" ).sortable();
+	 //    $( "#sortable" ).disableSelection();
+	 //  });
+
+		function to_upper(string){
+		    return string.charAt(0).toUpperCase() + string.slice(1);
+		};
+
+		function cleanArray(actual){
+		  var newArray = new Array();
+		  for(var i = 0; i<actual.length; i++){
+		      if (actual[i]){
+		        newArray.push(actual[i]);
+		    }
+		  }
+		  return newArray;
+		}
+
 // #####################################################################################################
 //		SOA Preliminary Exam Data (www.soa.org)
 // #####################################################################################################
 
 		var exams = {
 			"P"		: {	"name"			: "Probability",
+								"completed" : false,
 								"sittings"	: 6,
 								"hours"			: 3,
 								"dates"			: ["January", "March", "May", "July", "September", "November"],
 								"passrates"	: [.486, .423, .419, .426]},
 			"FM"	: {	"name"			: "Financial Mathematics",
+								"completed" : false,
 								"sittings"	: 6,
 								"hours"			: 3,
 								"dates"			: ["February", "April", "June", "August", "October", "December"],
 								"passrates"	: [.427, .416, .464, .458]},
 			"MFE"	: {	"name"			: "Financial Economics",
+								"completed" : true,
 								"sittings"	: 3, "hours": 3,
 								"dates"			: ["March", "July", "November"],
 								"passrates"	: [.422, .495, .526]},
 			"MLC"	: {	"name"			: "Life Contingencies",
+								"completed" : false,
 							  "sittings"	: 2,
 								"hours"			: 4,
 								"dates"			: ["April", "October"],
 								"passrates"	: [.406, .416]},
 			"C"		: {	"name"			: "Actuarial Models",
+								"completed" : true,
 								"sittings"	: 3,
 								"hours"			: 3.5,
 								"dates"			: ["February", "June", "October"],
 								"passrates"	: [.442, .398]},
+			"fap1": {	"name"			: "FAP1",
+								"completed" : false,
+								"sittings"	: 12,
+								"hours"			: 720,
+								"dates"			: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+								"passrates"	: [.75]},
+			"fap2": {	"name"			: "FAP2",
+								"completed" : false,
+								"sittings"	: 12,
+								"hours"			: 96,
+								"dates"			: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+								"passrates"	: [.7]},
+		};
+
+// #####################################################################################################
+//		User Profile
+// #####################################################################################################
+
+		var user = {
+			"first_name" 	: "Bob",
+			"last_name" 	: "Smith",
+			"school" 			: "U of M",
+			"degree" 			: "Bachelors of Actuarial Science",
 		};
 
 // #####################################################################################################
 //		Define Methods
 // #####################################################################################################
+
+		function total(scores){
+			sum = 0;
+			for(var x = 0; x < scores.length; x ++){
+			  sum = sum + scores[x];  //or Sum += scores[x];
+			};
+			return Math.round(sum*1000)/1000;  //length of the array scores is in scores.length
+		}
 
 		function average(scores){
 			sum = 0;
@@ -94,11 +134,11 @@
 		}
 
 		function product(scores){
-			product = 1;
+			result = 1;
 			for(var x = 0; x < scores.length; x ++){
-			  product = sum*scores[x];  //or Sum += scores[x];
+			  result = result * scores[x];  //or Sum += scores[x];
 			};
-			return Math.round(product*1000)/1000;  //length of the array scores is in scores.length
+			return Math.round(result*100000)/100000;  //length of the array scores is in scores.length
 		}
 
 		function draw(item, tag, newLine){
@@ -116,44 +156,83 @@
 		}
 
 		function exam_details(exam){
-			document.write("<div class='exam' style='border: 1px solid black; padding: 10px; margin: 10px'>");
+			// document.write("<ul id='sortable'><br>");
+			document.write("<li class='exam'>");
 			draw(exam.name, "u", "break");
 			draw("Time: ") + draw(exam.hours,"span") + draw(" hrs", "span", "break");
-			draw("Sittings: ") + draw(exam.sittings,"span", "break");
+			draw("Sittings: ") + draw(exam.sittings + "/year","span", "break");
 			draw("Dates: ") + draw(exam.dates,"span", "break");
-			draw("Pass Rates: ") + draw(exam.passrates,"span", "break");
-			exam.passrate = average(exam.passrates);
-			draw("Avg. Pass Rate: ") + draw(exam.passrate, "span", "break");
+			draw("Pass Rate: ") + draw(exam.passrate, "span", "break");
+			// draw("Previous Pass Rates: ") + draw(exam.passrates,"span", "break");
+
+			draw("Completed: ") + draw(to_upper(String(exam.completed)), "span", "break");
 			draw("Sitting", "button", "break");
-			document.write("</div>");
-		}
+			document.write("</li>" + "<br>");
+		};
 
 		function results(exams){
-			document.write("<div class='exam' style='border: 1px solid black; padding: 10px; margin: 10px'>");
-			draw("Results", "b", "break");
-			document.write("The average is " + _.each(exams, product));
+			var completedExams = cleanArray(_.map(exams, function(exam){ if(exam.completed == true){return exam.name};}));
+			var outstandingExams = cleanArray(_.map(exams, function(exam){ if(exam.completed == false){return exam.name};}));
+			var passrates = cleanArray(_.map(exams, function(exam){ if(exam.completed == false){return exam.passrate};}));
+			var timeRemaining = total(cleanArray(_.map(exams, function(exam){ if(exam.completed == false){return exam.hours};})));
+
+			document.write("<div class='results'>");
+			draw("Summary: ", "b");
+			draw("You have " + outstandingExams.length + " exams left to go, totaling " + timeRemaining + " hrs.", "span", "break");
+			draw("Coming up: ", "b");
+			draw(outstandingExams[0], "span", "break");
+			draw("Likelihood: ", "b");
+			draw(passrates[0], "span", "break");
+			document.write("<div style='height: 5px; border-top: 1px dashed black'></div>")
+			draw("Completed: ", "b");
+			draw(completedExams, "span", "break");
+			draw("Outstanding: ", "b");
+			draw(outstandingExams, "span", "break");
+			draw("No fails: ", "b");
+			draw(product(passrates));
 			document.write("</div>");
-		}
+		};
+
+		function randomNumber(){
+			var num = _.random(0, 1000)/1000;
+			return num;
+			// _.times(100, function(){ _.random(0,1000)/1000; });
+		};
 
 // #####################################################################################################
 //		Declare Variables
 // #####################################################################################################
 
-		examP = exams.P;
-		examFM = exams.FM;
-		examMFE = exams.MFE;
-		examMLC = exams.MLC;
-		examC = exams.C;
+		var examP = exams.P;
+		var examFM = exams.FM;
+		var examMFE = exams.MFE;
+		var examMLC = exams.MLC;
+		var examC = exams.C;
+		var examfap1 = exams.fap1;
+		var examfap2 = exams.fap2;
+		var preliminary = [examP, examFM, examMFE, examMLC, examC, examfap1, examfap2];
+		// var modules = [fap1, fap2];
+		// var fsaExams = []
+
+// #####################################################################################################
+//		Initialize Data
+// #####################################################################################################
+
+		_.map(exams, function(exam){ exam.passrate = average(exam.passrates)})
 
 // #####################################################################################################
 //		Test the code
 // #####################################################################################################
 
-		var user = [examP, examMFE, examMLC, examC];
-		results(user);
-		_.each(user, exam_details);
-		display_details(examP, examFM, examMFE, examMLC, examC);
-		_.each([1, 2, 3], alert);
+
+		user["exams"] = preliminary;
+		draw("Results", "h2")
+		results(user.exams);
+		document.write("<h2 style='padding-top:30px'>Preliminary Exams</h2>");
+		document.write("<ul id='sortable' style='padding: 0;'>");
+		_.each(user.exams, exam_details);
+		document.write("</ul>");
+		document.write(randomNumber());
 
 	</script>
 </div>

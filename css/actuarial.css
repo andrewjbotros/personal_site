@@ -1,0 +1,55 @@
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.title{
+	text-align: center;
+	border-bottom: 2px solid black;
+	width: 80%;
+	margin: 0 auto;
+}
+
+.container{
+	border: 1px solid black;
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+h2,h3{
+	width: 90%;
+	margin: 0 auto;
+	padding: none;
+	margin: none;
+	margin-top: 30px;
+	margin-bottom: -15px;
+	clear: both;
+}
+
+.exam, .results{
+	width: 90%;
+	border: 1px
+	solid black;
+	padding: 10px;
+	margin: 0 auto;
+	list-style-type: none;
+	padding-bottom;
+	clear: both;
+}
+
+.results{
+	margin-top: 15px;
+	width: 70%;
+	float: left;
+	margin-left: 5%;
+}
+
+.exam:hover, .results:hover {
+	box-shadow: 5px 5px 3px #888888!important;
+}
+
+button{
+	margin-top: 6px;
+}
