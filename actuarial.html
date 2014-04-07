@@ -18,6 +18,13 @@
 </style>
 <title>Get in the Game</title>
 <head>
+
+<!-- #####################################################################################################
+ 		   Load Underscore.js and JQuery.js
+     ##################################################################################################### -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script src='js/underscore-min.js'></script>
+
 	<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
 	<div class = "nav">
 		<h1 class="title">Actuarial Exam Success: The Game</h1>
@@ -26,9 +33,6 @@
 </head>
 
 <body>
-
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-	<script src='js/underscore-min.js'></script>
 
 <div class="container">
 	<script>
@@ -84,37 +88,16 @@
 		examC = exams.C;
 
 // #####################################################################################################
-//		CREATE METHODS AND CLASSES
+//		Define Methods
 // #####################################################################################################
-
-
-		function display_details(exam1, exam2, exam3, exam4, exam5){
-			exam_details(exam1);
-			exam_details(exam2);
-			exam_details(exam3);
-			exam_details(exam4);
-			exam_details(exam5);
-		}
 
 		function average(scores){
 			sum = 0;
-			for(var x = 0; x < scores.passrates.length; x ++){
-			  sum = sum + scores.passrates[x];  //or Sum += scores[x];
+			for(var x = 0; x < scores.length; x ++){
+			  sum = sum + scores[x];  //or Sum += scores[x];
 			};
-			average = sum / scores.passrates.length;  //length of the array scores is in scores.length
-			return average;
+			return Math.round(sum*1000/scores.length)/1000;  //length of the array scores is in scores.length
 		}
-
-		// obj.key3 = "value3";
-
-		// function exam(actuarial_exam){
-		// 	this.name = actuarial_exam["name"];
-		// 	this.sittings = actuarial_exam["sittings"];
-		// 	this.hours = actuarial_exam["hours"];
-		// 	this.dates = actuarial_exam["dates"];
-		// 	this.passrates = actuarial_exam["passrates"];
-		// 	this.passrate = average(actuarial_exam["passrates"]);
-		// }
 
 		function draw(item, tag, newLine){
 			newLine = newLine || false;
@@ -136,32 +119,24 @@
 			draw("Sittings: ") + draw(exam.sittings,"span", "break");
 			draw("Dates: ") + draw(exam.dates,"span", "break");
 			draw("Pass Rates: ") + draw(exam.passrates,"span", "break");
-			draw("Avg. Pass Rates: ") + draw(exam.passrates, "span", "break");
+			draw("Avg. Pass Rates: ") + draw(average(exam.passrates), "span", "break");
 			draw("Sitting", "button", "break");
 			draw("", "div", "break");
 		}
 
-// #####################################################################################################
-//		MAP NEW VARIABLES
-// #####################################################################################################
-
-		document.write(_.sample([1, 2, 3, 4, 5, 6]) + "<br>");
-		examC.passrate = 200;
-		document.write(examC.passrate + "<br>");
-		examC.passrate = 300;
-		document.write(examC.passrate + "<br>");
-		examC.passrate = average(examC);
-		document.write("Average pass rate: " + Math.round(examC.passrate*1000)/1000 + "<br>");
-		// examMFE.passrate = average(examMFE);
-		// document.write(examMFE.passrate + "<br>");
-		// examFM.passrate = average(examFM.passrates);
-		// document.write(examFM.passrate);
+		function display_details(exam1, exam2, exam3, exam4, exam5){
+			exam_details(exam1);
+			exam_details(exam2);
+			exam_details(exam3);
+			exam_details(exam4);
+			exam_details(exam5);
+		}
 
 // #####################################################################################################
-//		TESTING AREA
+//		Test the code
 // #####################################################################################################
-		display_details(examP, examC, examMLC);
 
+		display_details(examP, examFM, examMFE, examMLC, examC);
 
 	</script>
 </div>
