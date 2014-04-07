@@ -82,16 +82,6 @@
 		};
 
 // #####################################################################################################
-//		Declare Variables
-// #####################################################################################################
-
-		examP = exams.P;
-		examFM = exams.FM;
-		examMFE = exams.MFE;
-		examMLC = exams.MLC;
-		examC = exams.C;
-
-// #####################################################################################################
 //		Define Methods
 // #####################################################################################################
 
@@ -101,6 +91,14 @@
 			  sum = sum + scores[x];  //or Sum += scores[x];
 			};
 			return Math.round(sum*1000/scores.length)/1000;  //length of the array scores is in scores.length
+		}
+
+		function product(scores){
+			product = 1;
+			for(var x = 0; x < scores.length; x ++){
+			  product = sum*scores[x];  //or Sum += scores[x];
+			};
+			return Math.round(product*1000)/1000;  //length of the array scores is in scores.length
 		}
 
 		function draw(item, tag, newLine){
@@ -124,29 +122,38 @@
 			draw("Sittings: ") + draw(exam.sittings,"span", "break");
 			draw("Dates: ") + draw(exam.dates,"span", "break");
 			draw("Pass Rates: ") + draw(exam.passrates,"span", "break");
-			draw("Avg. Pass Rate: ") + draw(average(exam.passrates), "span", "break");
+			exam.passrate = average(exam.passrates);
+			draw("Avg. Pass Rate: ") + draw(exam.passrate, "span", "break");
 			draw("Sitting", "button", "break");
 			document.write("</div>");
 		}
 
-		function display_details(exam1, exam2, exam3, exam4, exam5){
-			exam_details(exam1);
-			exam_details(exam2);
-			exam_details(exam3);
-			exam_details(exam4);
-			exam_details(exam5);
+		function results(exams){
+			document.write("<div class='exam' style='border: 1px solid black; padding: 10px; margin: 10px'>");
+			draw("Results", "b", "break");
+			document.write("The average is " + _.each(exams, product));
+			document.write("</div>");
 		}
 
-		function results(exam1, exam2, exam3, exam4, exam5){
-			exam_details(exam1);
-		}
+// #####################################################################################################
+//		Declare Variables
+// #####################################################################################################
+
+		examP = exams.P;
+		examFM = exams.FM;
+		examMFE = exams.MFE;
+		examMLC = exams.MLC;
+		examC = exams.C;
 
 // #####################################################################################################
 //		Test the code
 // #####################################################################################################
 
-		results(examP);
+		var user = [examP, examMFE, examMLC, examC];
+		results(user);
+		_.each(user, exam_details);
 		display_details(examP, examFM, examMFE, examMLC, examC);
+		_.each([1, 2, 3], alert);
 
 	</script>
 </div>
