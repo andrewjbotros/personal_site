@@ -11,9 +11,12 @@ html, body {
     font-size: 14.5px;
 }
 
-ul, li {
+ul, ol, li {
     font-family: courier new;
     font-size: 14.5px;
+}
+ol{
+    margin-left: 1.2em;
 }
 
 a, em {

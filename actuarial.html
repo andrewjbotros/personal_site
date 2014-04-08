@@ -7,14 +7,14 @@
 ###    																	                       																		###
 ##################################################################################################### -->
 
+<!-- reactjs.org shadow DOM -->
+<!-- Backbone comes with a basic push state router, and model object, collection, manages models, hooks in well with -->
 <title>Get in the Game</title>
 <head>
 
 	<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
 	<script src='js/underscore-min.js'></script>
 	<link rel="stylesheet" href="css/actuarial.css" type="text/css"/>
-	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 
 	<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
 	<div class = "nav">
@@ -106,7 +106,7 @@
 								"dates"			: ["February", "June", "October"],
 								"passrates"	: [.442, .398]},
 			"fap1": {	"name"			: "FAP1",
-								"completed" : true,
+								"completed" : false,
 								"sittings"	: 12,
 								"hours"			: 720,
 								"dates"			: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
@@ -175,6 +175,7 @@
 
 		var attempts = 0;
 		var success = 0;
+		var travelTime = 0;
 		var data = [];
 
 		function simulation(exams){
@@ -185,9 +186,10 @@
 					exams[i].completed = true;
 					success++;
 					attempts++;
+					travelTime +=
 					i++;
 				}else{
-					document.writeln("You Failed<br>");
+					document.writeln("You Failed " + exams[i].name + "<br>");
 					attempts++;
 				}
 			}
@@ -260,9 +262,9 @@
 // #####################################################################################################
 
 		user["exams"] = preliminary;
-		draw("Results", "h2")
-		results(user.exams);
+		draw("Results", "h2");
 		stats(user.exams);
+		results(user.exams);
 		document.write("<h2>Preliminary Exams</h2>");
 		document.write("<ul id='sortable' style='padding: 0;'>");
 		_.each(user.exams, exam_details);
