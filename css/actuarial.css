@@ -11,7 +11,7 @@
 	margin: 0 auto;
 }
 
-.container{
+.game{
 	border: 1px solid black;
 	width: 80%;
 	margin: 0 auto;
@@ -41,14 +41,14 @@ h2,h3{
 
 .results{
 	margin-top: 15px;
-	width: 70%;
+	width: 60%;
 	float: left;
 	margin-left: 5%;
 	height: 180px;
 }
 
 .stats{
-	width: 17.7%;
+	width: 27.7%;
 	display: inline-block;
 	height: 180px;
 	clear: none;
@@ -56,7 +56,7 @@ h2,h3{
 	margin-top: 15px;
 }
 
-.exam:hover, .results:hover {
+.exam:hover, .results:hover, .stats:hover {
 	box-shadow: 5px 5px 3px #888888!important;
 }
 

@@ -1,9 +1,9 @@
 <html>
 
-<!-- #####################################################################################################
-###    Actuarial Exams: The Game (April 7, 2014)                        																		###
+<!-- ################################################################################################
+###    Actuarial Exams: The Game (April 7, 2014)                        													###
 ###    																	                       																		###
-###    A game to give some perspective to actuarial students on the path to becoming FSA's				###
+###    How many attempts will it take you to get to FSA?																					###
 ###    																	                       																		###
 ##################################################################################################### -->
 
@@ -13,6 +13,8 @@
 	<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
 	<script src='js/underscore-min.js'></script>
 	<link rel="stylesheet" href="css/actuarial.css" type="text/css"/>
+	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 
 	<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
 	<div class = "nav">
@@ -23,7 +25,7 @@
 
 <body>
 
-<div class="container">
+<div class="game">
 	<script>
 
 // #####################################################################################################
@@ -35,11 +37,26 @@
 		  return (results && results.length > 1) ? results[1] : "";
 		};
 
-		// $(function() {
-	 //    $( "#sortable" ).sortable();
-	 //    $( "#sortable" ).disableSelection();
-	 //  });
+		$(function() {
+	    $( "#sortable" ).sortable();
+	    $( "#sortable" ).disableSelection();
+	  });
 
+		function average(scores){
+			sum = 0;
+			for(var x = 0; x < scores.length; x ++){
+			  sum = sum + scores[x];  //or Sum += scores[x];
+			};
+			return Math.round(sum*1000/scores.length)/1000;  //length of the array scores is in scores.length
+		}
+
+		function product(scores){
+			result = 1;
+			for(i=0; i<scores.length; i++){
+				result = result * scores[i];
+			};
+			return Math.round(result*100000)/100000;
+		}
 		function to_upper(string){
 		    return string.charAt(0).toUpperCase() + string.slice(1);
 		};
@@ -72,7 +89,7 @@
 								"dates"			: ["February", "April", "June", "August", "October", "December"],
 								"passrates"	: [.427, .416, .464, .458]},
 			"MFE"	: {	"name"			: "Financial Economics",
-								"completed" : true,
+								"completed" : false,
 								"sittings"	: 3, "hours": 3,
 								"dates"			: ["March", "July", "November"],
 								"passrates"	: [.422, .495, .526]},
@@ -89,7 +106,7 @@
 								"dates"			: ["February", "June", "October"],
 								"passrates"	: [.442, .398]},
 			"fap1": {	"name"			: "FAP1",
-								"completed" : false,
+								"completed" : true,
 								"sittings"	: 12,
 								"hours"			: 720,
 								"dates"			: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
@@ -102,6 +119,19 @@
 								"passrates"	: [.7]},
 		};
 
+		//Update exams hash to include passrate; the mean of passrates
+		_.map(exams, function(exam){ exam.passrate = average(exam.passrates);});
+
+		var completedExams = cleanArray(_.map(exams, function(exam){ if(exam.completed == true){return exam.name};}));
+		var outstandingExams = cleanArray(_.map(exams, function(exam){ if(exam.completed == false){return exam.name};}));
+
+		function update(exams){
+				completedExams = cleanArray(_.map(exams, function(exam){ if(exam.completed == true){return exam.name};}));
+				outstandingExams = cleanArray(_.map(exams, function(exam){ if(exam.completed == false){return exam.name};}));
+		}
+
+		// var passrates = cleanArray(_.map(exams, function(exam){ if(exam.completed == false){return exam.passrate};}));
+
 // #####################################################################################################
 //		User Profile
 // #####################################################################################################
@@ -111,34 +141,18 @@
 			"last_name" 	: "Smith",
 			"school" 			: "U of M",
 			"degree" 			: "Bachelors of Actuarial Science",
+			"outstanding"	: ["P", "FM", "MFE", "MLC", "C", "fap1", "fap2"]
 		};
 
 // #####################################################################################################
 //		Define Methods
 // #####################################################################################################
-
 		function total(scores){
 			sum = 0;
 			for(var x = 0; x < scores.length; x ++){
 			  sum = sum + scores[x];  //or Sum += scores[x];
 			};
 			return Math.round(sum*1000)/1000;  //length of the array scores is in scores.length
-		}
-
-		function average(scores){
-			sum = 0;
-			for(var x = 0; x < scores.length; x ++){
-			  sum = sum + scores[x];  //or Sum += scores[x];
-			};
-			return Math.round(sum*1000/scores.length)/1000;  //length of the array scores is in scores.length
-		}
-
-		function product(scores){
-			result = 1;
-			for(var x = 0; x < scores.length; x ++){
-			  result = result * scores[x];  //or Sum += scores[x];
-			};
-			return Math.round(result*100000)/100000;  //length of the array scores is in scores.length
 		}
 
 		function draw(item, tag, newLine){
@@ -155,29 +169,37 @@
 			document.writeln(opentag + item + newLine + closetag);
 		}
 
-		function exam_details(exam){
-			// document.write("<ul id='sortable'><br>");
-			document.write("<li class='exam'>");
-			draw(exam.name, "u", "break");
-			draw("Time: ") + draw(exam.hours,"span") + draw(" hrs", "span", "break");
-			draw("Sittings: ") + draw(exam.sittings + "/year","span", "break");
-			draw("Dates: ") + draw(exam.dates,"span", "break");
-			draw("Pass Rate: ") + draw(exam.passrate, "span", "break");
-			// draw("Previous Pass Rates: ") + draw(exam.passrates,"span", "break");
+		function dice(){
+			return _.random(0, Math.pow(10,3))/Math.pow(10,3);
+		}
 
-			draw("Completed: ") + draw(to_upper(String(exam.completed)), "span", "break");
-			draw("Sitting", "button", "break");
-			document.write("</li>" + "<br>");
-		};
+		var attempts = 0;
+		var success = 0;
+		var data = [];
+
+		function simulation(exams){
+			var i = 0;
+			while (success < exams.length){
+				if (dice() < exams[i].passrate){
+					document.writeln("You Passed " + exams[i].name + "<br>");
+					exams[i].completed = true;
+					success++;
+					attempts++;
+					i++;
+				}else{
+					document.writeln("You Failed<br>");
+					attempts++;
+				}
+			}
+			return exams;
+		}
 
 		function results(exams){
-			var completedExams = cleanArray(_.map(exams, function(exam){ if(exam.completed == true){return exam.name};}));
-			var outstandingExams = cleanArray(_.map(exams, function(exam){ if(exam.completed == false){return exam.name};}));
 			var passrates = cleanArray(_.map(exams, function(exam){ if(exam.completed == false){return exam.passrate};}));
 			var timeRemaining = total(cleanArray(_.map(exams, function(exam){ if(exam.completed == false){return exam.hours};})));
 
 			document.write("<div class='results'>");
-			draw("Summary: ", "b");
+			draw("Status: ", "b");
 			draw("You have " + outstandingExams.length + " exams left to go, totaling " + timeRemaining + " hrs.", "span", "break");
 			draw("Coming up: ", "b");
 			draw(outstandingExams[0], "span", "break");
@@ -188,29 +210,29 @@
 			draw(completedExams, "span", "break");
 			draw("Outstanding: ", "b");
 			draw(outstandingExams, "span", "break");
-			draw("No fails: ", "b");
-			draw(product(passrates));
 			document.write("</div>");
 		};
+
+		// stats.prototype = new results();
 
 		function stats(exams){
-			var completedExams = cleanArray(_.map(exams, function(exam){ if(exam.completed == true){return exam.name};}));
-			var outstandingExams = cleanArray(_.map(exams, function(exam){ if(exam.completed == false){return exam.name};}));
-			var passrates = cleanArray(_.map(exams, function(exam){ if(exam.completed == false){return exam.passrate};}));
-			var timeRemaining = total(cleanArray(_.map(exams, function(exam){ if(exam.completed == false){return exam.hours};})));
-
 			document.write("<div class='stats'>");
-			draw("Attempts: ", "b");
-			draw("You have " + outstandingExams.length + " exams left to go, totaling " + timeRemaining + " hrs.", "span", "break");
+			simulation(exams);
 			document.write("</div>");
 		};
 
-		// function simulation(){
-		// 	var random = _.random(0, 1000)/1000;
-		// 	if ()
-		// 	return num;
-		// 	// _.times(100, function(){ _.random(0,1000)/1000; });
-		// };
+		function exam_details(exam){
+			document.write("<li class='exam'>");
+			draw(exam.name, "u", "break");
+			draw("Time: ") + draw(exam.hours,"span") + draw(" hrs", "span", "break");
+			draw("Sittings: ") + draw(exam.sittings + "/year","span", "break");
+			draw("Dates: ") + draw(exam.dates,"span", "break");
+			draw("Pass Rate: ") + draw(exam.passrate, "span", "break");
+
+			draw("Completed: ") + draw(to_upper(String(exam.completed)), "span", "break");
+			draw("Sitting", "button", "break");
+			document.write("</li>" + "<br>");
+		};
 
 // #####################################################################################################
 //		Declare Variables
@@ -237,7 +259,6 @@
 //		Test the code
 // #####################################################################################################
 
-
 		user["exams"] = preliminary;
 		draw("Results", "h2")
 		results(user.exams);
@@ -246,7 +267,6 @@
 		document.write("<ul id='sortable' style='padding: 0;'>");
 		_.each(user.exams, exam_details);
 		document.write("</ul>");
-		document.write(randomNumber());
 
 	</script>
 </div>
