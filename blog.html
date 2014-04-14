@@ -51,14 +51,26 @@
 
       Many thanks,
       Hadi -->
-      <p class="title" style="margin-top: 20px">Reflections as an Actuarial Student<span class="date">4/3/2014</span></p>
-      <p class="post">I just turned 29 yesterday. Scary. It's been over 5 years since I graduated, and 8 years since I wrote my first actuarial exam (I failed). If you asked me 5 years ago where I would be today, I'm not sure how the view would align with my reality. "Where do you see yourself in 5 years?" Knowing what I know now, here's what I might tell myself ease the transition from college to the workplace:</p>
+      <p class="title" style="margin-top: 20px">Actuarial Survival Guide<span class="date">4/3/2014</span></p>
+      <p class="post">I just turned 29 yesterday. Scary. It's been over 6 years since I graduated (B.Sc Math, didn't cum laude), and 8 years since I wrote my first actuarial exam (I failed). While I was originally asked to write about my endevours in actuarial musical composition (google: actuarial girlfriend), it felt a little self-serving. I have resigned to the fact that I will remain; anti-viral. Instead, my old age prompted a sincere reflection on all that I've learned since entering the workforce 6 years ago. I was hoping to codify these lessons into a concise 'survival guide' for actuarial graduates.</p>
+
+      <p class="post">I've held positions with Manulife, Mercer, and Canada Mortgage & Housing Corporation covering pricing, valuation, pension consulting, and risk oversight. After a stint at a financial startup, I went back to school to learn full-stack web development. I'm currently preparing for the CFA Level II (VEE Statistics) while seeking gainful employment. I wouldn't say I've seen it all, but I've been around. Hence, the rules of the 'guide' are meant to apply broadly (private & government, consulting & reporting).</p>
+
+      <p class="post">One last preface. In no way do I mean to imply a 'higher than though' tone in offering this advice.
+        <code>"I have a lot of beliefs and I live by none of [them]. I just like believing them. They make me feel good about who I am. But if they get in the way of a thing I want, I do that." - Louis C.K.</code></p>
       <ul>
-        <li>Learn to program. Surprisingly few actuaries (though I'm working on it) are adept in open source software (ruby, python, R). 90% of your work can be made more efficient by understanding the potential of software freely available to you. Take time to explore it, and share your progress, ideas, and programs with your colleagues.</li>
-        <li>Frustration with beauracracy may lead you do believe your colleagues are dumb, or irrational. They're not. Everyone has a different agenda, and the way people pursue it Don't confuse the sclerosis of the beauracracy you may work for with stupidity on the part of your colleagues. Ther</li>
+        <li>Actuarial exams will dominate your time, but will play a small role preparing you for your job. <code>"Don't hire an 'A' student unless you want them to write tests." - Taleb.</code> </li>
+        <li>At times, you'll make the correct decision to not go out and study. Many times, you'll make the incorrect decision to stay in and not go out. Exam success and a social life are not mutually exclusive. <code>"If you want something done, ask a busy person." - Franklin</code> </li>
+        <li>Learn to program. Surprisingly few actuaries are adept in open source software (ruby, python, javascript). 80% of your work can be made more efficient by harnessing the potential of software freely available to you. Take time to explore it. Participate in Hackathons in your community. Blog about models you built, data you mined, or programs you developed.</li>
+        <li>Start an informal meetup amongst colleagues. Most challenges you'll encounter will be application related (file dependencies, inconsistent naming conventions, repetitious code, cluttered design). Developing and sharing your improved excel templates, tools and macros will fundamentally change the way you do things. See if your employer will sponsor your meetup (office space, pizza, beer). If not, go ahead anyway. They may change their tune when they see the value from your group's efforts.</li>
+        <li>Beauracracies are dumb. *Most* people are not. Do not conflate the two. I've unfairly chastised colleagues when their behaviour was consistent with corporate conventions.</li>
+        <li>Your salary may not reflect your efforts. Don't let this bother you. <code>"Be so good they can't ignore you." - Martin. </code> <em>Corrollary:</em> You're not as good as you think you are.</li>
+        <li>Don't give up (or give up, whatever). It took me 4 attempts to pass exam C. It hurt what little remained of my ego. But, your opportunities (and salary) improve if you get credentialed. Your FSA is like an international green card. Care to work in Europe, the US, Hong Kong? You can do that!</li>
+        <li>It's a pretty sweet job. The profession is far from perfect. But, relatively speaking, it is sufficiently rewarding. You will encounter sloppy processes, bad bosses, and long hours. Do your best to improve your situation within your means. But, your circumstance is *likely* better than 90% of what else is available to you.</li>
       </ul>
+      <p class="post">There you have it; the actuarial survival guide. I hope it provides some relief in the trenches of the workplace. But I should be honest. I'm more interested in hearing about what you're up to. Have an idea you want to explore? Additional questions about the actuarial profession? Are you an aspiring actuary who codes!? Contact me @andrewjbotros and let's talk. Good luck!</p>
       <p class="title" style="margin-top: 20px">The Economics of Household Chores<span class="date">4/1/2014</span></p>
-      <p class="post">Every month, parents post a list of chores that they'd like their children to get done. Each chore is given an initial price. Each child can bid on any number of chores they wish to complete. Parents want all chores completed. How should the parents allocate their total cost amongst all chores that will induce their children to bid on the full list? This is the first problem I want to solve. We're going to devise an algorithm that induces 'full coverage' by adjusting <b><em>relative</em></b> prices in the event chore(s) have no bids.</p>
+      <p class="post">Every month, parents post a list of chores that they'd like their children to get done. Each chore is given an initial price. Each child can bid on any number of chores they wish to complete. Parents want all chores completed. How should the parents allocate their total cost amongst all chores that will induce their children to bid on the full list? This is the problem I want to solve. We're going to devise an algorithm that induces 'full coverage' by adjusting <b><em>relative</em></b> prices in the event chore(s) have no bids.</p>
       <div class="note"><b>On adjusting <em>relative</em> prices: </b>When we increase the price of one chore, we lower the price of another, such that total cost remains fixed. Varying total cost to induce 'full coverage' (hey kids, $10,000/month for chores?) certainly works. But we assume total cost is set sufficiently high that 'full coverage', if not present, can be achieved by finding the right price distribution. In the event the algorithm fails to induce 'full coverage', our view is the parents are cheap, the children formed a cartel, or there is one <b><em>nasty ass chore on that list.</em></b></div>
       <p class="post">Anyway, to dicuss how we might construct this algorithm, it is best to illustrate this with an example. The syntax below is consistent with how you would build a dictionary in python.</p>
       <ul>
@@ -71,14 +83,17 @@
         </code>
       </ul>
       <p class="post">No one wants to do the garbage, and everyone wants to walk the dog. How might prices adjust? Naturally, garbage increases and walking the dog decreases. Notice that dishes also has 2 bids. We could adjust this price downward and add the difference to garbage. How's this.</p>
-      <ol>
-        <li>Let X = [choreA[:bids], choreB[:bids], choreC[:bids]].</li>
-        <li>Adjust :price by <em><b>(X.min - X[i])*(5%)</b> for all <b>i</b> in <b>X</b>.</em></li>
-        <li>Add the cumulated price adjustment to the chore with the minimum number of bids.</li>
+      <ol start="0">
+        <li style="list-style-type: none"><b>var</b> <em>adustment</em> = <b><em>5%</em></b></li>
+        <li>Let X = [choreA, choreB, choreC].</li>
+        <li>Reduce X[i][:price] by <em><b>(X.min - X[i])*(adjustment)</b> for all <b>i</b> in <b>X</b>.</em></li>
+        <li>Add the cumulative reduction in prices to the chore with the minimum number of bids.<br></li>
         <li>Re-open the bidding.</li>
-        <li>Rinse and repeat.</li>
+        <li>Are all chores covered? If true, <u>stop here</u>.<br> If false, go to <u>next step</u>.</li>
+        <li>set <em>adustment</em> = <em>adjustment</em> - <b><em>1%</b></em></li>
+        <li>Go back to <b>Step 1</b></li>
       </ol>
-      <p class="post">Applying this algorithm, we arrive at the following table:</p>
+      <p class="post">Applying this algorithm, the dictionary transforms in the following way:</p>
       <ul>
         <li><code>choreA = {:price => '$10.80', :bids => 1, :description => 'dishes'}</code></li>
         <li><code>choreB = {:price => '$7.40', :bids => 2, :description => 'garbage'}</code></li>
@@ -86,7 +101,7 @@
         <li><code>chores = {:total => '$25', :coverage => true}</li>
         <li><code>kids = [:sally=>['dishes', 'garbage', 'walk dog'], :jessie=>['walk dog'], :raphael=>['garbage', 'walk dog']</li>
       </ul>
-      <p class="post">Dishes and walking the dog prices fell (by 10% and 15% respectively), while the garbage increased (by 48%). We were able to get all the chores done, without having to increase our total cost (which remained at $25). Cool. Now we have a method for adjusting prices to achieve 'full coverage'. In the above example, demand is , in that every chore had an equal number of bids. To extend the idea of 'fair pricing', what might we do in the event that some chores were relatively overbid? Well, we could apply our algorithm again, adjusting prices by (Xmin - Xi)*(5%) for all i in X. In the event bid numbers persist to be unequal after multiple runs, we accept that our algorithm may be limited in identifying the price distribution that results in uniformity. The solution may not exist (due to interaction of marginal demand curves of the children) or that the solution cannot be achieved without increasing the total cost. (<b>Side note:</b> Why would increasing total cost work? Because if it were high enough, say everything paid $1 million, we expect all kids would bid on all chores and so bid numbers would be 'uniform'.)</p>
+      <p class="post">Dishes and walking the dog prices fell (by 10% and 15% respectively), while the garbage increased (by 48%). We were able to get all the chores done, without having to increase our total cost (which remained at $25). Cool. Now we have a method for adjusting prices to achieve 'full coverage'. In the event 'full coverage' is not achieved after the first time round, run the algorithm again. Implicitly, the algorithm is programmed to stop after 5 iterations. This is due to the scaling down of our adjustment factor from (initially set at 5%) in 1% increments.</p>
       <p class="post">So what about the app!? Well, once you have an algorithm for dynamically adjusting prices, and assigning chores (more on that later) kids can then track their data over time. For example, they could answer - How much am I earning each month? How much relative to my siblings? What percentage of the available total income did I receive? What chores did I complete? Which chores earned me the most relative income? What combination of chores would I need to do to earn $X? And the gamification? Here are some of my ideas:</p>
       <ul>
         <li><b>Falling Prices:</b> If there's a chore that needs urgent attention, it's price drops over time. Motivates early completion.</li>
@@ -94,9 +109,8 @@
         <li><b>Bonus:</b> A $10 bonus is embedded in a particular chore. The bonus is only revealed after chores have been assigned. This can induce broader bidding in each category, but effectively raises the total cost of chores that week.</li>
         <li><b>More Chores!:</b> Allow your children to propose additional chores they wish to complete. Choose to accept, reject, or counter offer.</li>
       </ul>
-      <p class="post">Something like this looks well suited to Ruby on Rails. Chart my progress below:</p>
       <div style="width: 100%; margin: 0 auto; text-align: center">
-      Status: <progress max="1" value="0.2" style='width: 50%'></progress>
+      Project Status: <progress max="1" value="0.2" style='width: 50%'></progress>
       </div>
 
       <p class="title" style="margin-top: 20px">Financial Trickery<span class="date">4/1/2014</span></p>
@@ -106,9 +120,7 @@
       <p class="post">Awesome. A command line (unix) solution to rebooting your audio if your Apple TV isn't playing sound. Open terminal and run <u>'sudo killall coreaudiod'</u>. You will be prompted to type in your computer's password. Airplay will disconnect from Apple TV. Reconnect Apple TV. Voila. Before, I had to reboot my Mac in order to restore the audio connection. No longer. Thanks, unix script!</p>
       <p class="title" style="margin-top: 20px">Expectation in a Sublet Lottery<span class="date">3/26/2014</span></p>
       <p class="post"><b><em>The big picture. </em></b>I'm interested in building a model that generates probabilities of drawing a room in a sublet lottery in python. This is motivated by my experience at <b><a href="http://bitmakerlabs.com/" target="_blank">Bitmaker Labs</a></b> in Toronto. The company leases property to sublet to students from out of town. However, DEMAND >> SUPPLY. Therefore, understanding the likelihood of drawing a room from Bitmaker Labs will influence the decision to look for property elsewhere. Bitmaker Labs is currently piloting a rental arrangement with one condo with 4 rooms.</p>
-      <p class="post"><b><em>Our example.</em></b> 17 students need housing. Only 4 rooms (A,B,C,D) are available. Each room is slightly different, and are thus offered at different prices. Every individual is allowed to bid on any number of the rooms with a binary indicator (yes/no). Therefore, it is legitimate to have Jon request A and B, and Jen to request C and B, and Tina request B, C, and D. But they may be assigned at most one room. Our example is illustrated below:</p>
-      <p class="post">Notice that each individual's preferences (above) are different. As such, the overall probability of getting a room also differs for each individual. Specifically, we will look at how to compute the probability of an individual being assigned a room. We will arrive at approximate estimates through the use of monte carlo simulation. We will discuss why this methodology is preferred over computing closed form solutions with binomial trees. Our discussion will end on observations I findd interesting. For example, a peculiar result is that the order the rooms are drawn affects an individual's overall probability of getting a room. In other words, you can influence your own potential outcome of the draw simply by requesting a particular draw order. The total number of unique draws are (# of rooms)! - the factorial, not the emphasis.</p>
-      <p class="post">For the purposes of illustration, I have generated a dataset comprised of 17 students bidding on 4 rooms. This table is below:</p>
+      <p class="post"><b><em>Our example.</em></b> 17 students need housing. Only 4 rooms (A,B,C,D) are available. Each room is slightly different, and are thus offered at different prices ($2,000, $2,375, $2,875, $3,375). Every individual is allowed to bid on any number of the rooms with a binary indicator (yes/no). Therefore, it is legitimate to have Jon request A and B, and Jen to request C and B, and Tina request B, C, and D. But they may be assigned at most one room. Our example is illustrated below:</p>
 
       <div class="post">
 
@@ -321,9 +333,13 @@
 
         <div class="note"><b>Note: </b>A (non-randomly) generated input with the following condition: if an individual bids on more than one room, the bids must be adjacent (i.e you can bid on A&B, not A&D, unless A&B&C&D). This will likely not hold in practice, but it produces some interesting results, and guides our post mortem discussion and analysis.</div>
 
-        <p class="post">What does the table below tell us? </p>
+        <p class="post">If we draw with replacement, computing the probability of being assigned a room is relatively straight forward. Simply:<div style="width: 100%; margin: 0 auto; text-align: center">1 - ( 1-P(A) )*( 1-P(B) )*( 1-P(C) )*( 1-P(D) )</div></p>
+        <p class="post">The expected probabilities for each individual using this method is shown below.</p>
+
+        <p class="post" style="padding-bottom: 0px; margin-bottom: 0px"> The table below is meant to give some insight into an individual's sensitivity to price, and how demand is distributed accross product categories. Note the difference in price between Room A and Room D; it's $1,375. If individuals are price sensitive we should expect to see fewer people bidding on Room A and Room D (A&D), than say, Room A and Room B (A&B), where the differential is smaller (only $375). If you look at the 'Counts' table below, you'll notice that A&D < A&B => Pr(A&D) < Pr(A&B). What might we expect it there are individuals with 'high end' tastes? In this case, you might see people are more likely to bid on Room D and Room C, than Room D and Room A. Again, in the table below, you'll notice that A&D < C&D => Pr(A&D) < Pr(C&D). In our example, the differences are material; 18% vs 47% respectively</p>
+
         <table border=0 cellpadding=0 cellspacing=0 width=679 style='border-collapse:
-        collapse;table-layout:fixed;width:679pt'>
+        collapse;table-layout:fixed;width:98%;margin: 0 auto'>
         <tr height=15 style='height:15.0pt'>
           <td height=15 colspan=11 style='height:15.0pt;mso-ignore:colspan'></td>
         </tr>
@@ -594,6 +610,7 @@
           <td class=xl98>29%</td>
           <td class=xl98>12%</td>
         </tr>
+
         <tr height=16 style='height:16.0pt'>
           <td height=16 colspan=11 style='height:16.0pt;mso-ignore:colspan'></td>
         </tr>

@@ -1,0 +1,133 @@
+[
+  {
+    "name": "Probability",
+    "sittings": 6,
+    "hours": 3,
+    "dates": [
+      "January",
+      "March",
+      "May",
+      "July",
+      "September",
+      "November"
+    ],
+    "passrates": [
+      0.486,
+      0.423,
+      0.419,
+      0.426
+    ],
+    "id": "P"
+  },
+  {
+    "name": "Financial Mathematics",
+    "sittings": 6,
+    "hours": 3,
+    "dates": [
+      "February",
+      "April",
+      "June",
+      "August",
+      "October",
+      "December"
+    ],
+    "passrates": [
+      0.427,
+      0.416,
+      0.464,
+      0.458
+    ],
+    "id": "FM"
+  },
+  {
+    "name": "Financial Economics",
+    "sittings": 3,
+    "hours": 3,
+    "dates": [
+      "March",
+      "July",
+      "November"
+    ],
+    "passrates": [
+      0.422,
+      0.495,
+      0.526
+    ],
+    "id": "MFE"
+  },
+  {
+    "name": "Life Contingencies",
+    "sittings": 2,
+    "hours": 4,
+    "dates": [
+      "April",
+      "October"
+    ],
+    "passrates": [
+      0.406,
+      0.416
+    ],
+    "id": "MLC"
+  },
+  {
+    "name": "Actuarial Models",
+    "sittings": 3,
+    "hours": 3.5,
+    "dates": [
+      "February",
+      "June",
+      "October"
+    ],
+    "passrates": [
+      0.442,
+      0.398
+    ],
+    "id": "C"
+  },
+  {
+    "name": "FAP1",
+    "sittings": 12,
+    "hours": 720,
+    "dates": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "passrates": [
+      0.75
+    ],
+    "id": "fap1"
+  },
+  {
+    "name": "FAP2",
+    "sittings": 12,
+    "hours": 96,
+    "dates": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "passrates": [
+      0.7
+    ],
+    "id": "fap2"
+  }
+]
