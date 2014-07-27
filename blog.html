@@ -57,19 +57,19 @@
           <li>sentences ("I am applying to work at Sunlife." => "I would love to join Sunlife.")</li>
           <li>sentences ("I have 5 years experience in Excel." => "I work daily in Excel.")</li>
           <li>paragraphs ("I am applying to work at Sunlife. I have 5 years experience in Excel." => "I would love to join Manulife. I work daily in GGY Axis." </li>
-          </li>
+        </li>
 
-        </ul>
-      </p>
-      <p class="post">Now we're starting to see how a cover letter might be modified to correspond to a particular job posting. Notice above how each word, sentence, or paragraph can be further classified. Sunlife and Manulife are <b>Companies</b>. The sentences describe <b><em>what you're applying to</em></b> and your relevant <b>experience.</b></p>
+      </ul>
+    </p>
+    <p class="post">Now we're starting to see how a cover letter might be modified to correspond to a particular job posting. Notice above how each word, sentence, or paragraph can be further classified. Sunlife and Manulife are <b>Companies</b>. The sentences describe <b><em>what you're applying to</em></b> and your relevant <b>experience.</b> So I'm hopeful that I can cobble something together that produces an application that resonates with the job posting.</p>
 
-      <p class="title" style="margin-top: 20px">Actuarial Survival Guide<span class="date">4/3/2014</span></p>
-      <p class="post">I just turned 29 yesterday. Scary. It's been over 6 years since I graduated (B.Sc Math, didn't cum laude), and 8 years since I wrote my first actuarial exam (I failed). While I was originally asked to write about my endevours in actuarial musical composition (google: actuarial girlfriend), it felt a little self-serving. I have resigned to the fact that I will remain; anti-viral. Instead, my old age prompted a sincere reflection on all that I've learned since entering the workforce 6 years ago. I was hoping to codify these lessons into a concise 'survival guide' for actuarial graduates.</p>
+    <p class="title" style="margin-top: 20px">Actuarial Survival Guide<span class="date">4/3/2014</span></p>
+    <p class="post">I just turned 29 yesterday. Scary. It's been over 6 years since I graduated (B.Sc Math, didn't cum laude), and 8 years since I wrote my first actuarial exam (I failed). While I was originally asked to write about my endevours in actuarial musical composition (google: actuarial girlfriend), it felt a little self-serving. I have resigned to the fact that I will remain; anti-viral. Instead, my old age prompted a sincere reflection on all that I've learned since entering the workforce 6 years ago. I was hoping to codify these lessons into a concise 'survival guide' for actuarial graduates.</p>
 
-      <p class="post">I've held positions with Manulife, Mercer, and Canada Mortgage & Housing Corporation covering pricing, valuation, pension consulting, and risk oversight. After a stint at a financial startup, I went back to school to learn full-stack web development. I'm currently preparing for the CFA Level II (VEE Statistics) while seeking gainful employment. I wouldn't say I've seen it all, but I've been around. Hence, the rules of the 'guide' are meant to apply broadly (private & government, consulting & reporting).</p>
+    <p class="post">I've held positions with Manulife, Mercer, and Canada Mortgage & Housing Corporation covering pricing, valuation, pension consulting, and risk oversight. After a stint at a financial startup, I went back to school to learn full-stack web development. I'm currently preparing for the CFA Level II (VEE Statistics) while seeking gainful employment. I wouldn't say I've seen it all, but I've been around. Hence, the rules of the 'guide' are meant to apply broadly (private & government, consulting & reporting).</p>
 
-      <p class="post">One last preface. In no way do I mean to imply a 'higher than though' tone in this epitome.
-        <code>"I have a lot of beliefs and I live by none of [them]. I just like believing them. They make me feel good about who I am. But if they get in the way of a thing I want, I do that." - Louis C.K.</code></p>
+    <p class="post">One last preface. In no way do I mean to imply a 'higher than though' tone in this epitome.
+      <code>"I have a lot of beliefs and I live by none of [them]. I just like believing them. They make me feel good about who I am. But if they get in the way of a thing I want, I do that." - Louis C.K.</code></p>
       <ul>
         <li>Actuarial exams will dominate your time, but will play a small role preparing you for your job. <code>"Don't hire an 'A' student unless you want them to write tests." - Taleb.</code> </li>
         <li>At times, you'll make the correct decision to not go out and study. Many times, you'll make the incorrect decision to stay in and not go out. Exam success and a social life are not mutually exclusive. <code>"If you want something done, ask a busy person." - Franklin</code> </li>
@@ -87,11 +87,11 @@
       <p class="post">Anyway, to dicuss how we might construct this algorithm, it is best to illustrate this with an example. The syntax below is consistent with how you would build a dictionary in python.</p>
       <ul>
         <code>
-        <li><code>choreA = {:price => '$12', :bids => 2, :description => 'dishes'}</code></li>
-        <li><code>choreB = {:price => '$5', :bids => 0, :description => 'garbage'}</code></li>
-        <li><code>choreC = {:price => '$8', :bids => 3, :description => 'walk dog'}</code></li>
-        <li><code>chores = {:total => '$25', :coverage => false}</code></li>
-        <li><code>kids = [:sally=>['dishes' 'walk dog'], :jessie=>['walk dog'], :raphael=>['dishes', 'walk dog']</code></li>
+          <li><code>choreA = {:price => '$12', :bids => 2, :description => 'dishes'}</code></li>
+          <li><code>choreB = {:price => '$5', :bids => 0, :description => 'garbage'}</code></li>
+          <li><code>choreC = {:price => '$8', :bids => 3, :description => 'walk dog'}</code></li>
+          <li><code>chores = {:total => '$25', :coverage => false}</code></li>
+          <li><code>kids = [:sally=>['dishes' 'walk dog'], :jessie=>['walk dog'], :raphael=>['dishes', 'walk dog']</code></li>
         </code>
       </ul>
       <p class="post">No one wants to do the garbage, and everyone wants to walk the dog. How might prices adjust? Naturally, garbage increases and walking the dog decreases. Notice that dishes also has 2 bids. We could adjust this price downward and add the difference to garbage. How's this.</p>
@@ -122,7 +122,7 @@
         <li><b>More Chores!:</b> Allow your children to propose additional chores they wish to complete. Choose to accept, reject, or counter offer.</li>
       </ul>
       <div style="width: 100%; margin: 0 auto; text-align: center">
-      Project Status: <progress max="1" value="0.2" style='width: 50%'></progress>
+        Project Status: <progress max="1" value="0.2" style='width: 50%'></progress>
       </div>
 
       <p class="title" style="margin-top: 20px">Financial Trickery<span class="date">4/1/2014</span></p>
@@ -134,12 +134,12 @@
       <p class="post"><b><em>The big picture. </em></b>I'm interested in building a model that generates probabilities of drawing a room in a sublet lottery in python. This is motivated by my experience at <b><a href="http://bitmakerlabs.com/" target="_blank">Bitmaker Labs</a></b> in Toronto. The company leases property to sublet to students from out of town. However, DEMAND >> SUPPLY. Therefore, understanding the likelihood of drawing a room from Bitmaker Labs will influence the decision to look for property elsewhere. Bitmaker Labs is currently piloting a rental arrangement with one condo with 4 rooms.</p>
       <p class="post"><b><em>Our example.</em></b> 17 students need housing. Only 4 rooms (A,B,C,D) are available. Each room is slightly different, and are thus offered at different prices ($2,000, $2,375, $2,875, $3,375). Every individual is allowed to bid on any number of the rooms with a binary indicator (yes/no). Therefore, it is legitimate to have Jon request A and B, and Jen to request C and B, and Tina request B, C, and D. But they may be assigned at most one room. Our example is illustrated below:</p>
 
-        <div class="note"><b>Note: </b>A (non-randomly) generated input with the following condition: if an individual bids on more than one room, the bids must be adjacent (i.e you can bid on A&B, not A&D, unless A&B&C&D). This will likely not hold in practice, but it produces some interesting results, and guides our post mortem discussion and analysis.</div>
+      <div class="note"><b>Note: </b>A (non-randomly) generated input with the following condition: if an individual bids on more than one room, the bids must be adjacent (i.e you can bid on A&B, not A&D, unless A&B&C&D). This will likely not hold in practice, but it produces some interesting results, and guides our post mortem discussion and analysis.</div>
 
-        <p class="post">If we draw with replacement, computing the probability of being assigned a room is relatively straight forward. Simply:<div style="width: 100%; margin: 0 auto; text-align: center">1 - ( 1-P(A) )*( 1-P(B) )*( 1-P(C) )*( 1-P(D) )</div></p>
-        <p class="post">The expected probabilities for each individual using this method is shown below.</p>
+      <p class="post">If we draw with replacement, computing the probability of being assigned a room is relatively straight forward. Simply:<div style="width: 100%; margin: 0 auto; text-align: center">1 - ( 1-P(A) )*( 1-P(B) )*( 1-P(C) )*( 1-P(D) )</div></p>
+      <p class="post">The expected probabilities for each individual using this method is shown below.</p>
 
-        <p class="post" style="padding-bottom: 0px; margin-bottom: 0px"> The table below is meant to give some insight into an individual's sensitivity to price, and how demand is distributed accross product categories. Note the difference in price between Room A and Room D; it's $1,375. If individuals are price sensitive we should expect to see fewer people bidding on Room A and Room D (A&D), than say, Room A and Room B (A&B), where the differential is smaller (only $375). If you look at the 'Counts' table below, you'll notice that A&D < A&B => Pr(A&D) < Pr(A&B). What might we expect it there are individuals with 'high end' tastes? In this case, you might see people are more likely to bid on Room D and Room C, than Room D and Room A. Again, in the table below, you'll notice that A&D < C&D => Pr(A&D) < Pr(C&D). In our example, the differences are material; 18% vs 47% respectively</p>
+      <p class="post" style="padding-bottom: 0px; margin-bottom: 0px"> The table below is meant to give some insight into an individual's sensitivity to price, and how demand is distributed accross product categories. Note the difference in price between Room A and Room D; it's $1,375. If individuals are price sensitive we should expect to see fewer people bidding on Room A and Room D (A&D), than say, Room A and Room B (A&B), where the differential is smaller (only $375). If you look at the 'Counts' table below, you'll notice that A&D < A&B => Pr(A&D) < Pr(A&B). What might we expect it there are individuals with 'high end' tastes? In this case, you might see people are more likely to bid on Room D and Room C, than Room D and Room A. Again, in the table below, you'll notice that A&D < C&D => Pr(A&D) < Pr(C&D). In our example, the differences are material; 18% vs 47% respectively</p>
 
       <p class="title" style="margin-top: 20px">Eureka!<span class="date">3/25/2014</span></p>
       <p class="post">Well, you know what they say. "If at first you don't succeed,: Try, <span style="text-decoration:line-through">try</span>, <span style="text-decoration:line-through">try</span> again." I figure in some contexts trying 3 times after you've failed borders on unacceptable. I'm testing the boundaries to see if this is one of those times. I essentially re-applied to the same position a day after being turned down. You'd be right in guessing that my experience, education, or fit didn't change over night. Only my resolve. Ideally, I'd be a talented enough programmer to code a beautiful <a href = "steps.html" target="_blank"><b>data visualization</b></a> to prove my chops for this position. Instead, excel pervades most of actuarial science, and as such, I remain unconvinced that my <a href = "tax_calculator.xlsm" target="_blank"><b>tax calculator</b></a> would elicit much "ooooing and aaaaaing". So after years of writing songs about nothing to no one, I figured the thing I could best pull together in a weekend was a rap song. Because, if you couldn't tell from my bitstrip avatar, I'm a sucker (MC).</p>
@@ -150,7 +150,7 @@
       </div>
 
       <p class="post">Suspend your disbelief - the strategy worked. I was given the opportunity to visit Shopify's offices in Ottawa, and speak to someone who leads a group of Data Analysts. Their offices are inspiring, they're up on the latest tech (ipad name label generator!?), and they hire people who literally write books on <b><a href="https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers" target="_blank">Bayesian Statistics</a></b>. So, I'm keeping my fingers crossed that I can join their ranks, and have the opportunity to work alongside people who are so passionate about what they do. In the mean time, I'll be turning my attention towards python from ruby, as it looks like there are tremendous advantages for data analysts. As I'll be writing the CFA Level II exam in June, this blog will likely touch on topics that combine my endevours in python and finance, so stay tuned.</p>
-      <p class="post"><b>Update: </b>Sadly, I didn't get the position.<br><em>"And then I got high" - Afroman</em></p>
+      <p class="post"><b>Update: </b>Sadly, I didn't get the position. All is not lost as I feel I'm on the right path. Upwards and onwards.</p>
 
       <p class="title" style="margin-top: 20px">Migrations in Rails<span class="date">3/12/2014</span></p>
       <p class="post">Model, view, controller generation and database modifications for creating an Expense class.</p>
@@ -367,9 +367,9 @@
   </ul>
 </div>
 
-<p class="title">Lazy Sunday<span class="date">2/2/2014</span></p>
-<p class="post">So, today's the Big Game Day (god forbid I use superbowel. God forbid I use god. I digress.) Against my better judgement, depending on how you look at it, I've decided to do the honourable thing and spend a lazy Sunday studying rails and generally getting caught up. One of the things I'm slowly trying to master is the ability to manipulate all necessary applications and functions directly from the keyboard. While it certainly takes a fair bit of up front effort, you'll find that over time, if you stay disciplined, you fingers will catch up with your brain and it will become second nature. Atleast, that's what I keep telling myself. So this post I wanted to review the handful of shortcuts that I'm trying to introduce into my workflow, and thus are the ones I need to remind myself of. I'm starting out ambitiously, as I hope to cover several applications (unix, sublime text, chrome, git, mac os). So this will mostly act as a resource for me, but I hope it may provide some shortcuts that you find helpful.</p>
-<p class="post">First off, I hadn't heard of the command line until about 6 weeks ago. I am a child of the GUI, and having been presented with the option to point click, it's no doubt the easiest way to proceed navigating through your computers directories. However, it's a much more productive ue of time to learn these commands for use in the Command Line Interface (CLI). To launch 'Terminal' in Mac OS, hold 'command + spacebar' to bring up Spotlight. Type in 'Terminal' and hit 'enter'. This is a CLI. You can use it to rename, move, delete files, navigate directories and list their contents etc... There are a handful of core commands that represent about 90% of the tasks I typically need to complete. Mac OS uses unix, and so I will only be covering these commands.</p>
+<p class="title">Reviewery<span class="date">2/2/2014</span></p>
+<p class="post">Superbowl Sunday and I'm here reviewing. I suppose I'm thankful for not having <strong>any interest in football</strong>, though I do like that Sherman fellow. Over the last few weeks, I've been practicing manipulating applications, files, and folders from the command line. Staying disciplined is hard, especially if you want to get something done easily (with the gui). But, as I've focused on practicing, I've noticed my fingers slowly catching up to my brain. So, I'm going to post a quick review of Unix commands that I've found cover 80% of the things that are routine tasks you may be currently performing with your mouse.</p>
+<p class="post">To launch 'Terminal' in Mac OS, hold 'command + spacebar' to bring up Spotlight. Type in 'Terminal' and hit return. This is known as a command line interface. Since Mac OS is a Unix system, I'll be covering specifically Unix commands. If you often rename, move, delete files, and navigate directories in your daily work, combining the handful of commands below will make you ever the more agile.</p>
 
 <div class="application">Unix</div>
 <div class="shortcuts">
@@ -393,6 +393,20 @@
     <li><b>nano ~/.bash_profile:</b> launch bash_profile to <a href="http://www.maclife.com/article/columns/terminal_101_creating_aliases_commands" target="_blank"><u>create an alias</u></a></li>
   </ul>
 </div>
+
+<p class="title">Letting it all Sink In<span class="date">1/30/2014</span></p>
+<p class="post">Part of the trouble with condensed course like BitmakerLabs is there is little time for ideas to distill. Sometimes, clarity comes after a long walk, hot shower, or a thought that shakes you awake, revealing in beautiful detail the solution to a problem you've been staring at for the last 10 hours. I have found that things that look simple and beautiful are the most complex to build. I toiled for 6 hours on this website in an attempt to center multiple blocks of content in the banner. In technical terms, there remain multiple divs within another div, and I was looking to center-align those "inner-divs". After posting my frustrations on this blog, a friend (and developer) responded to my complaints by sending me <strong><a href="http://vimeo.com/43380467" target="_blank">this video</a></strong> by <strong><em><a href="http://en.wikipedia.org/wiki/Zed_Shaw" target="_blank">Zed A. Shaw</a></em></strong>. As it turns out, centering content <strong>is no easy task.</strong> At 8:45 he goes on to say:</p>
+
+<blockquote>"Why can't I center $hit? If I (expletive) say center, (expletive) center it. Don't make me do margin auto left zero blaaahhh"</blockquote>
+
+<p class = "post">So what did I learn? Only that CSS continues to mystify even the most adept programmers. In a twisted way, it's comforting.</p>
+
+<p class="title">Hoooove<span class="date">1/25/2014</span></p>
+<p class="post">You couldn't ask for a better weekend. My Christmas gift this year was to fly to Montreal to meet my girlfriend for the Jay-Z concert at the Bell Centre. I've had my head buried in the sand with this whole web thing, so I can't say that I flew into Montreal with great anticipation. I've found that this approach often yields better experiences, because you hold no/low expectations. All I know is that Jay-Z is a monster (his words, not mine), and he'll put on one helluva show.</p>
+<p class="post">Well, you're damn right he did. The concert was phenomenal. You may wonder - who opens for Jay-Z? Nobody. That's how badass he is. Getting to open for Jay-Z is not an honour. No one is there to see you. And there is nothing that you could do that will make this crowd believe that it's remotely as entertaining as what Jay-Z has in store. So thank you, Jay-Z, for not punishing anyone with the dubious duty of opening for you.</p>
+<p class="post">Here's the part that got me. There was a video of a child <b><a href="http://www.youtube.com/watch?v=BA5D-WEcNGA" target="_blank">prodigy</a></b> circulating in highschool ripping it on the drums. Turns out, 10 years later, Tony Royster Jr. (said prodigy) is backing up Jay-Z</b>. He also plays/owns/defeats the <b><a href="http://www.youtube.com/watch?v=kKLTmBJzVJw" target="_blank">electric drums</a></b>. It would be worth seeing Tony Royster Jr. alone for an hour. I would most definitely brush the dirt off that man's shoulders.</p>
+
+<p class="title">Can I Git a What What?<span class="date">1/12/2014</span></p>
 
 <p class="post">Git + Github is awesome once you get the hand of it. A universally adored version control manager.</p>
 
@@ -451,63 +465,54 @@
   </ul>
 </div>
 
-<p class="title">C'est la Vie<span class="date">1/30/2014</span></p>
-<p class="post">Part of the trouble with a bootcamp of this nature is that there is little time for ideas to distill with the end user. Sometimes, it takes a long walk on cold night (and hell, it has been cold here), followed by a hot shower that sparks a revelation, in beautiful detail, the solution to a problem you've been staring at for the last 10 hours. I have found, and I hope other out there can holler back at me, that getting started in this whole "cool man, I'm a build a awesome web app" is no easy breeze. I want to see all the stock footage of Bill Gates sucking it up on seemingly simple problems. And then, through stop motion film, show how many damn hours he put into solving his problems. Did you hear that Will.I.Am is at MIT studying computer science because he's convinced you'll be a ninja with the skill set? Well, there's not a lot that me and Will.I.Am agree on. But, I certainly feel naked in this age to not know how to program even the simplest of apps. And so, the ideas keep piling up. Now, in the spirit of sharing not just sucesses, but 'failures' (lessons learned), I'll share something that presented a major challenge. </p>
-<p class ="post">I toiled for 6 hours (because, why not) on my ever so simple website trying to center content. Yes. That's right. Centering content. You know when you're building a simple website, and you ask your developer, "Hey, can you, you know, center the content?" - you'd expect - "Heh heh... uh yeah. Duh. *arrogant clackity typing noises* DONE!" Well, if I was your developer that would have taken me 6 hours. I'd like to say I learned a lot about html. And I did. And I'd like to tell you that I will proceed to review what I learned with you. Well, I'm not. I learned that you can't center content in a div tag. You know what else I learned? I don't know how to type /div/ tag with the typical <> brackets without breaking something. I need to learn that tomorrow.</p>
+<p class="title">Why am I doing this!?<span class="date">1/12/2014</span></p>
 
-<p class="title">H to the Izzo<span class="date">1/25/2014</span></p>
-<p class="post">You couldn't ask for a better weekend. My Christmas gift this year was to fly to Montreal to meet my girlfriend for the Jay-Z concert at the Bell Centre. I've had my head buried in the sand with this whole learning to code thing, so I can't say that I flew into Montreal with great anticipation. I've found that this approach often yields surprising experiences, because you hold no expectations. All I know is that Jay-Z is a monster, and he'll put on a rediculous show.</p>
-<p class="post">Well, you damn right he did. The concert was phenomenal. You may wonder who opens for Jay-Z. Nobody. That's how badass he is. Getting to open for Jay-Z is not an honour. It's a sentence. No one is there to see you. And there is nothing that you could do that will make this crowd believe that it's remotely as entertaining as what Jay-Z has in store. So thank you, Jay-Z, for not punishing anyone with the dubious duty of opening for you.</p>
-<p class="post">So here's the part that got me. I discovered a video of a child <b><a href="http://www.youtube.com/watch?v=BA5D-WEcNGA" target="_blank">prodigy</a></b> back in high school playing a drum solo. Turns out, 10 years later, Tony Royster Jr. (said prodigy) is backing up Jay-Z</b>. He also plays/owns/defeats the <b><a href="http://www.youtube.com/watch?v=kKLTmBJzVJw" target="_blank">electric drums</a></b>. It would be worth seeing Tony Royster Jr. alone for an hour. It certainly looks like he could put on a show. But this is Jay-Z, and it doesn't just stop at having one of the world's greatest drummers backing you up. You also have one of rap's most prolific producers, Timberland. His songs are inescapeable. SexyBack. Holy Grail. Mirrors. Work it. You know him. And he's awesome. He played the keys and was an all around homey g. Little did I know Jay and him had a <b><a href="http://www.youtube.com/watch?v=AjLGl5VxSRg" target="_blank">beef</a>. </b>Glad they patched that shizz up.</p>
-<p class="post">When Jay-Z arrived, the crowd went nuts. It was an honour to get to stand in the same room as that guy for an hour, let alone see him rip it up as if this is his first time playing to a crowd this size. There's something magical about the way this guy performs and commands a room. I would most definitely brush the dirt off that man's shoulders.</p>
+<p class="post">I became interested in the potential opportunities for someone in my situation (actuarial science) to learn to program on a non-traditional actuarial platform (the web) in 2011. Many of the business processes I encountered could be boiled down to a set of instructions. As was the case, algorithms were of great help - <b><em>when they were developed</em></b>. In the insurance industry, a host of pricing, valuation, and reporting processes are procedural tasks completed by overworked analysts. Download data, format data, summarize data, visualize data, email data, <em>add commentary</em>, repeat. Of course, most of this can be automated. And while algorithms require thoughtful development, maintenence, and oversight, it is far more interesting work than the veritable 'digging holes' of repetitive financial assignments.</p>
 
-            <!-- <p class="title">First Day<span class="date">1/13/2014</span></p>
-            <p class="post">Officially day 1 in Bitmaker Labs. Very impressive space, very confident team. If you've been fortunate enough to work in the beaurocracy of a large corporation, then perhaps the first thing will strike you is how much got accomplished by this relatively small group of people. Amazingly, only 5 cohorts in (1 yearish), they will be moving to a new space twice its current size at the end of February.</p>
-            <p class="post">There's some evidence that suggests that when recessions hit, some of those individuals that find themselves left in the wilderness learn how to hunt. Really well. Put another way, there's the old joke "How do you get an individual to reach his full potential? Fire her." With that said, it certainly feels as though most people who have made it this far (quit their job to learn development) are testing whether or not they'll be able to forage for edibles. That's the first observation. The second is that people are not learning to code for the first time. Many of tried and "failed" before, and I certainly count myself in both groups.</p>
-            <p class="post">I often relay this example, but I was forced to take an "Intro to Computer Science", or intro to Java as a requisite to graduate, and I was terrible at it. So difficult in fact, that I proactively avoided having to learn it. The syntax was overwhelming. The classifications were confusing and the potential to create something that could provide some utility outside of adding to numbers, or saying "Hello" seemed out of hand. So, what prompted the change of heart?</p>
-            <p class="post">YOu can do amazing things with software. One of my favourite authors, Nassim Taleb, </p> -->
+<p class="post">This isn't much of a segue, but it turns out what keeps employees faithful are assignments that allow for autonomy, command mastery, and have definitive purpose. I hope my gamble to learn web development empowers me to seek job opportunities with similar features. I wish you the same!</p>
 
-            <p class="title">Look mah, progress!<span class="date">1/12/2014</span></p>
-            <p class="post">I was able to find a parking spot for the next 3 days at my sissies. So, I've bought myself some time without having to pay a shizzload extra on parking during my short stay here. I remember how awesome the London underground was (admittedly, I didn't use it that often), and how hopeful I am for a duplicate experience on the TTC. So it's unfortunate the number of directions I'm finding with, "get of at adelaide, and then walk a shizz ton to your destination." Toronto. Do us proud. Build a bitchin' underground. I'll be your biggest fan.</p>
-            <p class="post">I got a nosebleed this morning. Well, I blew my nose and blood came out. Naturally, I thought it was cancer. So I'll fret about having nose cancer until something else starts to ail me. I ate bad fish and thought I had bowel cancer. Anyway, I don't think I have cancer. But you'll need to ask me tomorrow. Stupid cancer.</p>
-            <p class="post">I want to metion at this point how free it feels to write. I'm recalling these experiences in grade 5 where our teacher forced us to journal for 15 minutes at the end of the day. I think it's a worthy exercise. Writing often demands not a creative impulse, but a deadline. I'm most interested in witnessing whether some of my most closely held views will be challenged over this period. I'm sure I have some preconceived notions of what software can accomplish, and what it takes to prepare that software. I keep thinking, "I could do that". That, I guess, will be the real question.</p>
-            <p class="post">I like Toronto. I used to find it intimidating, but I feel comfortable here. Especially just wondering around, getting lost in the grid, and always finding something new to watch or wander to. Big citeeeh. Big citeeeeeh. Big citeeeeeh. And on that terrible finish, I'm out! Netflix, love me baby. </p>
+<div class="movie-container">
+        <iframe class="movie" width="660" height="365" src="//www.youtube.com/embed/u6XAPnuFjJc" frameborder="0" allowfullscreen></iframe>
+</div>
 
-            <p class="title">First post, shorty<span class="date">1/11/2014</span></p>
-            <p class="post">I'm not much of a writer, so I'm not going to hold myself to much of a standard in the course of this writing. The goal, broadly speaking, is simply to write. Produce. Conquer. Enjoy. There are no themes running through an entry. Just thoughts that enter my brain, and the ones that I can get down in (html) before the thought is lost and gone forever. Ooooo so deeeeep.</p>
-            <p class="post">Tonight is the first night I arrived in Toronto to begin a 10 week journey (well, lifelong I suppose) to learn to code. Once you've been in a situation where your job has been boiled down to a set of instructions, it seems more than likely that you're replaceable by "smart" code. And this is my attempt to stay one step ahead of the curve. I have these terrible visions of young whipper snappers, armed with their app making abilities, will make me irrelevent before I get the chance to prove otherwise. You have to be proactive. Gotta keep fighting brah. That seem like something rocky would say. I'm going to attribute it to him, even though it probably isn't. It's the internet brah. Spread it. "Gotta keep fighting brah" - Rocky</p>
-            <!-- <p class="post">In the course of my 5 years working in an actuarial/risk management capacity in financial institutions, I've made what appears to some as a sharp detour from my prior work into development. Were I to argue with them, my impression is that without the ability to relieve yourself of duties that you could instruct a computer to do with greater precision and timeliness, you'll never fully unleash your creativity. The more you're trapped in algorithmic work, the more you'll feel your soul, collapsing in on itself. </p> -->
-            <p class="post">Toronto is a beautiful city. I'm at an incredible location in the heart of downtown. I'd describe where that is to you, were I to know where I am. You see, I get lost easily. It must be a condition. I can't just wonder around a new city because I get lost and panic (London, Chicago, Montreal). Often, my walking will consist of walking up and down a long street. I suppose, fitting then, that Yonge St. is in Toronto. But in order to walk it, I need to find it. And my fear, in this cold, is that on my way to Yonge St., my phone will die, and I won't be able to find my way back. And you'll find me, 6 months later, homeless. Not because of addiction, or bad luck, but merely because I got lost. My phone died, I got lost, I got desperate, and now I've been milling about Toronto, unable to find shelter. This is why I walk up and down long streets instead of taking risky turns. In short, if you're wondering where I am, I don't know. But I can triangulate. I am somwhere between a starbucks, the royal albert hall, and the ritz carleton. Please don't steal my things. I leave the door unlocked because I don't have a key.</p>
-            <p class="post">There's a comedian, Ron White, playing at Royal Albert Hall on January 16th at 8 pm. It's basically a 2 minute walk from the lobby of this apartment. I have to keep reminding myself how short life is, and how nice it is sometimes, feeling like I'm in a somewhat foreign place, away from home, that these moments are times to enjoy those pleasures. I have no idea if anyone wants to see Ron White. But I know, atleast I think, barring checking ticket prices, that I sure as hell do. Perhaps hell is too strong. I sure as hell do, contingent on the price. Hey, look at that, they have tickets. Maybe I'll get one. I have a couple days to think about it. Right? Thursday? Money. Doing it.</p>
-            <p class="post">So, I have a hunkering for winding down the very first blog post of my awesome ass blog. Perhaps there will be edits as professional types may be taking a gander at my etiquette. All I'm hoping is that I spelled etiquette right. Spelled? Spelt? Hollar at me.</br></br></br></br></br></p>
-          </div>
-        </div>
-      </div>
+<p class="title">Blog, Bitmaker, and general Badassery<span class="date">1/11/2014</span></p>
+
+<blockquote style="font-size:16px">"Painters like to paint, where writers like to have written." - excerpt from Antifragile</blockquote>
+
+<p class="post">I'm not much of a writer, in that I was never naturally inclined to write for fun. Still, I find that there's tremendous value in documenting and revisiting your thoughts, feelings, and ideas to see how they (and you) evolve over time. So, to overcome my hesitation to write, I'm not going to hold myself to much of a standard. The goal, broadly speaking, is simply to write about what's on my mind. So why share it with the world? That's an interesting question. The main motivation is that I have personally benefited a great deal from other people sharing their work. I hope I can give back to the actuarial/data/coding community in some way by writing about what I'm learning and building. </p>
+
+<p class="post">Tonight is the first night I arrived in Toronto to begin a 10 week journey to add web development to my tool kit. My Codecadamy profile will attest to many long nights working through Javascript, HTML, Ruby and Python tutorials. With limited success learning the 'full-stack' on my own, I decided to investigate options to further my learning. That landed me at BitmakerLabs, an immersive 9-week course focusing on UNIX fundamentals, CSS, Ruby on Rails, HTML and JavaScript. In the course of my reading, I've since discovered that Ruby is object-oriented, a feature it shares with VBA (the language behind excel). I'm hopeful that I can draw on my experience programming and designing in excel to developing and deploying in rails.</p>
+
+<p class="post">I'll be staying with three fellow students for the duration of our 10-week stay, in the heart of downtown Toronto. I'd describe where that is to you, were I to know where I am. You see, I get lost easily. It must be a condition. I can't just wonder around a new city because I get lost and panic (London, Chicago, Montreal). Often, my walking will consist of walking up and down a long street. I suppose, fitting then, that Yonge St. is in Toronto. But in order to walk it, I need to find it. And my fear, in this cold, is that on my way to Yonge St., my phone will die, and I won't be able to find my way back. And you'll find me, 6 months later, dethawing and decaying under a bridge. Not because of addiction or violence, but merely because I got lost. This is why I walk up and down long streets instead of taking risky turns. In short, if you're wondering where I am, I don't know. But I can triangulate. I am somwhere between a starbucks, the royal albert hall, and the ritz carleton. Please don't steal my things. I leave the door unlocked because I don't have a key.</p>
+</br></br></br></br></br></p>
+</div>
+</div>
+</div>
 
 
-      <script type="text/javascript">
+<script type="text/javascript">
 
-      $(document).scroll(function(){
-        if($(window).scrollTop() > 126)
-        {
-          $('.top-nav').addClass('top-nav-scroll');
-          $('#space').show();
-          $('img').hide();
-          $('#name').hide();
-          $('.profile-details').addClass('profile-details-scroll');
-          $('.nav').addClass('nav-scroll');
-        }
-        else{
-          $('.top-nav').removeClass('top-nav-scroll');
-          $('#space').hide();
-          $('#name').show();
-          $('img').show();
-          $('.profile-details').removeClass('profile-details-scroll');
-          $('.nav').removeClass('nav-scroll');
-        }
-      });
-      </script>
+$(document).scroll(function(){
+  if($(window).scrollTop() > 126)
+  {
+    $('.top-nav').addClass('top-nav-scroll');
+    $('#space').show();
+    $('img').hide();
+    $('#name').hide();
+    $('.profile-details').addClass('profile-details-scroll');
+    $('.nav').addClass('nav-scroll');
+  }
+  else{
+    $('.top-nav').removeClass('top-nav-scroll');
+    $('#space').hide();
+    $('#name').show();
+    $('img').show();
+    $('.profile-details').removeClass('profile-details-scroll');
+    $('.nav').removeClass('nav-scroll');
+  }
+});
+</script>
 
-      <div href="#" id="toTop"></div>
-    </body>
-    </html>
+<div href="#" id="toTop"></div>
+</body>
+</html>
