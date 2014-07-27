@@ -8,7 +8,7 @@
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
   <link rel="stylesheet" href="css/andrewjbotros_style.css" type="text/css"/>
   <link rel="stylesheet" href="css/excel.css" type="text/css"/>
-  <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+  <script src="js/jquery-1.10.2.js"></script>
   <script src="js/jquery.tooltip.js"></script>
   <script src='js/scroll-to-top.js'></script>
   <script src='js/underscore-min.js'></script>
@@ -43,32 +43,44 @@
 
     <div id="space"></div>
     <div class="blog">
-<!--       1. Can you please explain your academic history? (University, SOA/CAS exams passed, etc.)
-      2. What made you decide to become an Actuary?
-      3. What made you decide to begin composing music?
-      4. Can you compare the two? (actuarial & music)
-      5. May you share with us your goals and aspirations in regards to either your Actuarial Career or your musical career?
+      <p class="title" style="margin-top: 20px">A Hack for Job Applicants<span class="date">4/15/2014</span></p>
+      <p class="post">I'll be upfront; I'm currently unemployed and looking for work. Searching for a job is a pain, and the process of crafting a customized cover letter for each application is tedious. This process drains time from what you really should be doing while unemployed; building your skills. So I wanted to build a web application that helps manage this process. Unfortunately, my ambitions far exceed my skills. Therefore, I am likely to break the discussion of this project into multiple posts, as my development will be iterative. Also, it will alow me to explore in greater detail some of the challenges I'm facing.</p>
+      <p class="post">The first problem I want to solve is relatively simple. Suppose I am in the market for an Actuarial Analayst position (I pick this example because I'm familiar with it). Let's further assume that the content of my cover letter does not change for each application, as the job descriptions are relatively uniform. In this case, I only need to change the company and position titles mentioned in my cover letter. My program will accept three arguments: cover_letter, current_job_details, new_job_details. It takes an exisiting cover_letter, and replaces the current_job_details with the new_job_details (position, company). So this program saves me some time creating the multiple documents I need. All I need is a cover letter (.txt), and a list of jobs I've found myself. Cool.</p>
+      <p class="post">But what happens when jobs descriptions vary? Perhaps this would motivate you to change your cover letter to better suit the position. Suppose one class of jobs requires 'pension' experience, while another class requires 'pricing' experience. Assume you have both. Your cover letter should be modified to discuss the relevant experience. Our simple program above would need major modifications to accomodate this caveat. We no longer require one cover letter, but a set of 'experiences' that can be interchanged. Luckily, cover letters have structure. Let's start with a simple example.</p>
+      <p class="post">Suppose my cover_letter has three paragraphs; intro, experience, conclusion. Continuing from above, one set of applications will be of the form (intro, pension_experience, conclusion) while the other will be of the form (intro, pricing_experience, conclusion). In this case, I no longer have a cover letter. I have a structure which takes 3 arguments (intro, experience, conclusion) to <b><em>produce</em></b> a cover letter.</p>
+      <p class="post">Under these circumstances, parsing cover letters becomes a critical component of the application. The text in a cover letter needs to be mapped to a predefined structure (intro, experience, conclusion). How can you tell what text goes where? Are paragraphs a good proxy for splitting a document? What if the cover letter has more (or less) than 3 paragraphs? Things begin to fall apart.</p>
 
-      Many thanks,
-      Hadi -->
+      <p class="post">We can't directly parse any given cover letter to a predefined structure (intro, experience, conclusion) because not every user will follow that convention. But we <b><em>can</em></b> parse a cover letter in another way; paragraphs, sentences, words. Now, the user needs to identify which elements are variant, and how text will ultimately be grouped to accord with our (intro, experience, conclusion) structure. See below:
+        <ul>
+          <li>single words ("Sunlife" => "Manulife")</li>
+          <li>single words ("Excel" => "GGY Axis")</li>
+          <li>sentences ("I am applying to work at Sunlife." => "I would love to join Sunlife.")</li>
+          <li>sentences ("I have 5 years experience in Excel." => "I work daily in Excel.")</li>
+          <li>paragraphs ("I am applying to work at Sunlife. I have 5 years experience in Excel." => "I would love to join Manulife. I work daily in GGY Axis." </li>
+          </li>
+
+        </ul>
+      </p>
+      <p class="post">Now we're starting to see how a cover letter might be modified to correspond to a particular job posting. Notice above how each word, sentence, or paragraph can be further classified. Sunlife and Manulife are <b>Companies</b>. The sentences describe <b><em>what you're applying to</em></b> and your relevant <b>experience.</b></p>
+
       <p class="title" style="margin-top: 20px">Actuarial Survival Guide<span class="date">4/3/2014</span></p>
       <p class="post">I just turned 29 yesterday. Scary. It's been over 6 years since I graduated (B.Sc Math, didn't cum laude), and 8 years since I wrote my first actuarial exam (I failed). While I was originally asked to write about my endevours in actuarial musical composition (google: actuarial girlfriend), it felt a little self-serving. I have resigned to the fact that I will remain; anti-viral. Instead, my old age prompted a sincere reflection on all that I've learned since entering the workforce 6 years ago. I was hoping to codify these lessons into a concise 'survival guide' for actuarial graduates.</p>
 
       <p class="post">I've held positions with Manulife, Mercer, and Canada Mortgage & Housing Corporation covering pricing, valuation, pension consulting, and risk oversight. After a stint at a financial startup, I went back to school to learn full-stack web development. I'm currently preparing for the CFA Level II (VEE Statistics) while seeking gainful employment. I wouldn't say I've seen it all, but I've been around. Hence, the rules of the 'guide' are meant to apply broadly (private & government, consulting & reporting).</p>
 
-      <p class="post">One last preface. In no way do I mean to imply a 'higher than though' tone in offering this advice.
+      <p class="post">One last preface. In no way do I mean to imply a 'higher than though' tone in this epitome.
         <code>"I have a lot of beliefs and I live by none of [them]. I just like believing them. They make me feel good about who I am. But if they get in the way of a thing I want, I do that." - Louis C.K.</code></p>
       <ul>
         <li>Actuarial exams will dominate your time, but will play a small role preparing you for your job. <code>"Don't hire an 'A' student unless you want them to write tests." - Taleb.</code> </li>
         <li>At times, you'll make the correct decision to not go out and study. Many times, you'll make the incorrect decision to stay in and not go out. Exam success and a social life are not mutually exclusive. <code>"If you want something done, ask a busy person." - Franklin</code> </li>
         <li>Learn to program. Surprisingly few actuaries are adept in open source software (ruby, python, javascript). 80% of your work can be made more efficient by harnessing the potential of software freely available to you. Take time to explore it. Participate in Hackathons in your community. Blog about models you built, data you mined, or programs you developed.</li>
-        <li>Start an informal meetup amongst colleagues. Most challenges you'll encounter will be application related (file dependencies, inconsistent naming conventions, repetitious code, cluttered design). Developing and sharing your improved excel templates, tools and macros will fundamentally change the way you do things. See if your employer will sponsor your meetup (office space, pizza, beer). If not, go ahead anyway. They may change their tune when they see the value from your group's efforts.</li>
+        <li>Start/join an informal meetup amongst colleagues. Most challenges you'll encounter will be application related (file dependencies, inconsistent naming conventions, repetitious code, cluttered design). Developing and sharing your improved excel templates, tools and macros will fundamentally change the way you do things. See if your employer will sponsor your meetup (office space, pizza, beer). If not, go ahead anyway. They may change their tune when they see the value from your group's efforts.</li>
         <li>Beauracracies are dumb. *Most* people are not. Do not conflate the two. I've unfairly chastised colleagues when their behaviour was consistent with corporate conventions.</li>
         <li>Your salary may not reflect your efforts. Don't let this bother you. <code>"Be so good they can't ignore you." - Martin. </code> <em>Corrollary:</em> You're not as good as you think you are.</li>
         <li>Don't give up (or give up, whatever). It took me 4 attempts to pass exam C. It hurt what little remained of my ego. But, your opportunities (and salary) improve if you get credentialed. Your FSA is like an international green card. Care to work in Europe, the US, Hong Kong? You can do that!</li>
         <li>It's a pretty sweet job. The profession is far from perfect. But, relatively speaking, it is sufficiently rewarding. You will encounter sloppy processes, bad bosses, and long hours. Do your best to improve your situation within your means. But, your circumstance is *likely* better than 90% of what else is available to you.</li>
       </ul>
-      <p class="post">There you have it; the actuarial survival guide. I hope it provides some relief in the trenches of the workplace. But I should be honest. I'm more interested in hearing about what you're up to. Have an idea you want to explore? Additional questions about the actuarial profession? Are you an aspiring actuary who codes!? Contact me @andrewjbotros and let's talk. Good luck!</p>
+      <p class="post">There you have it; the actuarial survival guide. I hope it provides some relief in the trenches of the workplace. But I should be honest. I'm more interested in hearing about what you're up to. Have an idea you want to explore? Additional questions about the actuarial profession? Are you an aspiring actuary who codes!? Contact me @andrewjbotros and let's talk. Oh, and good luck!</p>
       <p class="title" style="margin-top: 20px">The Economics of Household Chores<span class="date">4/1/2014</span></p>
       <p class="post">Every month, parents post a list of chores that they'd like their children to get done. Each chore is given an initial price. Each child can bid on any number of chores they wish to complete. Parents want all chores completed. How should the parents allocate their total cost amongst all chores that will induce their children to bid on the full list? This is the problem I want to solve. We're going to devise an algorithm that induces 'full coverage' by adjusting <b><em>relative</em></b> prices in the event chore(s) have no bids.</p>
       <div class="note"><b>On adjusting <em>relative</em> prices: </b>When we increase the price of one chore, we lower the price of another, such that total cost remains fixed. Varying total cost to induce 'full coverage' (hey kids, $10,000/month for chores?) certainly works. But we assume total cost is set sufficiently high that 'full coverage', if not present, can be achieved by finding the right price distribution. In the event the algorithm fails to induce 'full coverage', our view is the parents are cheap, the children formed a cartel, or there is one <b><em>nasty ass chore on that list.</em></b></div>
@@ -122,640 +134,12 @@
       <p class="post"><b><em>The big picture. </em></b>I'm interested in building a model that generates probabilities of drawing a room in a sublet lottery in python. This is motivated by my experience at <b><a href="http://bitmakerlabs.com/" target="_blank">Bitmaker Labs</a></b> in Toronto. The company leases property to sublet to students from out of town. However, DEMAND >> SUPPLY. Therefore, understanding the likelihood of drawing a room from Bitmaker Labs will influence the decision to look for property elsewhere. Bitmaker Labs is currently piloting a rental arrangement with one condo with 4 rooms.</p>
       <p class="post"><b><em>Our example.</em></b> 17 students need housing. Only 4 rooms (A,B,C,D) are available. Each room is slightly different, and are thus offered at different prices ($2,000, $2,375, $2,875, $3,375). Every individual is allowed to bid on any number of the rooms with a binary indicator (yes/no). Therefore, it is legitimate to have Jon request A and B, and Jen to request C and B, and Tina request B, C, and D. But they may be assigned at most one room. Our example is illustrated below:</p>
 
-      <div class="post">
-
-        <table style="text-align: center; width: 150%; margin: 0 auto; margin-left: 7em" border=0 cellpadding=0 cellspacing=0 width=679 style='border-collapse:
-        collapse;table-layout:fixed;width:679pt'>
-        <col width=65 style='width:65pt'>
-        <col width=29 style='mso-width-source:userset;mso-width-alt:1237;width:29pt'>
-        <col width=65 span=9 style='width:65pt'>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 width=65 style='height:16.0pt;width:65pt'></td>
-          <td width=29 style='width:29pt'></td>
-          <td width=65 style='width:65pt'></td>
-          <td width=65 style='width:65pt'></td>
-          <td width=65 style='width:65pt'></td>
-          <td width=65 style='width:65pt'></td>
-          <td width=65 style='width:65pt'></td>
-          <td width=65 style='width:65pt'></td>
-          <td width=65 style='width:65pt'></td>
-          <td width=65 style='width:65pt'></td>
-          <td width=65 style='width:65pt'></td>
-        </tr>
-        <tr height=18 style='height:18.0pt'>
-          <td height=18 class=xl66 style='height:18.0pt'></td>
-          <td class=xl66></td>
-          <td colspan=4 class=xl170 style='border-right:1.5pt solid black'>Demand</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=17 style='height:17.0pt'>
-          <td height=17 class=xl155 style='height:17.0pt'>Student</td>
-          <td class=xl156 style='border-left:none'>ID</td>
-          <td class=xl157 style='border-top:none;border-left:none'>A</td>
-          <td class=xl156 style='border-top:none;border-left:none'>B</td>
-          <td class=xl156 style='border-top:none;border-left:none'>C</td>
-          <td class=xl158 style='border-top:none;border-left:none'>D</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=17 style='height:17.0pt'>
-          <td height=17 class=xl159 style='height:17.0pt'>Bob</td>
-          <td class=xl152 align=right style='border-left:none'>1</td>
-          <td class=xl153 style='border-left:none'>0</td>
-          <td class=xl154 style='border-left:none'>0</td>
-          <td class=xl154 style='border-left:none'>x</td>
-          <td class=xl160 style='border-left:none'>x</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>James</td>
-          <td class=xl149 align=right style='border-top:none;border-left:none'>2</td>
-          <td class=xl150 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>0</td>
-          <td class=xl162 style='border-top:none;border-left:none'>0</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Jessie</td>
-          <td class=xl149 align=right style='border-top:none;border-left:none'>3</td>
-          <td class=xl150 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl162 style='border-top:none;border-left:none'>0</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Jim</td>
-          <td class=xl149 align=right style='border-top:none;border-left:none'>4</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl162 style='border-top:none;border-left:none'>0</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Joe</td>
-          <td class=xl149 align=right style='border-top:none;border-left:none'>5</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl162 style='border-top:none;border-left:none'>x</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Jon</td>
-          <td class=xl149 align=right style='border-top:none;border-left:none'>6</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl151 style='border-top:none;border-left:none'>0</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl162 style='border-top:none;border-left:none'>x</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Jon</td>
-          <td class=xl149 align=right style='border-top:none;border-left:none'>7</td>
-          <td class=xl150 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>0</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl162 style='border-top:none;border-left:none'>x</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Mary</td>
-          <td class=xl149 align=right style='border-top:none;border-left:none'>8</td>
-          <td class=xl150 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>0</td>
-          <td class=xl162 style='border-top:none;border-left:none'>0</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Paul</td>
-          <td class=xl149 align=right style='border-top:none;border-left:none'>9</td>
-          <td class=xl150 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl162 style='border-top:none;border-left:none'>0</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Peter</td>
-          <td class=xl149 align=right style='border-top:none;border-left:none'>10</td>
-          <td class=xl150 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl162 style='border-top:none;border-left:none'>x</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Sally</td>
-          <td class=xl149 align=right style='border-top:none;border-left:none'>11</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl162 style='border-top:none;border-left:none'>x</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Stuart</td>
-          <td class=xl149 align=right style='border-top:none;border-left:none'>12</td>
-          <td class=xl150 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>0</td>
-          <td class=xl151 style='border-top:none;border-left:none'>0</td>
-          <td class=xl162 style='border-top:none;border-left:none'>0</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Tara</td>
-          <td class=xl149 align=right style='border-top:none;border-left:none'>13</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl162 style='border-top:none;border-left:none'>x</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Tegan</td>
-          <td class=xl149 align=right style='border-top:none;border-left:none'>14</td>
-          <td class=xl150 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl162 style='border-top:none;border-left:none'>0</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Tim</td>
-          <td class=xl149 align=right style='border-top:none;border-left:none'>15</td>
-          <td class=xl150 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>0</td>
-          <td class=xl151 style='border-top:none;border-left:none'>0</td>
-          <td class=xl162 style='border-top:none;border-left:none'>0</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl161 style='height:16.0pt;border-top:none'>Todd</td>
-          <td class=xl149 align=right style='border-top:none;border-left:none'>16</td>
-          <td class=xl150 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>x</td>
-          <td class=xl151 style='border-top:none;border-left:none'>0</td>
-          <td class=xl162 style='border-top:none;border-left:none'>0</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl163 style='height:16.0pt;border-top:none'>Tom</td>
-          <td class=xl164 align=right style='border-top:none;border-left:none'>17</td>
-          <td class=xl165 style='border-top:none;border-left:none'>x</td>
-          <td class=xl166 style='border-top:none;border-left:none'>x</td>
-          <td class=xl166 style='border-top:none;border-left:none'>x</td>
-          <td class=xl167 style='border-top:none;border-left:none'>x</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl89 style='height:16.0pt'>Total:</td>
-          <td align=right>0</td>
-          <td class=xl69 align=right>11</td>
-          <td align=right>12</td>
-          <td align=right>12</td>
-          <td align=right>8</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-        <tr height=15 style='height:15.0pt'>
-          <td height=15 class=xl89 style='height:15.0pt'>Total(%)</td>
-          <td class=xl69 align=right>0</td>
-          <td class=xl98>65%</td>
-          <td class=xl98>71%</td>
-          <td class=xl98>71%</td>
-          <td class=xl98>47%</td>
-          <td colspan=5 style='mso-ignore:colspan'></td>
-        </tr>
-      </table>
-      </div>
-
         <div class="note"><b>Note: </b>A (non-randomly) generated input with the following condition: if an individual bids on more than one room, the bids must be adjacent (i.e you can bid on A&B, not A&D, unless A&B&C&D). This will likely not hold in practice, but it produces some interesting results, and guides our post mortem discussion and analysis.</div>
 
         <p class="post">If we draw with replacement, computing the probability of being assigned a room is relatively straight forward. Simply:<div style="width: 100%; margin: 0 auto; text-align: center">1 - ( 1-P(A) )*( 1-P(B) )*( 1-P(C) )*( 1-P(D) )</div></p>
         <p class="post">The expected probabilities for each individual using this method is shown below.</p>
 
         <p class="post" style="padding-bottom: 0px; margin-bottom: 0px"> The table below is meant to give some insight into an individual's sensitivity to price, and how demand is distributed accross product categories. Note the difference in price between Room A and Room D; it's $1,375. If individuals are price sensitive we should expect to see fewer people bidding on Room A and Room D (A&D), than say, Room A and Room B (A&B), where the differential is smaller (only $375). If you look at the 'Counts' table below, you'll notice that A&D < A&B => Pr(A&D) < Pr(A&B). What might we expect it there are individuals with 'high end' tastes? In this case, you might see people are more likely to bid on Room D and Room C, than Room D and Room A. Again, in the table below, you'll notice that A&D < C&D => Pr(A&D) < Pr(C&D). In our example, the differences are material; 18% vs 47% respectively</p>
-
-        <table border=0 cellpadding=0 cellspacing=0 width=679 style='border-collapse:
-        collapse;table-layout:fixed;width:98%;margin: 0 auto'>
-        <tr height=15 style='height:15.0pt'>
-          <td height=15 colspan=11 style='height:15.0pt;mso-ignore:colspan'></td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 colspan=11 style='height:16.0pt;mso-ignore:colspan'></td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td colspan=11 height=16 class=xl173 style='border-right:1.0pt solid black;
-          height:16.0pt'>Counts</td>
-        </tr>
-        <tr height=17 style='height:17.0pt'>
-          <td height=17 class=xl176 style='height:17.0pt'>A&amp;B</td>
-          <td class=xl177 style='border-left:none'>A&amp;C</td>
-          <td class=xl177 style='border-left:none'>A&amp;D</td>
-          <td class=xl177 style='border-left:none'>B&amp;C</td>
-          <td class=xl177 style='border-left:none'>B&amp;D</td>
-          <td class=xl177 style='border-left:none'>C&amp;D</td>
-          <td class=xl178 width=65 style='border-left:none;width:65pt'>A&amp;B&amp;C</td>
-          <td class=xl178 width=65 style='border-left:none;width:65pt'>A&amp;B&amp;D</td>
-          <td class=xl178 width=65 style='border-left:none;width:65pt'>A&amp;C&amp;D</td>
-          <td class=xl178 width=65 style='border-left:none;width:65pt'>B&amp;C&amp;D</td>
-          <td class=xl179 width=65 style='border-left:none;width:65pt'>A&amp;B&amp;C&amp;D</td>
-        </tr>
-        <tr height=17 style='height:17.0pt'>
-          <td height=17 class=xl180 style='height:17.0pt;border-top:none'>0</td>
-          <td class=xl181 style='border-top:none;border-left:none'>0</td>
-          <td class=xl181 style='border-top:none;border-left:none'>0</td>
-          <td class=xl181 style='border-top:none;border-left:none'>0</td>
-          <td class=xl181 style='border-top:none;border-left:none'>0</td>
-          <td class=xl181 style='border-top:none;border-left:none'>1</td>
-          <td class=xl181 style='border-top:none;border-left:none'>0</td>
-          <td class=xl181 style='border-top:none;border-left:none'>0</td>
-          <td class=xl181 style='border-top:none;border-left:none'>0</td>
-          <td class=xl181 style='border-top:none;border-left:none'>0</td>
-          <td class=xl182 style='border-top:none;border-left:none'>0</td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl184 style='border-top:none;border-left:none'>0</td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl184 style='border-top:none;border-left:none'>0</td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl184 style='border-top:none;border-left:none'>0</td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl184 style='border-top:none;border-left:none'>0</td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl184 style='border-top:none;border-left:none'>0</td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl184 style='border-top:none;border-left:none'>0</td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl184 style='border-top:none;border-left:none'>0</td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl184 style='border-top:none;border-left:none'>0</td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl184 style='border-top:none;border-left:none'>1</td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl184 style='border-top:none;border-left:none'>0</td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl184 style='border-top:none;border-left:none'>0</td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl184 style='border-top:none;border-left:none'>0</td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl184 style='border-top:none;border-left:none'>0</td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl184 style='border-top:none;border-left:none'>0</td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl183 style='height:16.0pt;border-top:none'>1</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl150 style='border-top:none;border-left:none'>0</td>
-          <td class=xl184 style='border-top:none;border-left:none'>0</td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl185 style='height:16.0pt;border-top:none'>1</td>
-          <td class=xl165 style='border-top:none;border-left:none'>1</td>
-          <td class=xl165 style='border-top:none;border-left:none'>1</td>
-          <td class=xl165 style='border-top:none;border-left:none'>1</td>
-          <td class=xl165 style='border-top:none;border-left:none'>1</td>
-          <td class=xl165 style='border-top:none;border-left:none'>1</td>
-          <td class=xl165 style='border-top:none;border-left:none'>1</td>
-          <td class=xl165 style='border-top:none;border-left:none'>1</td>
-          <td class=xl165 style='border-top:none;border-left:none'>1</td>
-          <td class=xl165 style='border-top:none;border-left:none'>1</td>
-          <td class=xl186 style='border-top:none;border-left:none'>1</td>
-        </tr>
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 class=xl69 align=right style='height:16.0pt'>8</td>
-          <td class=xl69 align=right>6</td>
-          <td class=xl69 align=right>3</td>
-          <td class=xl69 align=right>9</td>
-          <td class=xl69 align=right>5</td>
-          <td class=xl69 align=right>8</td>
-          <td class=xl69 align=right>5</td>
-          <td class=xl69 align=right>2</td>
-          <td class=xl69 align=right>3</td>
-          <td class=xl69 align=right>5</td>
-          <td class=xl69 align=right>2</td>
-        </tr>
-        <tr height=15 style='height:15.0pt'>
-          <td height=15 class=xl98 style='height:15.0pt'>47%</td>
-          <td class=xl98>35%</td>
-          <td class=xl98>18%</td>
-          <td class=xl98>53%</td>
-          <td class=xl98>29%</td>
-          <td class=xl98>47%</td>
-          <td class=xl98>29%</td>
-          <td class=xl98>12%</td>
-          <td class=xl98>18%</td>
-          <td class=xl98>29%</td>
-          <td class=xl98>12%</td>
-        </tr>
-
-        <tr height=16 style='height:16.0pt'>
-          <td height=16 colspan=11 style='height:16.0pt;mso-ignore:colspan'></td>
-        </tr>
-        <tr height=17 style='height:17.0pt'>
-          <td height=17 colspan=2 style='height:17.0pt;mso-ignore:colspan'></td>
-          <td colspan=7 class=xl187 style='border-right:1.5pt solid black'>Conditional
-            Probability</td>
-            <td colspan=2 style='mso-ignore:colspan'></td>
-          </tr>
-          <tr height=16 style='height:16.0pt'>
-            <td height=16 colspan=2 style='height:16.0pt;mso-ignore:colspan'></td>
-            <td class=xl139>&nbsp;</td>
-            <td class=xl68></td>
-            <td class=xl68></td>
-            <td class=xl68></td>
-            <td class=xl68></td>
-            <td class=xl68></td>
-            <td class=xl197>&nbsp;</td>
-            <td colspan=2 style='mso-ignore:colspan'></td>
-          </tr>
-          <tr height=15 style='height:15.0pt'>
-            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
-            <td class=xl191>&nbsp;</td>
-            <td colspan=5 class=xl108>Each entry in the table corresponds to</td>
-            <td class=xl192>&nbsp;</td>
-            <td colspan=2 style='mso-ignore:colspan'></td>
-          </tr>
-          <tr height=15 style='height:15.0pt'>
-            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
-            <td class=xl191>&nbsp;</td>
-            <td colspan=5 class=xl107>P(Row Label | Column Label)</td>
-            <td class=xl192>&nbsp;</td>
-            <td colspan=2 style='mso-ignore:colspan'></td>
-          </tr>
-          <tr height=15 style='height:15.0pt'>
-            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
-            <td class=xl191>&nbsp;</td>
-            <td class=xl72></td>
-            <td class=xl72></td>
-            <td class=xl72></td>
-            <td class=xl72></td>
-            <td class=xl72></td>
-            <td class=xl192>&nbsp;</td>
-            <td colspan=2 style='mso-ignore:colspan'></td>
-          </tr>
-          <tr height=16 style='height:16.0pt'>
-            <td height=16 colspan=2 style='height:16.0pt;mso-ignore:colspan'></td>
-            <td class=xl191>&nbsp;</td>
-            <td class=xl69></td>
-            <td class=xl198>A</td>
-            <td class=xl198>B</td>
-            <td class=xl198>C</td>
-            <td class=xl198>D</td>
-            <td class=xl192>&nbsp;</td>
-            <td colspan=2 style='mso-ignore:colspan'></td>
-          </tr>
-          <tr height=15 style='height:15.0pt'>
-            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
-            <td class=xl191>&nbsp;</td>
-            <td class=xl92>A</td>
-            <td class=xl199>1.00</td>
-            <td class=xl200>0.67</td>
-            <td class=xl200>0.50</td>
-            <td class=xl200>0.38</td>
-            <td class=xl192>&nbsp;</td>
-            <td colspan=2 style='mso-ignore:colspan'></td>
-          </tr>
-          <tr height=15 style='height:15.0pt'>
-            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
-            <td class=xl191>&nbsp;</td>
-            <td class=xl92>B</td>
-            <td class=xl201>0.73</td>
-            <td class=xl97>1.00</td>
-            <td class=xl93>0.75</td>
-            <td class=xl93>0.63</td>
-            <td class=xl192>&nbsp;</td>
-            <td colspan=2 style='mso-ignore:colspan'></td>
-          </tr>
-          <tr height=15 style='height:15.0pt'>
-            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
-            <td class=xl191>&nbsp;</td>
-            <td class=xl92>C</td>
-            <td class=xl201>0.55</td>
-            <td class=xl93>0.75</td>
-            <td class=xl97>1.00</td>
-            <td class=xl93>1.00</td>
-            <td class=xl192>&nbsp;</td>
-            <td colspan=2 style='mso-ignore:colspan'></td>
-          </tr>
-          <tr height=15 style='height:15.0pt'>
-            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
-            <td class=xl191>&nbsp;</td>
-            <td class=xl92>D</td>
-            <td class=xl201>0.27</td>
-            <td class=xl93>0.42</td>
-            <td class=xl93>0.67</td>
-            <td class=xl97>1.00</td>
-            <td class=xl192>&nbsp;</td>
-            <td colspan=2 style='mso-ignore:colspan'></td>
-          </tr>
-          <tr height=15 style='height:15.0pt'>
-            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
-            <td class=xl191>&nbsp;</td>
-            <td class=xl72></td>
-            <td class=xl72></td>
-            <td class=xl72></td>
-            <td class=xl72></td>
-            <td class=xl72></td>
-            <td class=xl192>&nbsp;</td>
-            <td colspan=2 style='mso-ignore:colspan'></td>
-          </tr>
-          <tr height=15 style='height:15.0pt'>
-            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
-            <td class=xl191>&nbsp;</td>
-            <td class=xl72></td>
-            <td class=xl72></td>
-            <td class=xl72></td>
-            <td class=xl72></td>
-            <td class=xl72></td>
-            <td class=xl192>&nbsp;</td>
-            <td colspan=2 style='mso-ignore:colspan'></td>
-          </tr>
-          <tr height=15 style='height:15.0pt'>
-            <td height=15 colspan=2 style='height:15.0pt;mso-ignore:colspan'></td>
-            <td class=xl193>&nbsp;</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td class=xl194>&nbsp;</td>
-            <td colspan=2 style='mso-ignore:colspan'></td>
-          </tr>
-          <tr height=16 style='height:16.0pt'>
-            <td height=16 colspan=2 style='height:16.0pt;mso-ignore:colspan'></td>
-            <td class=xl195>&nbsp;</td>
-            <td class=xl142>&nbsp;</td>
-            <td class=xl142>&nbsp;</td>
-            <td class=xl142>&nbsp;</td>
-            <td class=xl142>&nbsp;</td>
-            <td class=xl142>&nbsp;</td>
-            <td class=xl196>&nbsp;</td>
-            <td colspan=2 style='mso-ignore:colspan'></td>
-          </tr>
-        </table>
 
       <p class="title" style="margin-top: 20px">Eureka!<span class="date">3/25/2014</span></p>
       <p class="post">Well, you know what they say. "If at first you don't succeed,: Try, <span style="text-decoration:line-through">try</span>, <span style="text-decoration:line-through">try</span> again." I figure in some contexts trying 3 times after you've failed borders on unacceptable. I'm testing the boundaries to see if this is one of those times. I essentially re-applied to the same position a day after being turned down. You'd be right in guessing that my experience, education, or fit didn't change over night. Only my resolve. Ideally, I'd be a talented enough programmer to code a beautiful <a href = "steps.html" target="_blank"><b>data visualization</b></a> to prove my chops for this position. Instead, excel pervades most of actuarial science, and as such, I remain unconvinced that my <a href = "tax_calculator.xlsm" target="_blank"><b>tax calculator</b></a> would elicit much "ooooing and aaaaaing". So after years of writing songs about nothing to no one, I figured the thing I could best pull together in a weekend was a rap song. Because, if you couldn't tell from my bitstrip avatar, I'm a sucker (MC).</p>
@@ -766,6 +150,7 @@
       </div>
 
       <p class="post">Suspend your disbelief - the strategy worked. I was given the opportunity to visit Shopify's offices in Ottawa, and speak to someone who leads a group of Data Analysts. Their offices are inspiring, they're up on the latest tech (ipad name label generator!?), and they hire people who literally write books on <b><a href="https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers" target="_blank">Bayesian Statistics</a></b>. So, I'm keeping my fingers crossed that I can join their ranks, and have the opportunity to work alongside people who are so passionate about what they do. In the mean time, I'll be turning my attention towards python from ruby, as it looks like there are tremendous advantages for data analysts. As I'll be writing the CFA Level II exam in June, this blog will likely touch on topics that combine my endevours in python and finance, so stay tuned.</p>
+      <p class="post"><b>Update: </b>Sadly, I didn't get the position.<br><em>"And then I got high" - Afroman</em></p>
 
       <p class="title" style="margin-top: 20px">Migrations in Rails<span class="date">3/12/2014</span></p>
       <p class="post">Model, view, controller generation and database modifications for creating an Expense class.</p>
