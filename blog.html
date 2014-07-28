@@ -42,49 +42,48 @@
     </header>
 
     <div id="space"></div>
+
     <div class="blog">
-      <p class="title" style="margin-top: 20px">A Hack for Job Applicants<span class="date">4/15/2014</span></p>
-      <p class="post">I'll be upfront; I'm currently unemployed and looking for work. Searching for a job is a pain, and the process of crafting a customized cover letter for each application is tedious. This process drains time from what you really should be doing while unemployed; building your skills. So I wanted to build a web application that helps manage this process. Unfortunately, my ambitions far exceed my skills. Therefore, I am likely to break the discussion of this project into multiple posts, as my development will be iterative. Also, it will alow me to explore in greater detail some of the challenges I'm facing.</p>
-      <p class="post">The first problem I want to solve is relatively simple. Suppose I am in the market for an Actuarial Analayst position (I pick this example because I'm familiar with it). Let's further assume that the content of my cover letter does not change for each application, as the job descriptions are relatively uniform. In this case, I only need to change the company and position titles mentioned in my cover letter. My program will accept three arguments: cover_letter, current_job_details, new_job_details. It takes an exisiting cover_letter, and replaces the current_job_details with the new_job_details (position, company). So this program saves me some time creating the multiple documents I need. All I need is a cover letter (.txt), and a list of jobs I've found myself. Cool.</p>
+
+      <p class="title" style="margin-top: 20px">A Hack for Job Applicants<span class="date">6/9/2014</span></p>
+
+      <p class="post">After graduating from BitmakerLabs web development course and writing the CFA Level II, I've intensified my job search. As many of you can attest, the process of crafting a customized cover letter for each application is time-consuming. Companies typically identify qualifying applicants with the assistance of a computer, which alogrithmically selects candidates by identifying relevant skills, knowledge and experience. Unfortunately the details of these matching algorithms remain opaque, but it raises an interesting question. How should one structure a cover letter/resume so that you reduce your chances of being filtered out by 'the machine'?</p>
+      <p class="post">It turns out, others have explored this question. A company called <strong><a href="http://www.resunate.com/">Resunate</a></strong> suggests a handful of specific terms from the job profile to be strategically inserted into your resume. Then, it ranks your experience in order of relevance. Apparantly, their strategic recommendations can improve your odds of getting an interview by 2x. I was interested in looking at this problem myself (for the obvious reasons - I'm on the job hunt). I'm well underway building a prototype in Excel (& VBA), but in the remainder of this post I want to share the probabalistic argument for why this is a worthy endevour. I'll be borrowing terms associated with actuarial models, but they apply all the same. There are essentially two ways to improve your odds of landing a job.<br>
+        <ol><li><u>Increase Frequency</u>: Apply to <strong><em>more</em></strong> jobs</li>
+            <li><u>Improve Severity</u>: Apply to <strong><em>relevant</em></strong> jobs</li>
+            <li><u>Nepotism</u>: Lucky <strong><em>you</em></strong></li>
+        </ol>
+
+      </p>
+
       <p class="post">But what happens when jobs descriptions vary? Perhaps this would motivate you to change your cover letter to better suit the position. Suppose one class of jobs requires 'pension' experience, while another class requires 'pricing' experience. Assume you have both. Your cover letter should be modified to discuss the relevant experience. Our simple program above would need major modifications to accomodate this caveat. We no longer require one cover letter, but a set of 'experiences' that can be interchanged. Luckily, cover letters have structure. Let's start with a simple example.</p>
       <p class="post">Suppose my cover_letter has three paragraphs; intro, experience, conclusion. Continuing from above, one set of applications will be of the form (intro, pension_experience, conclusion) while the other will be of the form (intro, pricing_experience, conclusion). In this case, I no longer have a cover letter. I have a structure which takes 3 arguments (intro, experience, conclusion) to <b><em>produce</em></b> a cover letter.</p>
       <p class="post">Under these circumstances, parsing cover letters becomes a critical component of the application. The text in a cover letter needs to be mapped to a predefined structure (intro, experience, conclusion). How can you tell what text goes where? Are paragraphs a good proxy for splitting a document? What if the cover letter has more (or less) than 3 paragraphs? Things begin to fall apart.</p>
 
-      <p class="post">We can't directly parse any given cover letter to a predefined structure (intro, experience, conclusion) because not every user will follow that convention. But we <b><em>can</em></b> parse a cover letter in another way; paragraphs, sentences, words. Now, the user needs to identify which elements are variant, and how text will ultimately be grouped to accord with our (intro, experience, conclusion) structure. See below:
-        <ul>
-          <li>single words ("Sunlife" => "Manulife")</li>
-          <li>single words ("Excel" => "GGY Axis")</li>
-          <li>sentences ("I am applying to work at Sunlife." => "I would love to join Sunlife.")</li>
-          <li>sentences ("I have 5 years experience in Excel." => "I work daily in Excel.")</li>
-          <li>paragraphs ("I am applying to work at Sunlife. I have 5 years experience in Excel." => "I would love to join Manulife. I work daily in GGY Axis." </li>
-        </li>
-
+      <p class="post">We can't directly parse any given cover letter to a predefined structure (intro, experience, conclusion) because not every user will follow that convention. But we <b><em>can</em></b> parse a cover letter in another way; paragraphs, sentences, words. Now, the user needs to identify which elements are variant, and how text will ultimately be grouped to accord with our (intro, experience, conclusion) structure. See below:</p>
+      <ul>
+        <li>single words ("Sunlife" => "Manulife")</li>
+        <li>single words ("Excel" => "GGY Axis")</li>
+        <li>sentences ("I am applying to work at Sunlife." => "I would love to join Sunlife.")</li>
+        <li>sentences ("I have 5 years experience in Excel." => "I work daily in Excel.")</li>
+        <li>paragraphs ("I am applying to work at Sunlife. I have 5 years experience in Excel." => "I would love to join Manulife. I work daily in GGY Axis." </li>
       </ul>
-    </p>
-    <p class="post">Now we're starting to see how a cover letter might be modified to correspond to a particular job posting. Notice above how each word, sentence, or paragraph can be further classified. Sunlife and Manulife are <b>Companies</b>. The sentences describe <b><em>what you're applying to</em></b> and your relevant <b>experience.</b> So I'm hopeful that I can cobble something together that produces an application that resonates with the job posting.</p>
 
-    <p class="title" style="margin-top: 20px">Actuarial Guide for Soon-To-Be Graduates<span class="date">4/3/2014</span></p>
+      <p class="post">Now we're starting to see how a cover letter might be modified to correspond to a particular job posting. Notice above how each word, sentence, or paragraph can be further classified. Sunlife and Manulife are <b>Companies</b>. The sentences describe <b><em>what you're applying to</em></b> and your relevant <b>experience.</b> So I'm hopeful that I can cobble something together that produces an application that resonates with the job posting.</p>
 
-    <p class="post">I just turned 29 yesterday. Scary. It's been over 6 years since I graduated, and 8 years since I wrote my first actuarial exam. While I was originally asked to write about my endevours in actuarial musical composition (google: actuarial girlfriend), it felt a little self-serving. I have resigned to the fact that I will remain; anti-viral. Instead, my old age prompted a sincere reflection on all that I've learned since entering the workforce 6 years ago. I was hoping to codify these lessons into a brief guide for actuarial graduates. <blockquote style="font-size:16px">"I have a lot of beliefs and I live by none of [them]. I just like believing them. They make me feel good about who I am. But if they get in the way of a thing I want, I do that." - Louis C.K.</blockquote>
-    </p>
-
-
-
-    <div class="note"><b>You should probably know...</b> <blockquote>"I have a lot of beliefs and I live by none of [them]. I just like believing them. They make me feel good about who I am. But if they get in the way of a thing I want, I do that." - Louis C.K.</blockquote></b></div>
-
+      <p class="title" style="margin-top: 20px">Actuarial Guide for Soon-To-Be Graduates<span class="date">4/3/2014</span></p>
+      <p class="post">I just turned 29 yesterday. Scary. It's been over 6 years since I graduated, and 8 years since I wrote my first actuarial exam. While I was originally asked to write about my endevours in actuarial musical composition (google: actuarial girlfriend), it felt a little self-serving. I have resigned to the fact that I will remain; anti-viral. Instead, my old age prompted a sincere reflection on all that I've learned since entering the workforce 6 years ago. I was hoping to codify these lessons into a brief guide for actuarial graduates.
+      </p>
+      <div class="note"><blockquote><code>"I have a lot of beliefs and I live by none of [them]. I just like believing them. They make me feel good about who I am. But if they get in the way of a thing I want, I do that."<br> - Louis C.K.</code></blockquote></div>
       <ul>
         <li>Actuarial exams will dominate your time, but will play a small role preparing you for your job. <code>"Don't hire an 'A' student unless you want them to write tests." - Taleb.</code> </li>
         <li>At times, you'll make the correct decision to not go out and study. Many times, you'll make the incorrect decision to stay in and not go out. Exam success and a social life are not mutually exclusive. <code>"If you want something done, ask a busy person." - Franklin</code> </li>
         <li>Learn to program. Surprisingly few actuaries are adept in open source software (ruby, python, javascript). 80% of your work can be made more efficient by harnessing the potential of software freely available to you. Take time to explore it. Participate in Hackathons in your community. Blog about models you built, data you mined, or programs you developed.</li>
         <li>Start/join an informal meetup amongst colleagues. Most challenges you'll encounter will be application related (file dependencies, inconsistent naming conventions, repetitious code, cluttered design). Developing and sharing your improved excel templates, tools and macros will fundamentally change the way you do things. See if your employer will sponsor your meetup (office space, pizza, beer). If not, go ahead anyway. They may change their tune when they see the value from your group's efforts.</li>
-        <li>Your salary may not reflect your efforts. Don't let this bother you. <code>"Be so good they can't ignore you." - Martin. </code> <em>Corrollary:</em> You're not as good as you think you are.</li>
-        <li>Don't give up (or give up, whatever). It took me 4 attempts to pass exam C. It hurt what little remained of my ego. But, your opportunities (and salary) improve if you get credentialed. Your FSA is like an international green card. Care to work in Europe, the US, Hong Kong? You can do that!</li>
-      </ul>
-
-      <p class="post">The profession is far from perfect, but it's up to you to find ways to challenge yourself; and there are <b>lots</b> of ways. Good luck to you all as your graduation looms. And for the sake of the profession, I hope you learn to love what you do (it's actually pretty fun).</p>
-
+        <li>It's a grind and you will likely fail exams. But if you don't give up, a literal world of opportunities opens up. Your work could take you to Asia, Europe, the US, or even <u>Bermuda</u>!</li>
+        <li>At times work will be repetitive, so always find ways to challenge yourself.</li>
+              <div class="note"><blockquote><code>"Be so good they can't ignore you." - Steve Martin.</code></blockquote></div>
       <p class="title" style="margin-top: 20px">The Economics of Household Chores<span class="date">4/1/2014</span></p>
-
       <p class="post">Every month, parents post a list of chores that they'd like their children to get done. Each chore is given an initial price. Each child can bid on any number of chores they wish to complete. Parents want all chores completed. How should the parents allocate their total cost amongst all chores that will induce their children to bid on the full list? This is the problem I want to solve. We're going to devise an algorithm that induces 'full coverage' by adjusting <b><em>relative</em></b> prices in the event chore(s) have no bids.</p>
       <div class="note"><b>On adjusting <em>relative</em> prices: </b>When we increase the price of one chore, we lower the price of another, such that total cost remains fixed. Varying total cost to induce 'full coverage' (hey kids, $10,000/month for chores?) certainly works. But we assume total cost is set sufficiently high that 'full coverage', if not present, can be achieved by finding the right price distribution. In the event the algorithm fails to induce 'full coverage', our view is the parents are cheap, the children formed a cartel, or there is one <b><em>nasty ass chore on that list.</em></b></div>
       <p class="post">Anyway, to dicuss how we might construct this algorithm, it is best to illustrate this with an example. The syntax below is consistent with how you would build a dictionary in python.</p>
@@ -131,9 +130,9 @@
       <p class="title" style="margin-top: 20px">Financial Trickery<span class="date">4/1/2014</span></p>
       <p class="post">I've had a bank account for as long as I can remember. I used to keep the change I'd collect from chores in an old blue thermos I'd keep on my desk. Once a month, we'd head to the bank to deposit my tidy sum. A portion of this would be put towards icecream at the DQ conveniently next door. Eventually, this thermos came to house checks I'd receive from my pennysaver route. When my dad launched his Sleep Clinic in Waterloo, my siblings and I would do the laundry, make the beds, change garbage and dutifully add cookies atop the pillows each afternoon. We'd collect monthly checks for our efforts, with the expectation that we take full responsibility of our purchases (clothing, hockey gear, and of course CD's). You'd be surpised how quickly you come to realize the value of a dollar, and how you learn to best allocate your limited resources when confronted with so many choices. I feel I learned 90% of what I know about budgeting and allocating when I was a child. I know there are many parents who provide allowances with the goal of educating their children about the same. IF I were to have a child (I have a pug, it's basically the same), how might I create a modern experience that seeks to teach him/her/them about budgeting, saving, and work ethic? What might the app look like? Thinking on it...</p>
 
-      <p class="title" style="margin-top: 20px">Expectation in a Sublet Lottery<span class="date">3/26/2014</span></p>
-      <p class="post"><b><em>The big picture. </em></b>I'm interested in building a model that generates probabilities of drawing a room in a sublet lottery in python. This is motivated by my experience at <b><a href="http://bitmakerlabs.com/" target="_blank">Bitmaker Labs</a></b> in Toronto. The company leases property to sublet to students from out of town. However, DEMAND >> SUPPLY. Therefore, understanding the likelihood of drawing a room from Bitmaker Labs will influence the decision to look for property elsewhere. Bitmaker Labs is currently piloting a rental arrangement with one condo with 4 rooms.</p>
-      <p class="post"><b><em>Our example.</em></b> 17 students need housing. Only 4 rooms (A,B,C,D) are available. Each room is slightly different, and are thus offered at different prices ($2,000, $2,375, $2,875, $3,375). Every individual is allowed to bid on any number of the rooms with a binary indicator (yes/no). Therefore, it is legitimate to have Jon request A and B, and Jen to request C and B, and Tina request B, C, and D. But they may be assigned at most one room. Our example is illustrated below:</p>
+      <p class="title" style="margin-top: 20px">What Were the Odds?<span class="date">3/26/2014</span></p>
+      <p class="post">I'm interested in building a model that calculates the probability of landing a room in <b><a href="http://bitmakerlabs.com/" target="_blank">BitmakerLabs</a></b> "Hacker House". The company leases property to sublet to programming students from out of town. Since supply is limited, rooms are assigned randomly. Calculating the expectation of 'winning' a room is not as straitforward as it seems. I'd like to share some interesting properties of this lottery design, but first I should introduce it.</p>
+      <p class="post"><b><em>A concrete example.</em></b> 17 students need housing. Only 4 rooms (A,B,C,D) are available. Each room is slightly different, and are thus offered at different prices ($2,000, $2,375, $2,875, $3,375). Every individual is allowed to bid on any number of the rooms with a binary indicator (yes/no). Therefore, it is legitimate to have Jon request A and B, and Jen to request C and B, and Tina request B, C, and D. But they may be assigned at most one room. Our example is illustrated below:</p>
 
       <div class="note"><b>Note: </b>A (non-randomly) generated input with the following condition: if an individual bids on more than one room, the bids must be adjacent (i.e you can bid on A&B, not A&D, unless A&B&C&D). This will likely not hold in practice, but it produces some interesting results, and guides our post mortem discussion and analysis.</div>
 
@@ -142,16 +141,15 @@
 
       <p class="post" style="padding-bottom: 0px; margin-bottom: 0px"> The table below is meant to give some insight into an individual's sensitivity to price, and how demand is distributed across product categories. Note the difference in price between Room A and Room D; it's $1,375. If individuals are price sensitive we should expect to see fewer people bidding on Room A and Room D (A&D), than say, Room A and Room B (A&B), where the differential is smaller (only $375). If you look at the 'Counts' table below, you'll notice that A&D < A&B => Pr(A&D) < Pr(A&B). What might we expect it there are individuals with 'high end' tastes? In this case, you might see people are more likely to bid on Room D and Room C, than Room D and Room A. Again, in the table below, you'll notice that A&D < C&D => Pr(A&D) < Pr(C&D). In our example, the differences are material; 18% vs 47% respectively</p>
 
-      <p class="title" style="margin-top: 20px">Eureka!<span class="date">3/25/2014</span></p>
+      <p class="title" style="margin-top: 20px">Stopify Applying to Us<span class="date">3/25/2014</span></p>
       <p class="post">Well, you know what they say. "If at first you don't succeed,: Try, <span style="text-decoration:line-through">try</span>, <span style="text-decoration:line-through">try</span> again." I figure in some contexts trying 3 times after you've failed borders on unacceptable. I'm testing the boundaries to see if this is one of those times. I essentially re-applied to the same position a day after being turned down. You'd be right in guessing that my experience, education, or fit didn't change over night. Only my resolve. Ideally, I'd be a talented enough programmer to code a beautiful <a href = "steps.html" target="_blank"><b>data visualization</b></a> to prove my chops for this position. Instead, excel pervades most of actuarial science, and as such, I remain unconvinced that my <a href = "tax_calculator.xlsm" target="_blank"><b>tax calculator</b></a> would elicit much "ooooing and aaaaaing". So after years of writing songs about nothing to no one, I figured the thing I could best pull together in a weekend was a rap song. Because, if you couldn't tell from my bitstrip avatar, I'm a sucker (MC).</p>
-      <p class="post">Part of the reason I didn't move on was because I made poor eye contact. So I thought it would be funny to hire someone to stare at at a video camera for 2m07s while this song played in the background. You can actually hire people to do this for you on the "cheap". I turned to Fiverr.com, which is an hilarious marketplace of services from voice-overs to promo videos. After giving the following instruction "Just, you know, stare into the camera for 2 minutes." - this is what I got.</p>
+      <p class="post">I blew the interview. So I thought it would be funny to hire someone to stare at at a video camera while I recounted my failings; highlighting in particular my lack of eye contact (...over skype). Wondering where you hire someone to do this? I turned to Fiverr.com, which is an hilarious marketplace of services from voice-overs to promo videos. After giving the following instruction "Just, you know, stare into the camera for 2 minutes." - this is what I got.</p>
 
       <div class="movie-container">
         <iframe class="movie" width="660" height="365" src="//www.youtube.com/embed/KvTioSnYsy4" frameborder="0" allowfullscreen></iframe>
       </div>
 
-      <p class="post">Suspend your disbelief - the strategy worked. I was given the opportunity to visit Shopify's offices in Ottawa, and speak to someone who leads a group of Data Analysts. Their offices are inspiring, they're up on the latest tech (ipad name label generator!?), and they hire people who literally write books on <b><a href="https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers" target="_blank">Bayesian Statistics</a></b>. So, I'm keeping my fingers crossed that I can join their ranks, and have the opportunity to work alongside people who are so passionate about what they do. In the mean time, I'll be turning my attention towards python from ruby, as it looks like there are tremendous advantages for data analysts. As I'll be writing the CFA Level II exam in June, this blog will likely touch on topics that combine my endevours in python and finance, so stay tuned.</p>
-      <p class="post"><b>Update: </b>Sadly, I didn't get the position. All is not lost as I feel I'm on the right path. Upwards and onwards.</p>
+      <p class="post">Suspend your disbelief - the strategy worked. Atleast in that I was given the opportunity to visit Shopify's offices in Ottawa, and speak to someone who leads a group of Data Analysts.<b>Update: </b>Sadly, I didn't get the position. All is not lost as I feel I'm on the right path. Upwards and onwards.</p>
 
       <p class="title" style="margin-top: 20px">Migrations in Rails<span class="date">3/12/2014</span></p>
       <p class="post">Model, view, controller generation and database modifications for creating an Expense class.</p>
@@ -173,13 +171,6 @@
           <li><b>.tables</b> show you all the tables</li>
           <li><b>DROP TABLE main.expenses</b> delete the table</li>
         </ul>
-      </div>
-
-      <p class="title" style="margin-top: 20px">Shopify Application<span class="date">3/7/2014</span></p>
-
-      <p class="post">Well, it looks like it wasn't meant to be (this time around). I applied to <strong><a href="http://www.shopify.com/careers?posting=data-data-data" target="_blank">Shopify's Data Team</a></strong>, but won't be moving on after a second round interview. Obviously, I'm a little disappointed, but, I take some solace in the idea that <em>"...not getting what you want is sometimes a wonderful stroke of luck."</em> The wonderful blog of KarenX is also a great read for those <strong><a href="http://www.karenx.com/blog/how-to-get-a-job-after-youve-been-rejected/" target="_blank">overcoming rejection</a></strong> in the aftermath of a giving an application everything you could. Below is the link to a song I included with my resume. I haven't given up on a career at this amazing company. Who knows, I may end up with an entire album worth of material in my continued attempt to gain access to a <strong><a href="http://www.shopify.ca/careers" target="_blank">beer tap at work.</a></strong></p>
-      <div style="width: 100%; margin: 0 auto">
-        <iframe class="soundcloud" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/134717870&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_artwork=true"></iframe>
       </div>
 
       <p class="title" style="margin-top: 20px">Chrome Dome<span class="date">3/4/2014</span></p>
@@ -212,19 +203,7 @@
         </ul>
       </div>
 
-      <p class="post">I'm currently using something called Sublime Text 2, a very common text editor used amongst developers. Dare I include myself in this group? Hells, why not. I mean, I am using Sublime Text 2. Naturally, there are a handful of things one does in sublime that certainly make working with it a lot easier. In short, it's nothing more than a word like editor (without fonts) that makes writing a ruby, javascript or python file enjoyable. There's lots of nifty autocomplete features, ways to navigate through windows and search for files that are seriously handy.</p>
 
-      <div class="application">Sublime Text 2</div>
-      <div class="shortcuts">
-        <ul class="list">
-          <li><b>subl .:</b> launch sublime from terminal</li>
-          <li><b>cmd + shift + P:</b> cycle through open windows</li>
-          <li><b>cmd + ~:</b> cycle through open windows</li>
-          <li><b>cmd + option + #:</b> view in # tabs</li>
-          <li><b>cmd + shift + option + #:</b> view in # tabs horizontally</li>
-
-        </ul>
-      </div>
 
       <p class="title">Ramblings on Financial "Advice"<span class="date">3/3/2014</span></p>
 
@@ -234,20 +213,6 @@
       <p class="post">Dictated by the current structure, the iMacro script will need to traverse 290,000 pages to scrape all available details on active/historical financial advisors. It's unfortunate, but the CSA offers no way to search for active users only. Alas. Once I've left this script running for about 28 hours (8 seconds per record, you do the math), I should have all the info I need. Then RUBY can do its thing. That is, I'll be using Ruby to parse the .txt files (but not to create them).</p>
       <p class="post">One of the characteristics of the .txt files being created is that each contains only one user record, and this record tends to start at line 370 (spot checking confirmation). The status (active, historical) is available on line 380 (again, spot checked). Since we are only interested in constructing a database on active financial advisors, ostensibly we can divide our text records into two groups: active and historical. Once complete, we can create a mega text document with only active users, containing all that wondeful information that we can then investigate. How many active advisors are there? How many in Pickering? How many have been disciplined? How many are male? How many are credentialed (CFA, CA, CFP)? How many work for RBC? Dundee Wealth? Exciting stuff.</p>
       <p class="post">Because you can write javascript in your iMacro, you can create loops where otherwise the instructions would be explicit. In my case, I need to paginate through 2,900 pages (100 records/page). This is well suited to a loop, and I am currently investigating ways to best write this. I suppose I'll keep you up to date on my progress. Don't hold your breath. You might pass out.</p>
-
-      <p class="title">My Sequal<span class="date">2/5/2014</span></p>
-      <p class="post">Bogged down in SQL. So I've decided to cover <b><a href="http://www.mysqltutorial.org" target="_blank">this</a></b> tutorial, hoping to gain some basic knowledge about the language and its applications. Below are my notes. </p>
-
-      <div class="application">SQL commands</div>
-      <div class="shortcuts">
-        <ul class="list">
-          <li><b>SHOW DATABASES;</b></li>
-          <li><b>CREATE DATABASE databasename;</b></li>
-          <li><b>USE DATABASE databasename;</b></li>
-        </ul>
-      </div>
-
-      <p class="post">Whaaaat? That's ALL the notes? Yup. That's all.</p>
 
       <p class="title">Database Interactions in Rails<span class="date">2/4/2014</span></p>
       <p class="post">Unfortunately I didn't make near as much headway as I was hoping yesterday. Today is the first day of the rest of my life. Is that the inspiration I needed? Yes. The time right now is 12:21pm. I'm on section 05_02. There are 19 directories in total. Let's roll.</p>
@@ -307,195 +272,149 @@
         </ul>
       </div>
 
+      <p class="title">Relational Databasing with MySQL<span class="date">2/5/2014</span></p>
+      <p class="post">Databases are everywhere, even in analog (telephone book, dictionary, cd collection). It is simply a collection of objects that has some structure. The term relational database describes not only the collection of data, but how it relates to one another. The benefit of having this relationship explicity described is that it allows the data to be queried; so specific information can be retrieved with relative ease. The term RDBMS refers to a relational database management system. There are many out there, but as MySQL is both <b><a href="http://blog.jooq.org/2013/10/03/the-10-most-popular-db-engines-sql-and-nosql/">popular</a></b> and open source, I will be covering that particular syntax. Let's start with a few definitions that apply broadly to relational databases:</p>
+
+      <div class="application">Key Terms</div>
+      <div class="shortcuts">
+        <ul class="list">
+          <li style="list-style-type: none"><b>Table</b></li>
+          <li>Set of columns and rows</li>
+          <li>1 table=1 model</li>
+          <li>Represents a single concept (a noun)</li>
+          <li>Examples: products, customers, orders</li><br>
+          <li style="list-style-type: none"><b>Column</b></li>
+          <li>Set of data of a single simple type</li>
+          <li>Examples: first_name, last_name etc...</li><br>
+          <li style="list-style-type: none"><b>Row</b></li>
+          <li>Single record of data</li>
+          <li>Example: "Tony", "Bennett", "tony@email.com"</li><br>
+          <li style="list-style-type: none"><b>Field</b></li>
+          <li>Intersection of a column and a row</li><br>
+          <li style="list-style-type: none"><b>Index</b></li>
+          <li>Data structure that will increase the look-up speed</li><br>
+          <li style="list-style-type: none"><b>Foreign Key</b></li>
+          <li>Example: subject_id</li>
+          <li>Relate rows in one table to another</li>
+          <li>The foundation of relational databases</li>
+          <li>Always put indexes on foreign keys</li><br>
+          <li style="list-style-type: none"><b>Schema</b></li>
+          <li>The structural definition of a database</li>
+          <li>Importing a schema creates a complete database</li>
+        </ul>
+      </div>
+
       <div class="application">mysql commands</div>
       <div class="shortcuts">
         <ul class="list">
-          <li>Show DATABASES;</b></li>
+          <li>SHOW DATABASES;</b></li>
           <li>CREATE DATABASE db_name;</b></li>
           <li>USE db_name;</b></li>
           <li>DROP DATABASE db_name;</b></li>
         </ul>
       </div>
 
-      <div class="application">Terms</div>
+      <p class="title">Ruby off the Rails<span class="date">2/3/2014</span></p>
+
+      <p class="post">There's a lot to be said about the 'ease' of building applications in the Ruby on Rails web framework. Ease is the operative word, as navigating through Rails requires a decent command of the language on which it was built, Ruby. If you're new to programming in general, then you have a fair ways to go before you'll be building something in which you have a decent grasp of the plumbing. That said, a quick-start guide to launching a rails application is the classic <b><a href="http://www.reinteractive.net/posts/32-ruby-on-rails-3-2-blog-in-15-minutes-step-by-step" target="_blank">Build a Blog in 15 minutes</a></b>. I highly recommend downloading Sublime Text 2 (one of the two items required to build your own blog). It's nothing more than a text editor that makes working with code easy to manage. It is free to use, though you will be prompted on occasion to pay for your version (delay as you wish). I've attached a few shortcuts that will help you navigate through the Sublime environment.</p>
+
+      <div class="application">Sublime Text 2</div>
       <div class="shortcuts">
         <ul class="list">
-          <li style="list-style-type: none"><b>CRUD</b></li>
-          <li>Create</li>
-          <li>Read</li>
-          <li>Update</li>
-          <li>Delete</li>
-        </br><li style="list-style-type: none"><b>Database</b></li>
-        <li>A set of tables</li>
-        <li>One database=one application</li>
-        <li>Example: simple_cms_development</li>
-        <li>Access permissions are granted at database level</li>
-      </br><li style="list-style-type: none"><b>Table</b></li>
-      <li>Set of columns and rows</li>
-      <li>1 table=1 model</li>
-      <li>Represents a single concept (a noun)</li>
-      <li>Examples: products, customers, orders</li>
-    </br><li style="list-style-type: none"><b>Column</b></li>
-    <li>Set of data of a single simple type</li>
-    <li>Examples: first_name, last_name etc...</li>
-  </br><li style="list-style-type: none"><b>Row</b></li>
-  <li>Single record of data</li>
-  <li>Example: "Tony", "Bennett", "tony@email.com"</li>
-</br><li style="list-style-type: none"><b>Field</b></li>
-<li>Intersection of a column and a row</li>
-</br><li style="list-style-type: none"><b>Index</b></li>
-<li>Data structure that will increase the look-up speed</li>
-</br><li style="list-style-type: none"><b>Foreign Key</b></li>
-<li>Example: subject_id</li>
-<li>Relate rows in one table to another</li>
-<li>The foundation of relational databases</li>
-<li>Always put indexes on foreign keys</li>
-</br><li style="list-style-type: none"><b>Schema</b></li>
-<li>The structural definition of a database</li>
-<li>Importing a schema creates a complete database</li>
-</ul>
-</div>
+          <li><b>subl .:</b> launch sublime from terminal/command line</li>
+          <li><b>cmd + shift + P:</b> cycle through open windows</li>
+          <li><b>cmd + ~:</b> cycle through open windows</li>
+          <li><b>cmd + option + #:</b> view in # tabs</li>
+          <li><b>cmd + shift + option + #:</b> view in # tabs horizontally</li>
+        </ul>
+      </div>
 
-<p class="title">Ruby on Rails<span class="date">2/3/2014</span></p>
+      <p class="post">Unfortunately, there aren't many shortcuts to mastering the rails framework, and I've found the most helpful resource troubleshooting your applications to be the <b><a href="http://guides.rubyonrails.org/" target="_blank">rails guides</a></b>. Treehouse and Lynda offer video series introducing the rails framework, in addition to providing code samples and examples (so you can code alongside the videos). I found these to be of great help learning how rails is used to build applications you encounter across the web. The videos are slightly outdated, and you may run into problems debugging your programs to be compatible with the latest standards. Unfortunately, Rails is updated frequently enough that it's difficult for content providers to keep things current. As you navigate the path to ruby enlightenment, you will often encounter the term <u>ruby gem</u>. This is simply ruby code that's been packaged up for easy distribution using the package manager. You can read/explore all the available gems online at <b><a href="https://rubygems.org/" target="_blank">rubygems.org</a></b>, as well as download the <b><a href="https://rubygems.org/pages/download">package manager</a></b> itself.</p>
 
-<p class="post">There's a lot to be said about the 'ease' of building applications in the Ruby on Rails framework. Ease is the operative word, as navigating through rails requires a decent command of the language on which it was built, Ruby. If you're new to programming in general, then you have a fair ways to go before you'll be building something in which you have a decent grasp of the plumbing. That said, a quick-start guide to launching a rails application is the the classic <b><a href="http://www.reinteractive.net/posts/32-ruby-on-rails-3-2-blog-in-15-minutes-step-by-step">Build a Blog in 15 minutes</a></b>. I highly recommend downloading Sublime Text 2 (one of the two items required to build your own blog). It is free to use, though you will be prompted on occasion to pay for your version. Unfortunately, there aren't many shortcuts to mastering this framework, and I've found the most helpful resource to be the <b><a href="http://guides.rubyonrails.org/">rails guides</a></b>. Treehouse and Lynda offer video series introducing the rails framework, in addition to providing code samples and examples (so you can code alongside the videos). I found these to be of great help learning how rails is used to build applications you encounter across the web.</p>
+      <p class="title">Can I Git a What What?<span class="date">2/5/2014</span></p>
 
-<div class="application">Rails Framework</div>
-<div class="shortcuts">
-  <ul class="list">
-    <li><b>Definition: </b>A set of code libraries and data-structures that provide generic functionality which can be used, overriden or further specialized.</li>
-    <li>A <b>Gem</b> is simply ruby code that's been packaged up for easy distribution using the package manager. Rails is itself a gem.</li>
-    <li><b>gem update --system: </b>get latest version of ruby gems</li>
-    <li><b>gem --help: </b>help doc for ruby gems</li>
-    <li><b><a href="http:bundler.io" target="_blank">bundler.io:</a></b> Documentation for bundler</li>
-    <li><b>Bundler</b> is concerned with two files: Gemfile, and Gemfile.lock</li>
-    <li><b>bundle install:</b> sort out all ruby gem dependencies (turn Gemfile into Gemfile.lock)</li>
-    <li>Sometimes, you'll need to put 'bundle exec' in front of your rake db command</li>
-    <li><b>rake db:migrate:</b></li>
-    <li><b>bundle exec rake db:migrate:</b></li>
-    <li><b>rails server (or rails s)</b></li>
-  </ul>
-</div>
+      <p class="post">Git (a revision control manager) and Github (a web-based git repository) are a great pair of tools once you get the hang of them. You'll interact with them from the command line, so to get introduced, please read the post below. So how do I use them? I will often upload ('push') this blog to Github, as I make frequent changes to content (that I may wish to return to). Github allows you to view each version you 'pushed', showing line by line changes to files you modified. For developers working in teams, revision control becomes essential to maintaining the integrity of a coding project. Github has some pretty interesting social features, allowing others to view your coding projects, and enabling you to contribute code to open-source endevours. For the novice programmer, I've listed a handful of commands that you'll need to know to get started.</p>
 
-<div class="application">mysql</div>
-<div class="shortcuts">
-  <ul class="list">
-    <li><b>mysql --version: </b>Return current version of mysql</li>
-    <li><b>mysql.server start: </b> Start up server.</li>
-    <li><b>mysql.server status: </b> Return server status.</li>
-    <li><b>mysql.server stop: </b> Stop server.</li>
-    <li><b>mysql.server restart: </b> Restart server.</li>
-    <li><b>mysql -u root:</b> Launch mysql.</li>
-    <li><b>mysql -u root -p:</b> Launch mysql w/ password.</li>
-    <li><b>exit:</b> Exit mysql.</li>
-  </ul>
-</div>
+      <div class="application">Git</div>
+      <div class="shortcuts">
+        <ul class="list">
+          <li><b>git status:</b> current status of working directory</li>
+          <li><b>git log:</b> history of commits</li>
+          <li><b>git add --a:</b> add files to be pushed to repository</li>
+          <li><b>git commit -m "message":</b> commit files to repository</li>
+          <li><b>git push -u origin master:</b> push files to repository</li>
+          <li><b>git push origin --delete branchName:</b> delete branch locally/remotely</li><br>
+          <li style="list-style-type: none"><u><em>Coding with Others</em></u></li>
+          <li><b>git fetch --all | git reset --hard origin/master:</b> hard pull from master, this overwrites any content on your local directory to be up to date with the latest version pushed by another contributer. This will overwrite files on your local directory, so make a copy if you wish to revisit them.</li>
 
-<div class="application">MVC Web Architecture</div>
-<div class="shortcuts">
-  <ul class="list">
-    <li><b>Model:</b> Data objects we use</li>
-    <li><b>View:</b> Presentation layer (html/css/javascript)</li>
-    <li><b>Controller:</b> Processes user events (clicking links, submitting forms)</li>
-    <li>Browser -> Controller -> Model -> Database</li>
-    <li>Controller -> View -> Browser</li>
-    <li><b>rubygems.org: </b>source of all ruby gems</li>
-  </ul>
-</div>
+        </ul>
+      </div>
 
-<div class="application">rbenv</div>
-<div class="shortcuts">
-  <ul class="list">
-    <li><b>rbenv rehash:</b> run this command anytime you install a gem/update ruby</li>
-    <li><b>rbenv global, local, shell:</b> run this version of ruby in the global, local, shell environment.</li>
-    <li><b>rbenv local:</b> run this command anytime you install a gem/update ruby</li>
-  </ul>
-</div>
+      <p class="title">Unix are People too<span class="date">2/2/2014</span></p>
+      <p class="post">Over the last few weeks, I've been practicing manipulating applications, files, and folders from the command line. Staying disciplined is hard, especially if you want to get something done easily (with the gui). But, as I've focused on practicing, I've noticed my fingers slowly catching up to my brain. So, I'm going to post a quick review of Unix commands that I've found cover 80% of the things that are routine tasks you may be currently performing with your mouse. There is another practical reason for getting familiar with Unix; certain programs require you manipulate them from the command line. But here's a real doozy, and one that I end up using rather frequently (unfortunately).</p>
 
-<p class="title">Can I Git a What What?<span class="date">2/5/2014</span></p>
+      <div class="note"><b>Apple Tv<em> Audio</em> Fix: </b>When you connect your desktop to Apple Tv through AirPlay, occasionally the sound will not play. Open <strong>Terminal</strong> and type <code style="background-color: #99CFFF">sudo killall coreaudiod</code>. Hit return. You will be prompted to type in your computer's password. AirPlay will disconnect (as expected). Reconnect your desktop to Apple TV via AirPlay. Voila, your sound works! Before, you may have had to reboot your Mac to restore the audio connection. Now, save minutes on your life.</div>
 
-<p class="post">Git (a revision control manager) and Github (a web-based git repository) are a great pair of tools once you get the hang of them. You'll interact with them from the command line, so if you're on a Unix based system, please read the post below. So how do I use them? I will often upload ('push') this blog to Github, as I make frequent changes to content (that I may wish to return to). Github allows you to view each version you 'pushed', showing line by line changes to files you modified. For developers working in teams, revision control becomes essential to maintaining the integrity of a coding project. Github has some pretty interesting social features, allowing others to view your coding projects, and enabling you to contribute code to open-source endevours. For the novice programmer, I've listed a handful of commands that you'll need to know to get started.</p>
+      <p class="post">To launch 'Terminal' in Mac OS, hold 'command + spacebar' to bring up Spotlight. Type in 'Terminal' and hit return. This is known as a command line interface. Since Mac OS is a Unix system, I'll be covering specifically Unix commands. If you often rename, move, delete files, and navigate directories in your daily work, combining the handful of commands below will make you ever the more agile.</p>
 
-<div class="application">Git</div>
-<div class="shortcuts">
-  <ul class="list">
-    <li><b>git status:</b> current status of working directory</li>
-    <li><b>git log:</b> history of commits</li>
-    <li><b>git add --a:</b> add files to be pushed to repository</li>
-    <li><b>git commit -m "message":</b> commit files to repository</li>
-    <li><b>git push -u origin master:</b> push files to repository</li>
-    <li><b>git push origin --delete branchName:</b> delete branch locally/remotely</li><br>
-    <li style="list-style-type: none"><u><em>Coding with Others</em></u></li>
-    <li><b>git fetch --all | git reset --hard origin/master:</b> hard pull from master, this overwrites any content on your local directory to be up to date with the latest version pushed by another contributer. This will overwrite files on your local directory, so make a copy if you wish to revisit them.</li>
+      <div class="application">Unix Commands</div>
+      <div class="shortcuts">
+        <ul class="list">
+          <li><b>cd:</b> change directory</li>
+          <li><b>cd ..:</b> back one directory</li>
+          <li><b>cd ../..:</b> back two directories</li>
+          <li><b>cd ~:</b> home directory</li>
+          <li><b>cp -r currentFolder newFolder:</b> make a copy of folder in same directory</li>
+          <li><b>rm:</b> remove a file</li>
+          <li><b>mkdir:</b> make a directory</li>
+          <li><b>rmdir:</b> remove a directory</li>
+          <li><b>mv:</b> move a file/directory</li>
+          <li><b>pwd:</b> present working directory</li>
+          <li><b>ls:</b> list contents in directory</li>
+          <li><b>ls -l:</b> list content details in directory</li>
+          <li><b>ls -a:</b> list all contents in directory</li>
+          <li><b>touch:</b> create a new file</li>
+          <li><b>cat:</b> display contents of a file</li>
+          <li><b>cmd + K:</b> clear shell</li>
+          <li><b>nano ~/.bash_profile:</b> launch bash_profile to <a href="http://www.maclife.com/article/columns/terminal_101_creating_aliases_commands" target="_blank"><u>create an alias</u></a></li>
+        </ul>
+      </div>
 
-  </ul>
-</div>
+      <p class="title">Hoooove<span class="date">1/25/2014</span></p>
 
-<p class="title">Unix are People too<span class="date">2/2/2014</span></p>
-<p class="post">Over the last few weeks, I've been practicing manipulating applications, files, and folders from the command line. Staying disciplined is hard, especially if you want to get something done easily (with the gui). But, as I've focused on practicing, I've noticed my fingers slowly catching up to my brain. So, I'm going to post a quick review of Unix commands that I've found cover 80% of the things that are routine tasks you may be currently performing with your mouse. There is another practical reason for getting familiar with Unix; certain programs require you manipulate them from the command line. But here's a real doozy, and one that I end up using rather frequently (unfortunately).</p>
+      <p class="post">You couldn't ask for a better weekend. My Christmas gift this year was to fly to Montreal to meet my girlfriend for the Jay-Z concert at the Bell Centre. I've had my head buried in the sand with this whole web thing, so I can't say that I flew into Montreal with great anticipation. I've found that this approach often yields better experiences, because you hold no/low expectations. All I know is that Jay-Z is a monster (his words, not mine), and he'll put on one helluva show.</p>
+      <p class="post">Well, you're damn right he did. The concert was phenomenal. You may wonder - who opens for Jay-Z? Nobody. That's how badass he is. Getting to open for Jay-Z is not an honour. No one is there to see you. And there is nothing that you could do that will make this crowd believe that it's remotely as entertaining as what Jay-Z has in store. So thank you, Jay-Z, for not punishing anyone with the dubious duty of opening for you.</p>
+      <p class="post">Here's the part that got me. There was a video of a child <b><a href="http://www.youtube.com/watch?v=BA5D-WEcNGA" target="_blank">prodigy</a></b> circulating in highschool ripping it on the drums. Turns out, 10 years later, Tony Royster Jr. (said prodigy) is backing up Jay-Z</b>. He also plays/owns/defeats the <b><a href="http://www.youtube.com/watch?v=kKLTmBJzVJw" target="_blank">electric drums</a></b>. It would be worth seeing Tony Royster Jr. alone for an hour. I wanted to brush the dirt of his shoulders, but he was drumming so vigorously.</p>
 
-<div class="note"><b>Apple Tv<em> Audio</em> Fix: </b>When you connect your desktop to Apple Tv through AirPlay, occasionally the sound will not play. Open <strong>Terminal</strong> and type <code style="background-color: #99CFFF">sudo killall coreaudiod</code>. Hit return. You will be prompted to type in your computer's password. AirPlay will disconnect (as expected). Reconnect your desktop to Apple TV via AirPlay. Voila, your sound works! Before, you may have had to reboot your Mac to restore the audio connection.</div>
+      <p class="title">Letting it all Sink In<span class="date">1/20/2014</span></p>
 
-<p class="post">To launch 'Terminal' in Mac OS, hold 'command + spacebar' to bring up Spotlight. Type in 'Terminal' and hit return. This is known as a command line interface. Since Mac OS is a Unix system, I'll be covering specifically Unix commands. If you often rename, move, delete files, and navigate directories in your daily work, combining the handful of commands below will make you ever the more agile.</p>
+      <p class="post">Part of the trouble with a condensed course like BitmakerLabs is there is little time for ideas to distill. Sometimes, clarity comes after a long walk, hot shower, or a thought that shakes you awake, revealing in beautiful detail the solution to a problem you've been staring at for the last 10 hours. I have found that things that look simple and beautiful are the most complex to build. I toiled for 6 hours on this website in an attempt to center multiple blocks of content in the banner. In technical terms, there remain multiple divs within another div, and I was looking to center-align those "inner-divs". After posting my frustrations on this blog, a friend (and developer) responded to my complaints by sending me <strong><a href="http://vimeo.com/43380467" target="_blank">this video</a></strong> by <strong><em><a href="http://en.wikipedia.org/wiki/Zed_Shaw" target="_blank">Zed A. Shaw</a></em></strong>. As it turns out, centering content <strong>is no easy task.</strong> At 8:45 he goes on to say:</p>
 
-<div class="application">Unix</div>
-<div class="shortcuts">
-  <ul class="list">
-    <li><b>cd:</b> change directory</li>
-    <li><b>cd ..:</b> back one directory</li>
-    <li><b>cd ../..:</b> back two directories</li>
-    <li><b>cd ~:</b> home directory</li>
-    <li><b>cp -r currentFolder newFolder:</b> make a copy of folder in same directory</li>
-    <li><b>rm:</b> remove a file</li>
-    <li><b>mkdir:</b> make a directory</li>
-    <li><b>rmdir:</b> remove a directory</li>
-    <li><b>mv:</b> move a file/directory</li>
-    <li><b>pwd:</b> present working directory</li>
-    <li><b>ls:</b> list contents in directory</li>
-    <li><b>ls -l:</b> list content details in directory</li>
-    <li><b>ls -a:</b> list all contents in directory</li>
-    <li><b>touch:</b> create a new file</li>
-    <li><b>cat:</b> display contents of a file</li>
-    <li><b>cmd + K:</b> clear shell</li>
-    <li><b>nano ~/.bash_profile:</b> launch bash_profile to <a href="http://www.maclife.com/article/columns/terminal_101_creating_aliases_commands" target="_blank"><u>create an alias</u></a></li>
-  </ul>
-</div>
+      <blockquote>"Why can't I center $hit? If I (expletive) say center, (expletive) center it. Don't make me do margin auto left zero blaaahhh"</blockquote>
 
-<p class="title">Hoooove<span class="date">1/25/2014</span></p>
+      <p class = "post">So what did I learn? Only that CSS continues to mystify even the most adept programmers. In a twisted way, it's comforting.</p>
 
-<p class="post">You couldn't ask for a better weekend. My Christmas gift this year was to fly to Montreal to meet my girlfriend for the Jay-Z concert at the Bell Centre. I've had my head buried in the sand with this whole web thing, so I can't say that I flew into Montreal with great anticipation. I've found that this approach often yields better experiences, because you hold no/low expectations. All I know is that Jay-Z is a monster (his words, not mine), and he'll put on one helluva show.</p>
-<p class="post">Well, you're damn right he did. The concert was phenomenal. You may wonder - who opens for Jay-Z? Nobody. That's how badass he is. Getting to open for Jay-Z is not an honour. No one is there to see you. And there is nothing that you could do that will make this crowd believe that it's remotely as entertaining as what Jay-Z has in store. So thank you, Jay-Z, for not punishing anyone with the dubious duty of opening for you.</p>
-<p class="post">Here's the part that got me. There was a video of a child <b><a href="http://www.youtube.com/watch?v=BA5D-WEcNGA" target="_blank">prodigy</a></b> circulating in highschool ripping it on the drums. Turns out, 10 years later, Tony Royster Jr. (said prodigy) is backing up Jay-Z</b>. He also plays/owns/defeats the <b><a href="http://www.youtube.com/watch?v=kKLTmBJzVJw" target="_blank">electric drums</a></b>. It would be worth seeing Tony Royster Jr. alone for an hour. I would most definitely brush the dirt off that man's shoulders.</p>
+      <p class="title">Why am I doing this!?<span class="date">1/12/2014</span></p>
 
-<p class="title">Letting it all Sink In<span class="date">1/20/2014</span></p>
+      <p class="post">I became interested in the potential opportunities for someone in my situation (actuarial science) to learn to program on a non-traditional actuarial platform (the web) in 2011. Many of the business processes I encountered could be boiled down to a set of instructions. As was the case, algorithms were of great help - <b><em>when they were developed</em></b>. In the insurance industry, a host of pricing, valuation, and reporting processes are procedural tasks completed by overworked analysts. Download data, format data, summarize data, visualize data, email data, <em>add commentary</em>, repeat. Of course, most of this can be automated. And while algorithms require thoughtful development, maintenence, and oversight, it is far more interesting work than the veritable 'digging holes' of repetitive financial assignments.</p>
 
-<p class="post">Part of the trouble with condensed course like BitmakerLabs is there is little time for ideas to distill. Sometimes, clarity comes after a long walk, hot shower, or a thought that shakes you awake, revealing in beautiful detail the solution to a problem you've been staring at for the last 10 hours. I have found that things that look simple and beautiful are the most complex to build. I toiled for 6 hours on this website in an attempt to center multiple blocks of content in the banner. In technical terms, there remain multiple divs within another div, and I was looking to center-align those "inner-divs". After posting my frustrations on this blog, a friend (and developer) responded to my complaints by sending me <strong><a href="http://vimeo.com/43380467" target="_blank">this video</a></strong> by <strong><em><a href="http://en.wikipedia.org/wiki/Zed_Shaw" target="_blank">Zed A. Shaw</a></em></strong>. As it turns out, centering content <strong>is no easy task.</strong> At 8:45 he goes on to say:</p>
+      <p class="post">This isn't much of a segue, but it turns out what keeps employees faithful are assignments that allow for autonomy, command mastery, and have definitive purpose. I hope my gamble to learn web development empowers me to seek job opportunities with similar features. I wish you the same!</p>
 
-<blockquote>"Why can't I center $hit? If I (expletive) say center, (expletive) center it. Don't make me do margin auto left zero blaaahhh"</blockquote>
+      <div class="movie-container">
+        <iframe class="movie" width="660" height="365" src="//www.youtube.com/embed/u6XAPnuFjJc" frameborder="0" allowfullscreen></iframe>
+      </div>
 
-<p class = "post">So what did I learn? Only that CSS continues to mystify even the most adept programmers. In a twisted way, it's comforting.</p>
+      <p class="title">Blog, Bitmaker, and general Badassery<span class="date">1/11/2014</span></p>
 
-<p class="title">Why am I doing this!?<span class="date">1/12/2014</span></p>
+      <blockquote style="font-size:16px">"Painters like to paint, where writers like to have written." - excerpt from Antifragile</blockquote>
 
-<p class="post">I became interested in the potential opportunities for someone in my situation (actuarial science) to learn to program on a non-traditional actuarial platform (the web) in 2011. Many of the business processes I encountered could be boiled down to a set of instructions. As was the case, algorithms were of great help - <b><em>when they were developed</em></b>. In the insurance industry, a host of pricing, valuation, and reporting processes are procedural tasks completed by overworked analysts. Download data, format data, summarize data, visualize data, email data, <em>add commentary</em>, repeat. Of course, most of this can be automated. And while algorithms require thoughtful development, maintenence, and oversight, it is far more interesting work than the veritable 'digging holes' of repetitive financial assignments.</p>
+      <p class="post">I'm not much of a writer, in that I was never naturally inclined to write for fun. Still, I find that there's tremendous value in documenting and revisiting your thoughts, feelings, and ideas to see how they (and you) evolve over time. So, to overcome my hesitation to write, I'm not going to hold myself to much of a standard. The goal, broadly speaking, is simply to write about what's on my mind. So why share it with the world? That's an interesting question. The main motivation is that I have personally benefited a great deal from other people sharing their work. I hope I can give back to the actuarial/data/coding community in some way by writing about what I'm learning and building. </p>
 
-<p class="post">This isn't much of a segue, but it turns out what keeps employees faithful are assignments that allow for autonomy, command mastery, and have definitive purpose. I hope my gamble to learn web development empowers me to seek job opportunities with similar features. I wish you the same!</p>
+      <p class="post">Tonight is the first night I arrived in Toronto to begin a 10-week journey to add web development to my tool kit. My Codecadamy profile will attest to many long nights working through Javascript, HTML, Ruby and Python tutorials. With limited success learning the 'full-stack' on my own, I decided to investigate options to further my learning. That landed me at BitmakerLabs, an immersive 9-week course focusing on UNIX fundamentals, CSS, Ruby on Rails, HTML and JavaScript. In the course of my reading, I've since discovered that Ruby is object-oriented, a feature it shares with VBA (the language behind excel). I'm hopeful that I can draw on my experience programming and designing in excel to developing and deploying in Rails.</p>
 
-<div class="movie-container">
-  <iframe class="movie" width="660" height="365" src="//www.youtube.com/embed/u6XAPnuFjJc" frameborder="0" allowfullscreen></iframe>
-</div>
-
-<p class="title">Blog, Bitmaker, and general Badassery<span class="date">1/11/2014</span></p>
-
-<blockquote style="font-size:16px">"Painters like to paint, where writers like to have written." - excerpt from Antifragile</blockquote>
-
-<p class="post">I'm not much of a writer, in that I was never naturally inclined to write for fun. Still, I find that there's tremendous value in documenting and revisiting your thoughts, feelings, and ideas to see how they (and you) evolve over time. So, to overcome my hesitation to write, I'm not going to hold myself to much of a standard. The goal, broadly speaking, is simply to write about what's on my mind. So why share it with the world? That's an interesting question. The main motivation is that I have personally benefited a great deal from other people sharing their work. I hope I can give back to the actuarial/data/coding community in some way by writing about what I'm learning and building. </p>
-
-<p class="post">Tonight is the first night I arrived in Toronto to begin a 10 week journey to add web development to my tool kit. My Codecadamy profile will attest to many long nights working through Javascript, HTML, Ruby and Python tutorials. With limited success learning the 'full-stack' on my own, I decided to investigate options to further my learning. That landed me at BitmakerLabs, an immersive 9-week course focusing on UNIX fundamentals, CSS, Ruby on Rails, HTML and JavaScript. In the course of my reading, I've since discovered that Ruby is object-oriented, a feature it shares with VBA (the language behind excel). I'm hopeful that I can draw on my experience programming and designing in excel to developing and deploying in rails.</p>
-
-<p class="post">I'll be staying with three fellow students for the duration of our 10-week stay, in the heart of downtown Toronto. I'd describe where that is to you, were I to know where I am. You see, I get lost easily. It must be a condition. I can't just wonder around a new city because I get lost and panic (London, Chicago, Montreal). Often, my walking will consist of walking up and down a long street. I suppose, fitting then, that Yonge St. is in Toronto. But in order to walk it, I need to find it. And my fear, in this cold, is that on my way to Yonge St., my phone will die, and I won't be able to find my way back. And you'll find me, 6 months later, dethawing and decaying under a bridge. Not because of addiction or violence, but merely because I got lost. This is why I walk up and down long streets instead of taking risky turns. In short, if you're wondering where I am, I don't know. But I can triangulate. I am somwhere between a starbucks, the royal albert hall, and the ritz carleton. Please don't steal my things. I leave the door unlocked because I don't have a key.</p>
-</br></br></br></br></br></p>
-</div>
+      <p class="post">I'll be staying with three fellow students for the duration of our 10-week stay, in the heart of downtown Toronto. I'd describe where that is to you, were I to know where I am. You see, I get lost easily. It must be a condition I inherited (my mom got lost in the airport on her way to the bathroom). In similar fashion, I can't just wonder around a new city because I get lost and panic (Instanbul, London, Chicago, Montreal). Often, my walking will consist of walking up and down a long street. I suppose, fitting then, that Yonge St. is in Toronto. But in order to walk it, I need to find it. And my fear, in this cold, is that on my way to Yonge St., my phone will die, and I won't be able to find my way back. And you'll find me, 6 months later, dethawing and decaying under a bridge. Not because of addiction or violence, but merely because I got lost. This is why I walk up and down long streets instead of taking risky turns. In short, if you're wondering where I am, I don't know. But I can triangulate. I am somwhere between a starbucks, the royal albert hall, and the ritz carleton. Please don't steal my things. I leave the door unlocked because I don't have a key.</p>
+    </br></br></br></br></br></p>
+  </div>
 </div>
 </div>
 
