@@ -15,6 +15,7 @@ ul, ol, li {
     font-family: courier new;
     font-size: 14.5px;
 }
+
 ol{
     margin-left: 1.2em;
 }
@@ -24,16 +25,67 @@ a, em {
     color: #364040;
 }
 
-a:hover, em:hover {
+a:hover{
     color: #6C7F7F;
+}
+
+
+button {
+    -moz-box-shadow:inset 0px 1px 0px 0px #cae3fc;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #cae3fc;
+    box-shadow:inset 0px 1px 0px 0px #cae3fc;
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #4197ee) );
+    background:-moz-linear-gradient( center top, #79bbff 5%, #4197ee 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#4197ee');
+    background-color:#79bbff;
+    -webkit-border-top-left-radius:0px;
+    -moz-border-radius-topleft:0px;
+    border-top-left-radius:0px;
+    -webkit-border-top-right-radius:0px;
+    -moz-border-radius-topright:0px;
+    border-top-right-radius:0px;
+    -webkit-border-bottom-right-radius:0px;
+    -moz-border-radius-bottomright:0px;
+    border-bottom-right-radius:0px;
+    -webkit-border-bottom-left-radius:0px;
+    -moz-border-radius-bottomleft:0px;
+    border-bottom-left-radius:0px;
+    text-indent:0;
+    border:1px solid #469df5;
+    display:inline-block;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:16px;
+    font-weight:bold;
+    font-style:normal;
+    height:34px;
+    line-height:34px;
+    width:200px;
+    text-decoration:none;
+    text-align:center;
+    text-shadow:1px 2px 31px #287ace;
+}
+
+button:hover {
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #4197ee), color-stop(1, #79bbff) );
+    background:-moz-linear-gradient( center top, #4197ee 5%, #79bbff 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#4197ee', endColorstr='#79bbff');
+    background-color:#4197ee;
+}
+
+button:active {
+    position:relative;
+    top:1px;
 }
 
 button:focus {outline:0;}
 
-.cover-photo {
-     height: 755px;
-     background: url('http://gadgetsdairy.com/wp-content/uploads/2013/05/Windows-8-Wallpapers-5.jpg') no-repeat center center fixed;
-     background-size: cover;
+/*Standard styling for digital media embedded on the blog*/
+.movie {
+    width: 500px;
+    height: 345px;
+    background-color: black;
+    box-shadow: 7px 7px 5px #888888;
 }
 
 .movie-container {
@@ -41,17 +93,10 @@ button:focus {outline:0;}
     text-align: center;
 }
 
-.movie {
-    width: 500px;
-    height: 345px;
-    background-color: black;
-    box-shadow: 7px 7px 5px #888888;
-}
-#space {
-    display: none;
-    height: 198px;
-}
+
+
 #toTop {
+    z-index: 1;
     width:64px;
     height:64px;
     text-align:center;
@@ -61,20 +106,6 @@ button:focus {outline:0;}
     cursor:pointer;
     border-radius: 50%;
     background-image:url('https://addons.opera.com/media/extensions/75/24075/1.1-rev1/icons/icon_64x64.png');
-}
-
-.soundcloud{
-    margin: 0 auto;
-    width: 100%;
-    height: 125px;
-    box-shadow: 7px 7px 5px #888888;
-    border: 2px solid black;
-}
-
-.button{
-    margin-top: 50px; width: 100%;
-    margin: 0 auto;
-    text-align: center
 }
 
 #inspiration{
@@ -235,6 +266,7 @@ button:focus {outline:0;}
     background-color: #A2BFBF;
     height: 196px;
     border-bottom:8px solid #f4f5f8;
+    z-index: 00001;
 }
 
 .top-nav-scroll {
@@ -306,47 +338,51 @@ img{
     font-size:12px Arial;
 }
 
-.solutionbutton {
-    -moz-box-shadow:inset 0px 1px 0px 0px #cae3fc;
-    -webkit-box-shadow:inset 0px 1px 0px 0px #cae3fc;
-    box-shadow:inset 0px 1px 0px 0px #cae3fc;
-    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #4197ee) );
-    background:-moz-linear-gradient( center top, #79bbff 5%, #4197ee 100% );
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#4197ee');
-    background-color:#79bbff;
-    -webkit-border-top-left-radius:0px;
-    -moz-border-radius-topleft:0px;
-    border-top-left-radius:0px;
-    -webkit-border-top-right-radius:0px;
-    -moz-border-radius-topright:0px;
-    border-top-right-radius:0px;
-    -webkit-border-bottom-right-radius:0px;
-    -moz-border-radius-bottomright:0px;
-    border-bottom-right-radius:0px;
-    -webkit-border-bottom-left-radius:0px;
-    -moz-border-radius-bottomleft:0px;
-    border-bottom-left-radius:0px;
-    text-indent:0;
-    border:1px solid #469df5;
-    display:inline-block;
-    color:#ffffff;
-    font-family:Arial;
-    font-size:16px;
-    font-weight:bold;
-    font-style:normal;
-    height:34px;
-    line-height:34px;
-    width:200px;
-    text-decoration:none;
-    text-align:center;
-    text-shadow:1px 2px 31px #287ace;
+.soundcloud{
+    margin: 0 auto;
+    width: 100%;
+    height: 125px;
+    box-shadow: 7px 7px 5px #888888;
+    border: 2px solid black;
 }
-.solutionbutton:hover {
-    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #4197ee), color-stop(1, #79bbff) );
-    background:-moz-linear-gradient( center top, #4197ee 5%, #79bbff 100% );
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#4197ee', endColorstr='#79bbff');
-    background-color:#4197ee;
-}.solutionbutton:active {
-    position:relative;
-    top:1px;
+
+
+
+div .bucket {
+    width: 33.3%;
+    float: left;
+}
+div#display_a, div#display_b, div#display_c {
+    border: 1px solid black;
+    height: 80px;
+    width: 33.3%;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 24px;
+}
+
+div#track_a, div#track_b  {
+    border-radius: 10px;
+    width: 200px;
+    height: 17px;
+    background-color:#79bbff;
+    border: 1px solid #ffffff;;
+    position: relative;
+    margin: 3px auto;
+
+}
+
+div#slider_a, div#slider_b {
+    border-radius: 50px;
+    background-color: #ddd;
+    height: 17px;
+    width: 20px;
+    position: relative;
+    border: 4px solid #ddd;
+}
+
+#invisible_space {
+    display: none;
+    height: 198px;
 }

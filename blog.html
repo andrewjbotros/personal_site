@@ -7,60 +7,88 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
   <link rel="stylesheet" href="css/andrewjbotros_style.css" type="text/css"/>
-  <link rel="stylesheet" href="css/excel.css" type="text/css"/>
   <script src="js/jquery-1.10.2.js"></script>
   <script src="js/jquery.tooltip.js"></script>
-  <script src='js/scroll-to-top.js'></script>
   <script src='js/underscore-min.js'></script>
-  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-  <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+<!--  Change Profile Picture on Hover: aAlters the banner profile picture when a mouse 'hovers' over it.
+-->
+<script>
+$(document).ready(function () {
+  $(".profile-image img").hover(function () {
+    $(this).attr("src" ,"images/profile_picture2.png");
+  }, function () {
+    $(this).attr("src" ,"images/profile_picture1.png");
   });
-  </script>
+});
+</script>
 
-  <script type="text/javascript">
+<!--  MathJax: A Javascript LaTex plugin for writing math functions.
+      For inline functions, using single dollar signs -> '&{function}&''.
+      For stand-alone functions, use double dollar signs -> '&&{function}&&''.
+    -->
 
-  $(document).scroll(function(){
-    if($(window).scrollTop() > 126)
-    {
-      $('.top-nav').addClass('top-nav-scroll');
-      $('#space').show();
-      $('#picturehide').hide();
-      $('#name').hide();
-      $('.profile-details').addClass('profile-details-scroll');
-      $('.nav').addClass('nav-scroll');
-    }
-    else{
-      $('.top-nav').removeClass('top-nav-scroll');
-      $('#space').hide();
-      $('#name').show();
-      $('#picturehide').show();
-      $('.profile-details').removeClass('profile-details-scroll');
-      $('.nav').removeClass('nav-scroll');
-    }
-  });
-  </script>
-
-</head>
-
-<body>
-
-  <script>
-  $(document).ready(function () {
-    $(".profile-image img").hover(function () {
-      $(this).attr("src" ,"images/profile_picture2.png");
-    }, function () {
-      $(this).attr("src" ,"images/profile_picture1.png");
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
     });
-  });
-  </script>
+    </script>
 
-  <div class="container">
+<!--  Scroll to Top: A Javascript plugin that allows for smooth scrolling to the top of the page.
+      An arrow appears once user has scrolled down the page past a certain point.
+      Clicking this arrow returns the user to the top of the page, seemlessly.
+    -->
+    <script src='js/scroll-to-top.js'></script>
+    <script type="text/javascript">
+    $(document).scroll(function(){
+      if($(window).scrollTop() > 126)
+      {
+        $('.top-nav').addClass('top-nav-scroll');
+        $('#invisible_space').show();
+        $('#profile-image').hide();
+        $('#name').hide();
+        $('.profile-details').addClass('profile-details-scroll');
+        $('.nav').addClass('nav-scroll');
+      }
+      else{
+        $('.top-nav').removeClass('top-nav-scroll');
+        $('#invisible_space').hide();
+        $('#name').show();
+        $('#profile-image').show();
+        $('.profile-details').removeClass('profile-details-scroll');
+        $('.nav').removeClass('nav-scroll');
+      }
+    });
+    </script>
+
+    <!-- Sliders: A Javascript plugin for dynamic calculations using sliders to adjust values. -->
+
+    <script src='js/dw_slider.js'></script>
+    <script type="text/javascript">
+    DYN_WEB.Event.domReady( function() {
+        // aruments: slider id, track id, axis orientation ('v' or 'h')
+        var sla = new DYN_WEB.Slider('slider_a', 'track_a', 'h');
+        var slb = new DYN_WEB.Slider('slider_b', 'track_b', 'h');
+
+        // display value when click on track or drag slider
+        sla.on_move = function(x) {
+          document.getElementById('display_a').innerHTML = parseInt(x, 10);
+        };
+        slb.on_move = function(y) {
+          document.getElementById('display_b').innerHTML = parseInt(y, 10);
+        };
+
+      });
+    </script>
+
+  </head>
+
+  <body class="container">
+    <!--     <div class="container"> -->
     <header class="top-nav">
       <div class="profile-image">
-        <a href="mailto:andrewjbotros@gmail.com?Subject=Hello!%20" target="_blank"><img title="contact me" class="masterTooltip" id="picturehide"src="images/profile_picture1.png"/></a>
+        <a href="mailto:andrewjbotros@gmail.com?Subject=Hello!%20" target="_blank"><img title="contact me" class="masterTooltip" id="profile-image"src="images/profile_picture1.png"/></a>
       </div>
       <div class="profile-details">
         <h1 id="name"><a href="index.html">andrew botros</a></h1>
@@ -72,7 +100,7 @@
       </div>
     </header>
 
-    <div id="space"></div>
+    <div class="space"></div>
 
     <div class="blog">
 
@@ -80,13 +108,32 @@
 
       <p class="post">As many of you can attest, the process of crafting a customized cover letter for each application is time-consuming. Companies typically identify qualifying applicants with the assistance of a computer, which alogrithmically selects candidates by identifying relevant skills, knowledge and experience. Unfortunately the details of these matching algorithms remain opaque, but it raises an interesting question. How should one structure a cover letter/resume to reduce your chances of being filtered out by 'the machine'?</p>
       <p class="post">It turns out, others have explored this question. A company called <strong><a href="http://www.resunate.com/">Resunate</a></strong> suggests a handful of specific terms from the job profile to be strategically inserted into your resume. Then, it ranks your experience in order of relevance. Apparently, their proprietary recommendations can improve your odds of getting an interview in a statistically significant way. I was interested in looking at this problem myself, because there is a compelling probabalistic argument for why this is a worthy endevour.<p>
-        <p class="post"> There are essentially three ways to improve your odds of landing a job; apply to more jobs, apply to relevant jobs and nepotism.</p>
-        <p class="post">For simplicity, let's assume the likelihood of getting an interview for any particular job is uniform. What we're interested in is the likelihood of getting atleast 1 interview. Expressed another way, we wish to compute the probability that getting 0 interviews will <strong>not</strong> occur over $N$ applications. In the case of one application, the odds of not being selected is $1 - \Pr(Getting An Interview)$. If we submit $N$ applications, the odds become $(1 - \Pr(Getting An Interview))^{N}$. Since we are interested in solving for the odds of being selected, our probability solves to </p>
-
-        <img class="tablez" src="images/table1.png"/ style="height: 100px">
+        <p class="post"> There are essentially three ways to improve your odds of landing a job; apply to more jobs, apply to relevant jobs and nepotism. For simplicity, let's assume the likelihood of getting an interview for any particular job is uniform. What we're interested in is the likelihood of getting atleast 1 interview. Expressed another way, we wish to compute the probability that getting 0 interviews will <strong>not</strong> occur over $N$ applications. In the case of one application, the odds of not being selected is $1 - \Pr(Getting An Interview)$. If we submit $N$ applications, the odds of not being selected becomes $(1 - \Pr(Getting An Interview))^{N}$. By the Law of Total Probability, the odds of getting atleast 1 interview are:</p>
         <p class="post" style="font-size: 18px">
           $$1 - (1 - \Pr(Getting An Interview) )^{N}$$
         </p>
+        <p class="post">It's not clear how much a tool like Resunate can improve your <strong>overall</strong> odds of getting a job. For that, you'll need to input your expectation of getting an interview (before & after resume adjustments), and the number of jobs you anticipate applying to. Notice that even if your chances for an individual job improve only slightly (say 2% to 3%), the change compounded over a large number of applications can make a substantial difference. Remember, you don't have to be accurate in forecasting the probability of getting an interview. Focus on how sensitive the outcome is to a <u>range of <em>changes</em></u> in the probability and total number of applications.</p>
+
+        <div style="border: 1px solid black; width: 85%; height: 80px; margin: 35px auto 0 auto">
+          <div id="display_a"></div>
+          <div id="display_b"></div>
+          <div id="display_c"></div>
+        </div>
+
+        <div style="border: 1px solid black; border-top: none; width: 85%; height: 25px; margin: 0px auto 35px auto">
+          <div class="bucket">
+            <div id="track_a">
+              <div id="slider_a"></div>
+            </div>
+          </div>
+          <div class="bucket">
+            <div id="track_b">
+              <div id="slider_b"></div>
+            </div>
+          </div>
+          <div class="bucket"></div>
+        </div>
+
         <p class="title">Actuarial Guide for Soon-To-Be Graduates<span class="date">4/3/2014</span></p>
         <p class="post">I just turned 29 yesterday. Scary. It's been over 6 years since I graduated, and 8 years since I wrote my first actuarial exam. While I was originally asked to write about my endevours in actuarial musical composition (google: actuarial girlfriend), it felt a little self-serving. I have resigned to the fact that I will remain; anti-viral. Instead, my old age prompted a sincere reflection on all that I've learned since entering the workforce 6 years ago. I was hoping to codify these lessons into a brief guide for actuarial graduates.
         </p>
@@ -152,7 +199,9 @@
 
           <p class="title">What Were the Odds?<span class="date">3/26/2014</span></p>
           <p class="post">I'm interested in building a model that calculates the probability of landing a room in <b><a href="http://bitmakerlabs.com/" target="_blank">Bitmaker Labs</a></b> "Hacker House". The company leases property to sublet to programming students from out of town. Since supply is limited, rooms are assigned randomly. Calculating the expectation of 'winning' a room is not as straitforward as it seems. I'd like to share some interesting properties of this lottery design, but first I should introduce it.</p>
-          <p class="post"><b><em>A concrete example.</em></b> 17 students need housing, but only 4 rooms (A,B,C,D) are available. Each offering is slightly different, and thus are listed at slightly different prices. Every student is allowed to bid on any number of the rooms. It is legitimate to have Jon request A and B, and Jen to request C and B, and Tina request B, C, and D. However, they may be assigned at most one room. Please see the table below:</p>
+          <p class="post"><b><em>A concrete example.</em></b> 17 students need housing, but only 4 rooms (A,B,C,D) are available. Each offering is slightly different, and thus are listed at variable prices. Every student is allowed to bid on any number of the rooms, though they can be assigned at most one room. The results of our example are shown below:</p>
+
+          <div style="padding: 25px"><img align="middle" src="images/table1.png"/ style="height: 340px; display: block; margin: 0 auto"></div>
 
           <p class="post">If we draw with replacement, computing the probability of being assigned a room is relatively straight forward. Simply: $1 - \Pr(A)$</p>
           <p class="post">The expected probabilities for each individual using this method is shown below.</p>
@@ -168,9 +217,9 @@
 
           <p class="post"><code><em>"How many ways can you climb 250 steps by taking combinations of 246 one-steps and 2 two-steps?"</code></em> This is 248 choose 2. The key insight is to recognize that the total number of sequences is the sum of each combinatoric function that answers these questions. I hope the final question is now obvious; <code><em>"How many ways can you climb 250 steps by taking combinations of 125 two-steps?"</em></code> For those with basic programming skills, this problem lends itself well to solving in a loop, and you can find the solution below (view the source code to see the javascript).</p>
 
-          <div style="width: 100%; text-align: center"><a href="steps.html" target="_blank"><button class="solutionbutton" style="margin: 25px 0px">Solution</button></a></div>
+          <div style="width: 100%; text-align: center"><a href="steps.html" target="_blank"><button style="margin-top: 25px ">Solution</button></a></div>
 
-          <p class="title" style="margin-top: 20px">Migrations in Rails<span class="date">3/12/2014</span></p>
+          <p class="title">Migrations in Rails<span class="date">3/12/2014</span></p>
           <p class="post">Model, view, controller generation and database modifications for creating an Expense class.</p>
 
           <div class="application">Rails Commands (Command Line)</div>
@@ -291,7 +340,8 @@
             </ul>
           </div>
 
-          <p class="post">Unfortunately, there aren't many shortcuts to mastering the rails framework, and I've found the most helpful resource troubleshooting your applications to be the <b><a href="http://guides.rubyonrails.org/" target="_blank">rails guides</a></b>. Treehouse and Lynda offer video series introducing the rails framework, in addition to providing code samples and examples (so you can code alongside the videos). I found these to be of great help learning how rails is used to build applications you encounter across the web. The videos are slightly outdated, and you may run into problems debugging your programs to be compatible with the latest standards. Unfortunately, Rails is updated frequently enough that it's difficult for content providers to keep things current. As you navigate the path to ruby enlightenment, you will often encounter the term <u>ruby gem</u>. This is simply ruby code that's been packaged up for easy distribution using the package manager. You can read/explore all the available gems online at <b><a href="https://rubygems.org/" target="_blank">rubygems.org</a></b>, as well as download the <b><a href="https://rubygems.org/pages/download">package manager</a></b> itself.</p>
+          <p class="post">Unfortunately, there aren't many shortcuts to mastering the rails framework, and I've found the most helpful resource troubleshooting your applications to be the <b><a href="http://guides.rubyonrails.org/" target="_blank">rails guides</a></b>. Treehouse and Lynda offer video series introducing the rails framework, in addition to providing code samples and examples (so you can code alongside the videos). I found these to be of great help learning how rails is used to build applications you encounter across the web. The videos are slightly outdated, and you may run into problems debugging your programs to be compatible with the latest standards. Unfortunately, Rails is updated frequently enough that it's difficult for content providers to keep things current.</p>
+          <p class="post">Lastly, as you navigate the path to ruby enlightenment, you will often encounter the term <u>ruby gem</u>. This is simply ruby code that's been packaged up for easy distribution using the package manager. You can read/explore all the available gems online at <b><a href="https://rubygems.org/" target="_blank">rubygems.org</a></b>, as well as download the <b><a href="https://rubygems.org/pages/download">package manager</a></b> itself.</p>
 
           <p class="title">Can I Git a What What?<span class="date">2/5/2014</span></p>
 
@@ -352,7 +402,7 @@
 
           <p class="post">Part of the trouble with a condensed course like Bitmaker Labs is there is little time for ideas to distill. Sometimes, clarity comes after a long walk, hot shower, or a thought that shakes you awake, revealing in beautiful detail the solution to a problem you've been staring at for the last 10 hours. I have found that things that look simple and beautiful are the most complex to build. I toiled for 6 hours on this website in an attempt to center multiple blocks of content in the banner. In technical terms, there remain multiple divs within another div, and I was looking to center-align those "inner-divs". After posting my frustrations on this blog, a friend (and developer) responded to my complaints by sending me <strong><a href="http://vimeo.com/43380467" target="_blank">this video</a></strong> by <strong><em><a href="http://en.wikipedia.org/wiki/Zed_Shaw" target="_blank">Zed A. Shaw</a></em></strong>. As it turns out, centering content <strong>is no easy task.</strong> At 8:45 he goes on to say:</p>
 
-          <blockquote style="font-size: 16px">"Why can't I center $hit? If I (expletive) say center, (expletive) center it. Don't make me do margin auto left zero blaaahhh"</blockquote>
+          <code><blockquote style="font-size: 16px">"Why can't I center $hit? If I (expletive) say center, (expletive) center it. Don't make me do margin auto left zero blaaahhh"</blockquote></code>
 
           <p class = "post">So what did I learn? Only that CSS continues to mystify even the most adept programmers. In a twisted way, it's comforting.</p>
 
@@ -360,26 +410,26 @@
 
           <p class="post">I became interested in the potential opportunities for someone in my situation (actuarial science) to learn to program on a non-traditional actuarial platform (the web) in 2011. Many of the business processes I encountered could be boiled down to a set of instructions. As was the case, algorithms were of great help - <b><em>when they were developed</em></b>. In the insurance industry, a host of pricing, valuation, and reporting processes are procedural tasks completed by overworked analysts. Download data, format data, summarize data, visualize data, email data, <em>add commentary</em>, repeat. Of course, most of this can be automated. And while algorithms require thoughtful development, maintenence, and oversight, it is far more interesting work than the veritable 'digging holes' of repetitive financial assignments.</p>
 
-          <p class="post">This isn't much of a segue, but it turns out what keeps employees faithful are assignments that allow for autonomy, command mastery, and have definitive purpose. I hope my gamble to learn web development empowers me to seek job opportunities with similar features. I wish you the same!</p>
-
           <div class="movie-container">
             <iframe class="movie" width="660" height="365" src="//www.youtube.com/embed/u6XAPnuFjJc" frameborder="0" allowfullscreen></iframe>
           </div>
 
           <p class="title">Blog, Bitmaker, and general Badassery<span class="date">1/11/2014</span></p>
 
-          <div class="note"><blockquote><code>"Painters like to paint, where writers like to have written." - excerpt; Antifragile</code></blockquote></div>
+          <div class="note">
+            <blockquote><code>"Painters like to paint, where writers like to have written." - excerpt; Antifragile</code></blockquote>
+          </div>
 
           <p class="post">I'm not much of a writer, in that I was never naturally inclined to write for fun. Still, I find that there's tremendous value in documenting and revisiting your thoughts, feelings, and ideas to see how they (and you) evolve over time. So, to overcome my hesitation to write, I'm not going to hold myself to much of a standard. The goal, broadly speaking, is simply to write about what's on my mind. So why share it with the world? That's an interesting question. The main motivation is that I have personally benefited a great deal from other people sharing their work. I hope I can give back to the actuarial/data/coding community in some way by writing about what I'm learning and building. </p>
 
           <p class="post">Tonight is the first night I arrived in Toronto to begin a 10-week journey to add web development to my tool kit. My Codecadamy profile will attest to many long nights working through Javascript, HTML, Ruby and Python tutorials. With limited success learning the 'full-stack' on my own, I decided to investigate options to further my learning. That landed me at Bitmaker Labs, an immersive 9-week course focusing on UNIX fundamentals, CSS, Ruby on Rails, HTML and JavaScript. In the course of my reading, I've since discovered that Ruby is object-oriented, a feature it shares with VBA (the language behind excel). I'm hopeful that I can draw on my experience programming and designing in excel to developing and deploying in Rails.</p>
 
           <p class="post">I'll be staying with three fellow students for the duration of our 10-week stay, in the heart of downtown Toronto. I'd describe where that is to you, were I to know where I am. You see, I get lost easily. It must be a condition I inherited (my mom got lost in the airport on her way to the bathroom). In similar fashion, I can't just wonder around a new city because I get lost and panic (Instanbul, London, Chicago, Montreal). Often, my walking will consist of walking up and down a long street. I suppose, fitting then, that Yonge St. is in Toronto. But in order to walk it, I need to find it. And my fear, in this cold, is that on my way to Yonge St., my phone will die, and I won't be able to find my way back. And you'll find me, 6 months later, dethawing and decaying under a bridge. Not because of addiction or violence, but merely because I got lost. This is why I walk up and down long streets instead of taking risky turns. In short, if you're wondering where I am, I don't know. But I can triangulate. I am somwhere between a starbucks, the royal albert hall, and the ritz carleton. Please don't steal my things. I leave the door unlocked because I don't have a key.</p>
-        </br></br></br></br></br></p>
-      </div>
-    </div>
-  </div>
 
-  <div href="#" id="toTop"></div>
-</body>
-</html>
+        </div>
+      </div>
+      <!--     </div> -->
+
+      <div href="#" id="toTop"></div>
+    </body>
+    </html>
