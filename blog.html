@@ -13,7 +13,7 @@
 
 <!--  Change Profile Picture on Hover: aAlters the banner profile picture when a mouse 'hovers' over it.
 -->
-<script>
+<script type="text/javascript">
 $(document).ready(function () {
   $(".profile-image img").hover(function () {
     $(this).attr("src" ,"images/profile_picture2.png");
@@ -84,8 +84,7 @@ $(document).ready(function () {
 
   </head>
 
-  <body class="container">
-    <!--     <div class="container"> -->
+  <body>
     <header class="top-nav">
       <div class="profile-image">
         <a href="mailto:andrewjbotros@gmail.com?Subject=Hello!%20" target="_blank"><img title="contact me" class="masterTooltip" id="profile-image"src="images/profile_picture1.png"/></a>
@@ -100,7 +99,7 @@ $(document).ready(function () {
       </div>
     </header>
 
-    <div class="space"></div>
+    <div id="invisible_space"></div>
 
     <div class="blog">
 
@@ -222,8 +221,8 @@ $(document).ready(function () {
           <p class="title">Migrations in Rails<span class="date">3/12/2014</span></p>
           <p class="post">Model, view, controller generation and database modifications for creating an Expense class.</p>
 
-          <div class="application">Rails Commands (Command Line)</div>
-          <div class="shortcuts">
+          <div class="list-title">Rails Commands (Command Line)</div>
+          <div class="list-container">
             <ul class="list">
               <li><b>rails g model Expense</b> always singular</li>
               <li><b>go to db/migrate/[create_expenses]</b> add fields to table</li>
@@ -241,8 +240,8 @@ $(document).ready(function () {
             </ul>
           </div>
 
-          <div class="application">mysql commands</div>
-          <div class="shortcuts">
+          <div class="list-title">mysql commands</div>
+          <div class="list-container">
             <ul class="list">
               <li>SHOW DATABASES;</b></li>
               <li>CREATE DATABASE db_name;</b></li>
@@ -255,8 +254,8 @@ $(document).ready(function () {
           <p class="post">Chrome is a really nice browser to work in. There is a simple set of 'Dev Tools' that can be launched with the following shortcuts (on a mac); 'cmd + option + J'. You can do most anything here, but it is especially usefuly for inspecting and modifying a webpage's source code. If you're looking for a primer on Google's 'Dev Tools', there's a free course at <strong>Code School</strong>, called <strong><em><a href="http://discover-devtools.codeschool.com/">Explore and Master Chrome DevTools</a></em></strong>. If you're short on time, you need only cover the first 3 chapters (they're short).</p>
           <p class="post">For those with a keen eye, you may have noticed that websites take on different looks and feels across browsers. In developing your webpage, you'll want to be mindful of how compatible your site or application is across Safari, Firefox, Chrome, Explorer and even Mobile. For instance, you'll notice on this site that the font of the blog post 'titles' and 'dates' appear difference in Chrome and Firefox. Unfortunately, the custom font I imported into my project does not play nice with Firefox. So if you're looking for near uniformity, you may be developing/debugging your site across multiple browsers. I still use Chrome as my main platform of choice, and I've included a number of shortcuts that will speed up your programming sessions. Many of these work shortcuts apply across other browsers as well. Feel free to email me with your favourite shortcuts and I'll update the list (click my photo in the banner). </p>
 
-          <div class="application">Browser Shortcuts</div>
-          <div class="shortcuts">
+          <div class="list-title">Browser Shortcuts</div>
+          <div class="list-container">
             <ul class="list">
               <li><b>cmd + R:</b> refresh page</li>
               <li><b>cmd + T:</b> new tab</li>
@@ -282,8 +281,8 @@ $(document).ready(function () {
           <p class="title">Relational Databasing<span class="date">2/5/2014</span></p>
           <p class="post">Databases are everywhere, even in analog (telephone book, dictionary, cd collection). It is simply a collection of objects that has some structure. The term relational database describes not only the collection of data, but how it relates to one another. The benefit of having this relationship explicitly described is that it allows the data to be queried; so specific information can be retrieved with relative ease. The term RDBMS refers to a relational database management system. There are many out there, but if you're looking to get your hands dirty, MySQL is used <b><a href="http://blog.jooq.org/2013/10/03/the-10-most-popular-db-engines-sql-and-nosql/">frequently</a></b> in industry, and it happens to be open source. Before you start to get familiar with the SQL syntax, I wanted to cover a few things you'll need to know before you begin.</p>
 
-          <div class="application">Key Terms</div>
-          <div class="shortcuts">
+          <div class="list-title">Key Terms</div>
+          <div class="list-container">
             <ul class="list">
               <li style="list-style-type: none"><b>Table</b></li>
               <li>Set of columns and rows</li>
@@ -329,8 +328,8 @@ $(document).ready(function () {
 
           <p class="post">There's a lot to be said about the 'ease' of building applications in the Ruby on Rails web framework. Ease is the operative word, as navigating through Rails requires a decent command of the language on which it was built, Ruby. If you're new to programming in general, then you have a fair ways to go before you'll be building something in which you have a decent grasp of the plumbing. That said, a quick-start guide to launching a rails application is the classic <b><a href="http://www.reinteractive.net/posts/32-ruby-on-rails-3-2-blog-in-15-minutes-step-by-step" target="_blank">Build a Blog in 15 minutes</a></b>. I highly recommend downloading Sublime Text 2 (one of the two items required to build your own blog). It's nothing more than a text editor that makes working with code easy to manage. It is free to use, though you will be prompted on occasion to pay for your version (delay as you wish). I've attached a few shortcuts that will help you navigate through the Sublime environment.</p>
 
-          <div class="application">Sublime Text 2</div>
-          <div class="shortcuts">
+          <div class="list-title">Sublime Text 2</div>
+          <div class="list-container">
             <ul class="list">
               <li><b>subl .:</b> launch sublime from terminal/command line</li>
               <li><b>cmd + shift + P:</b> cycle through open windows</li>
@@ -347,8 +346,8 @@ $(document).ready(function () {
 
           <p class="post">Git (a revision control manager) and Github (a web-based git repository) are a great pair of tools once you get the hang of them. You'll interact with them from the command line, so to get introduced, please read the post below. So how do I use them? I will often upload ('push') this blog to Github, as I make frequent changes to content (that I may wish to return to). Github allows you to view each version you 'pushed', showing line by line changes to files you modified. For developers working in teams, revision control becomes essential to maintaining the integrity of a coding project. Github has some pretty interesting social features, allowing others to view your coding projects, and enabling you to contribute code to open-source endevours. For the novice programmer, I've listed a handful of commands that you'll need to know to get started.</p>
 
-          <div class="application">Git</div>
-          <div class="shortcuts">
+          <div class="list-title">Git</div>
+          <div class="list-container">
             <ul class="list">
               <li><b>git status:</b> current status of working directory</li>
               <li><b>git log:</b> history of commits</li>
@@ -369,8 +368,8 @@ $(document).ready(function () {
 
           <p class="post">To launch 'Terminal' in Mac OS, hold 'command + spacebar' to bring up Spotlight. Type in 'Terminal' and hit return. This is known as a command line interface. Since Mac OS is a Unix system, I'll be covering specifically Unix commands. If you often rename, move, delete files, and navigate directories in your daily work, combining the handful of commands below will make you ever the more agile.</p>
 
-          <div class="application">Unix Commands</div>
-          <div class="shortcuts">
+          <div class="list-title">Unix Commands</div>
+          <div class="list-container">
             <ul class="list">
               <li><b>cd:</b> change directory</li>
               <li><b>cd ..:</b> back one directory</li>

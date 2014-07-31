@@ -4,14 +4,14 @@
     box-sizing: border-box;
 }
 
+img{
+    margin-top: 12.5px;
+    height: 145px;
+}
+
 html, body {
     margin: 0;
     padding: 0;
-    font-family: cursive, courier new;
-    font-size: 14.5px;
-}
-
-ul, ol, li {
     font-family: courier new;
     font-size: 14.5px;
 }
@@ -29,6 +29,7 @@ a:hover{
     color: #6C7F7F;
 }
 
+/*Style standard blue button design.*/
 
 button {
     -moz-box-shadow:inset 0px 1px 0px 0px #cae3fc;
@@ -80,170 +81,7 @@ button:active {
 
 button:focus {outline:0;}
 
-/*Standard styling for digital media embedded on the blog*/
-.movie {
-    width: 500px;
-    height: 345px;
-    background-color: black;
-    box-shadow: 7px 7px 5px #888888;
-}
-
-.movie-container {
-    margin: 30px auto;
-    text-align: center;
-}
-
-
-
-#toTop {
-    z-index: 1;
-    width:64px;
-    height:64px;
-    text-align:center;
-    position:fixed;
-    top:30px;
-    left:7%;
-    cursor:pointer;
-    border-radius: 50%;
-    background-image:url('https://addons.opera.com/media/extensions/75/24075/1.1-rev1/icons/icon_64x64.png');
-}
-
-#inspiration{
-    background-color: red;
-    color: white;
-    margin-top: 20px;
-    width: 150px;
-    border-radius: 100px;
-    border: 2px solid black;
-    font-size: 15px;
-}
-
-#inspiration:hover{
-    cursor: pointer;
-}
-
-.date {
-    float: right;
-    border-bottom: none;
-    padding: 0 5px 0 5px;
-    z-index: 1;
-}
-
-.multi-list{
-    width: 85%;
-    vertical-align: top;
-    display: inline-block;
-    padding: 0 10px 0 20px;
-    margin: 0 auto;
-}
-
-.subhead, .title{
-    text-align: center;
-}
-
-.blog, .title{
-    width: 62%;
-    margin: 0 auto;
-}
-
-.blog{
-    text-align: justify;
-    padding-top: 10px;
-}
-
-.subhead{
-    font-size: 26px;
-    font-weight: bold;
-    font-family: impact, fantasy;
-    height: 40px;
-}
-
-.background-image{
-    width: 100%;
-    height: auto;
-}
-
-.title{
-    width: 100%;
-    font-family: impactLabelReversed, courier new;
-    font-weight: bold;
-    font-size: 22px;
-    border-bottom: 2px dotted black;
-    margin: 40px 0 20px 0;
-    text-align: left;
-}
-
-.application{
-    padding: -10px 0px -20px 0px;
-    width: 83%;
-    margin: 25px auto 0 auto;
-    font-family: courier new;
-    font-size: 16px;
-    font-weight: bold;
-    border: 2px solid black;
-    text-align: center;
-}
-
-.post, .note, .list{
-    font-family: courier new;
-}
-
-.note{
-    width: 85%;
-    border: 2px solid black;
-    margin: 20px auto;
-    padding: 20px 50px;
-    background-color: #EFEFEF
-}
-
-.note:hover {
-    background-color: #FFFCFA!important;
-    box-shadow: 7px 7px 5px #888888!important;
-}
-
-.shortcuts{
-    background-color: #F2F2F2;
-    width: 83%;
-    margin: 0 auto 25px auto;
-    border: 2px solid #D6D6D6;
-    border-top: none;
-    text-align: left;
-    box-shadow: 7px 7px 5px #888888;
-}
-
-.project-container{
-    width: 70%;
-    margin: 50px auto 40px auto;
-    text-align: center;
-}
-
-.project {
-    background-color: #F2F2F2;
-    display: inline-block;
-    border: 1px solid #D6D6D6;;
-    width: 300px;
-    height: 250px;
-    margin: 20px 20px;
-    top: 50%;
-}
-
-.project:hover {
-    opacity: 0.5;
-}
-
-.label {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.list {
-    padding: 17px 0;
-    width: 85%;
-    margin: 0 auto;
-}
-.container{
-    margin: 0 auto;
-}
+/*Styling for Navigation bar, including additional classes for Javascript functions used within the blog.*/
 
 .nav {
     margin: -21px;
@@ -276,11 +114,7 @@ button:focus {outline:0;}
     opacity:0.95;
 }
 
-img{
-    margin-top: 12.5px;
-    height: 145px;
-}
-
+/*Styling for Profile Picture, including additional classes for Javascript functions used within the blog.*/
 .profile-image{
     width: 44%;
     float: left;
@@ -294,6 +128,7 @@ img{
     padding: 0 1em;
     text-align: center;
     width: 360px;
+    font-family: cursive;
 }
 
 .profile-details-scroll{
@@ -307,7 +142,132 @@ img{
     display: inline;
 }
 
-.quotes {
+/*Standard styling for digital media embedded on the blog*/
+.movie {
+    width: 500px;
+    height: 345px;
+    background-color: black;
+    box-shadow: 7px 7px 5px #888888;
+}
+
+.movie-container {
+    margin: 30px auto;
+    text-align: center;
+}
+
+.soundcloud{
+    margin: 0 auto;
+    width: 100%;
+    height: 125px;
+    box-shadow: 7px 7px 5px #888888;
+    border: 2px solid black;
+}
+
+/*Standard styling for content containers embedded on the blog*/
+
+.contact {
+    display: none;
+    text-align: center;
+    background: #000
+}
+
+.blog{
+    width: 62%;
+    margin: 0 auto;
+    padding-top: 10px;
+    text-align: justify;
+}
+
+.date {
+    float: right;
+    border-bottom: none;
+    padding: 0 5px 0 5px;
+}
+
+.title{
+    width: 100%;
+    font-family: impactLabelReversed, courier new;
+    font-weight: bold;
+    font-size: 22px;
+    border-bottom: 2px dotted black;
+    margin: 40px 0 20px 0;
+    text-align: left;
+}
+
+.note{
+    width: 85%;
+    border: 2px solid black;
+    margin: 20px auto;
+    padding: 20px 50px;
+    background-color: #EFEFEF
+}
+
+.note:hover {
+    background-color: #FFFCFA!important;
+    box-shadow: 7px 7px 5px #888888!important;
+}
+
+.project-container{
+    width: 70%;
+    margin: 50px auto 40px auto;
+    text-align: center;
+}
+
+.project {
+    background-color: #F2F2F2;
+    display: inline-block;
+    border: 1px solid #D6D6D6;;
+    width: 300px;
+    height: 250px;
+    margin: 20px 20px;
+    top: 50%;
+}
+
+.project:hover {
+    opacity: 0.5;
+}
+
+#toTop {
+    z-index: 1;
+    width:64px;
+    height:64px;
+    text-align:center;
+    position:fixed;
+    top:30px;
+    left:7%;
+    cursor:pointer;
+    border-radius: 50%;
+    background-image:url('https://addons.opera.com/media/extensions/75/24075/1.1-rev1/icons/icon_64x64.png');
+}
+
+.list-title{
+    padding: -10px 0px -20px 0px;
+    width: 83%;
+    margin: 25px auto 0 auto;
+    font-family: courier new;
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid black;
+    text-align: center;
+}
+
+.list {
+    padding: 17px 0;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.list-container {
+    background-color: #F2F2F2;
+    width: 83%;
+    margin: 0 auto 25px auto;
+    border: 2px solid #D6D6D6;
+    border-top: none;
+    text-align: left;
+    box-shadow: 7px 7px 5px #888888;
+}
+
+.quote {
     padding: 1.5em 1.5em;
     border: 1.5px solid black;
     width: 38em;
@@ -319,12 +279,8 @@ img{
 .quote-container {
     margin: 0 auto;
     font-size: 22px;
-}
-
-.contact {
-    display: none;
-    text-align: center;
-    background: #000
+    font-family: cursive;
+    cursor: pointer;
 }
 
 .tooltip {
@@ -338,17 +294,7 @@ img{
     font-size:12px Arial;
 }
 
-.soundcloud{
-    margin: 0 auto;
-    width: 100%;
-    height: 125px;
-    box-shadow: 7px 7px 5px #888888;
-    border: 2px solid black;
-}
-
-
-
-div .bucket {
+div.bucket {
     width: 33.3%;
     float: left;
 }
