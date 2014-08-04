@@ -319,7 +319,7 @@ div#track_a, div#track_b  {
 
 }
 
-div#slider_a, div#slider_b {
+input, div#slider_a, div#slider_b {
     border-radius: 50px;
     background-color: #ddd;
     height: 17px;

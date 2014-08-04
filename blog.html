@@ -65,22 +65,6 @@ $(document).ready(function () {
     <!-- Sliders: A Javascript plugin for dynamic calculations using sliders to adjust values. -->
 
     <script src='js/dw_slider.js'></script>
-    <script type="text/javascript">
-    DYN_WEB.Event.domReady( function() {
-        // aruments: slider id, track id, axis orientation ('v' or 'h')
-        var sla = new DYN_WEB.Slider('slider_a', 'track_a', 'h');
-        var slb = new DYN_WEB.Slider('slider_b', 'track_b', 'h');
-
-        // display value when click on track or drag slider
-        sla.on_move = function(x) {
-          document.getElementById('display_a').innerHTML = parseInt(x, 10);
-        };
-        slb.on_move = function(y) {
-          document.getElementById('display_b').innerHTML = parseInt(y, 10);
-        };
-
-      });
-    </script>
 
   </head>
 
@@ -107,7 +91,7 @@ $(document).ready(function () {
 
       <p class="post">As many of you can attest, the process of crafting a customized cover letter for each application is time-consuming. Companies typically identify qualifying applicants with the assistance of a computer, which alogrithmically selects candidates by identifying relevant skills, knowledge and experience. Unfortunately the details of these matching algorithms remain opaque, but it raises an interesting question. How should one structure a cover letter/resume to reduce your chances of being filtered out by 'the machine'?</p>
       <p class="post">It turns out, others have explored this question. A company called <strong><a href="http://www.resunate.com/">Resunate</a></strong> suggests a handful of specific terms from the job profile to be strategically inserted into your resume. Then, it ranks your experience in order of relevance. Apparently, their proprietary recommendations can improve your odds of getting an interview in a statistically significant way. I was interested in looking at this problem myself, because there is a compelling probabalistic argument for why this is a worthy endevour.<p>
-        <p class="post"> There are essentially three ways to improve your odds of landing a job; apply to more jobs, apply to relevant jobs and nepotism. For simplicity, let's assume the likelihood of getting an interview for any particular job is uniform. What we're interested in is the likelihood of getting atleast 1 interview. Expressed another way, we wish to compute the probability that getting 0 interviews will <strong>not</strong> occur over $N$ applications. In the case of one application, the odds of not being selected is $1 - \Pr(Getting An Interview)$. If we submit $N$ applications, the odds of not being selected becomes $(1 - \Pr(Getting An Interview))^{N}$. By the Law of Total Probability, the odds of getting atleast 1 interview are:</p>
+        <p class="post"> There are essentially two ways to improve your odds of landing a job; apply to more jobs, and apply to more relevant jobs (or give that appearance). For simplicity, let's assume the likelihood of getting an interview for any particular job is uniform. What we're interested in is the likelihood of getting atleast 1 interview. Expressed another way, we wish to compute the probability that getting 0 interviews will <strong>not</strong> occur over $N$ applications. In the case of one application, the odds of not being selected is $1 - \Pr(Getting An Interview)$. If we submit $N$ applications, the odds of not being selected becomes $(1 - \Pr(Getting An Interview))^{N}$. By the Law of Total Probability, the odds of getting atleast 1 interview are:</p>
         <p class="post" style="font-size: 18px">
           $$1 - (1 - \Pr(Getting An Interview) )^{N}$$
         </p>
@@ -120,20 +104,21 @@ $(document).ready(function () {
         </div>
 
         <div style="border: 1px solid black; border-top: none; width: 85%; height: 25px; margin: 0px auto 35px auto">
-          <div class="bucket">
-            <div id="track_a">
-              <div id="slider_a"></div>
-            </div>
+          <div class="bucket" style="font-size: 22px">
+            <form style="text-align: center">
+              <input style="width: 80%; font-size: 55px; text-align: center" type="range" min="1" max="100" id="job_applications" step="1" onchange="fetch()"/>
+            </form>
           </div>
           <div class="bucket">
-            <div id="track_b">
-              <div id="slider_b"></div>
-            </div>
+            <form style="text-align: center">
+              <input style="width: 80%" type="range" min=".005" max=".1" id="job_odds" step=".005"></input>
+            </form>
           </div>
           <div class="bucket"></div>
         </div>
 
         <p class="title">Actuarial Guide for Soon-To-Be Graduates<span class="date">4/3/2014</span></p>
+        <div><code>A version of this article appeared in Manitoba's Actuarial Newsletter in April 2014</code></div>
         <p class="post">I just turned 29 yesterday. Scary. It's been over 6 years since I graduated, and 8 years since I wrote my first actuarial exam. While I was originally asked to write about my endevours in actuarial musical composition (google: actuarial girlfriend), it felt a little self-serving. I have resigned to the fact that I will remain; anti-viral. Instead, my old age prompted a sincere reflection on all that I've learned since entering the workforce 6 years ago. I was hoping to codify these lessons into a brief guide for actuarial graduates.
         </p>
         <div class="note"><blockquote><code>"I have a lot of beliefs and I live by none of [them]. I just like believing them. They make me feel good about who I am. But if they get in the way of a thing I want, I do that." - <em>Louis C.K.</em></code></blockquote></div>
@@ -144,6 +129,7 @@ $(document).ready(function () {
           <li>Start/join an informal meetup amongst colleagues. Most challenges you'll encounter will be application related (file dependencies, inconsistent naming conventions, repetitious code, cluttered design). Developing and sharing your improved excel templates, tools and macros will fundamentally change the way you do things. See if your employer will sponsor your meetup (office space, pizza, beer). If not, go ahead anyway. They may change their tune when they see the value from your group's efforts.</li>
           <li>It's a grind and you will likely fail exams. But if you finish, a literal world of opportunities opens up. Your work could take you to Asia, Europe, the US, or even <u>Bermuda</u>!</li>
           <li>At times work will be repetitive, so always find ways to challenge yourself.</li>
+        </ul>
           <div class="note" style="text-align: center"><code><blockquote>"Be so good they can't ignore you." - <em>Steve Martin</em></blockquote></code></div>
 
           <p class="title">The Economics of Household Chores<span class="date">4/1/2014</span></p>
